@@ -9,16 +9,6 @@ Foundry                           Atlas
 analysis + orchestration   →     durable published knowledge
 ```
 
-## Three-repository boundary
-
-A Foundry job has three distinct repository roles:
-
-- **Foundry** — `bitwikiorg/foundry`: control plane and public site; generated repository output does not belong there.
-- **Source repository** — the user's submitted public GitHub repository: pinned and read only; never modified by Foundry.
-- **Atlas** — `bitwikiorg/atlas`: the only Git destination for generated repository knowledge.
-
-Vercel is presentation only. Once Atlas `index.json` advances, the Foundry site can display the repository without a per-job Vercel deployment.
-
 ## Repository boundary
 
 This repository is intentionally lightweight. It contains:
@@ -31,7 +21,7 @@ This repository is intentionally lightweight. It contains:
 - generated repository outputs under `repos/`
 - minimal continuity state
 
-Foundry operational state, queues, prompts, retries, and TODOs do not belong here.
+Foundry owns orchestration, queueing, agents, retries, operational state, public presentation, and TODOs. Those do not belong here.
 
 ## Canonical generated destination
 
@@ -52,11 +42,17 @@ repos/<github-owner>/<github-repository>/
     bundle.json
 ```
 
+Example:
+
+```text
+repos/bitwikiorg/foundry/versions/abc123.../
+```
+
 Do not place generated repository documents at repository root, inside `templates/`, or in ad-hoc directories.
 
 Each `versions/<source-sha>/` directory is immutable. `latest.json` points to the currently published version.
 
-See **[PUBLISHING.md](./PUBLISHING.md)** for the exact write transaction, credential boundary, and index contract.
+See **[PUBLISHING.md](./PUBLISHING.md)** for the exact write order, telemetry definitions, and index contract.
 
 ## Template inheritance
 
@@ -71,11 +67,19 @@ Every generated repository starts from `templates/base.json`, then applies one a
 
 Overlays change emphasis and section ordering. They do not override source truth or force irrelevant sections.
 
-## Public index
+## Public index and Foundry pages
 
 `index.json` is the canonical registry consumed by the Foundry public site.
 
 A repository becomes visible in Foundry only after its complete version exists and its entry is committed to `index.json`.
+
+Foundry exposes a canonical public page for each published repository at:
+
+```text
+/atlas/<owner>/<repo>
+```
+
+Those pages read this repository as their durable source. Human page impressions belong to Foundry/Vercel analytics; generation telemetry belongs in Atlas manifests/index entries.
 
 ## Rule
 
