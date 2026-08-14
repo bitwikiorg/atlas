@@ -17,7 +17,8 @@
     "provenance.jsonl",
     "llms.txt",
     "llms-full.txt",
-    "manifest.json"
+    "manifest.json",
+    "bundle.json"
   ],
   "section_order": [
     "overview",
