@@ -2,12 +2,22 @@
 
 **Atlas is the durable repository knowledge layer produced by [BITwiki Foundry](https://github.com/bitwikiorg/foundry).**
 
-Foundry analyzes a public repository. Atlas stores the generated, source-linked result: documentation, graphs, ratings, provenance, machine-readable surfaces, and version history.
+Foundry analyzes a submitted public repository at a pinned Git commit. Atlas stores the generated, source-linked result: documentation, graphs, ratings, provenance, machine-readable surfaces, and version history.
 
 ```text
 Foundry                           Atlas
 analysis + orchestration   →     durable published knowledge
 ```
+
+## Three-repository boundary
+
+A Foundry job has three distinct repository roles:
+
+- **Foundry** — `bitwikiorg/foundry`: control plane and public site; generated repository output does not belong there.
+- **Source repository** — the user's submitted public GitHub repository: pinned and read only; never modified by Foundry.
+- **Atlas** — `bitwikiorg/atlas`: the only Git destination for generated repository knowledge.
+
+Vercel is presentation only. Once Atlas `index.json` advances, the Foundry site can display the repository without a per-job Vercel deployment.
 
 ## Repository boundary
 
@@ -21,7 +31,7 @@ This repository is intentionally lightweight. It contains:
 - generated repository outputs under `repos/`
 - minimal continuity state
 
-Foundry owns orchestration, queueing, agents, retries, operational state, and TODOs. Those do not belong here.
+Foundry operational state, queues, prompts, retries, and TODOs do not belong here.
 
 ## Canonical generated destination
 
@@ -39,19 +49,14 @@ repos/<github-owner>/<github-repository>/
     llms.txt
     llms-full.txt
     manifest.json
-```
-
-Example:
-
-```text
-repos/bitwikiorg/foundry/versions/abc123.../
+    bundle.json
 ```
 
 Do not place generated repository documents at repository root, inside `templates/`, or in ad-hoc directories.
 
 Each `versions/<source-sha>/` directory is immutable. `latest.json` points to the currently published version.
 
-See **[PUBLISHING.md](./PUBLISHING.md)** for the exact write order and index contract.
+See **[PUBLISHING.md](./PUBLISHING.md)** for the exact write transaction, credential boundary, and index contract.
 
 ## Template inheritance
 
