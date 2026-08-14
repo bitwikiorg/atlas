@@ -1,0 +1,7 @@
+{
+  "id": "application",
+  "extends": "base",
+  "emphasis": ["quickstart", "user-flows", "architecture", "configuration", "operations", "usability"],
+  "section_order": ["overview", "quickstart", "core-concepts", "architecture", "visual-system-map", "components", "user-flows", "interfaces", "configuration", "data-state", "testing-quality", "operations", "security", "troubleshooting", "faq", "glossary", "scorecard", "provenance", "machine-interfaces"],
+  "visual_additions": ["user-flow", "component-map", "state-flow"]
+}

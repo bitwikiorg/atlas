@@ -1,0 +1,7 @@
+{
+  "id": "research",
+  "extends": "base",
+  "emphasis": ["research-question", "methods", "models-data", "reproducibility", "results-interfaces", "limitations"],
+  "section_order": ["overview", "research-question", "quickstart", "methods", "architecture", "models-data", "testing-quality", "reproducibility", "results-interfaces", "limitations", "faq", "glossary", "scorecard", "provenance", "machine-interfaces"],
+  "visual_additions": ["experiment-pipeline", "data-flow", "model-topology"]
+}

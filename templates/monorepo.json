@@ -1,0 +1,7 @@
+{
+  "id": "monorepo",
+  "extends": "base",
+  "emphasis": ["workspace-map", "package-boundaries", "shared-infrastructure", "dependency-structure", "release-coordination"],
+  "section_order": ["overview", "workspace-map", "quickstart", "architecture", "visual-system-map", "components", "interfaces", "configuration", "testing-quality", "operations", "extension", "troubleshooting", "faq", "glossary", "scorecard", "history-change", "provenance", "machine-interfaces"],
+  "visual_additions": ["workspace-dependencies", "package-clusters", "change-coupling"]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bitwikiorg/atlas/schemas/manifest.schema.json",
+  "title": "BITwiki Atlas Manifest",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["version", "repo_id", "repo_url", "source_sha", "template", "generated_at", "files"],
+  "properties": {
+    "version": {"type": "integer", "minimum": 1},
+    "repo_id": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+    "repo_url": {"type": "string", "format": "uri"},
+    "source_sha": {"type": "string", "minLength": 7},
+    "template": {"type": "string", "enum": ["base", "library", "service", "application", "monorepo", "protocol", "research"]},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "foundry_score": {"type": "number", "minimum": 0, "maximum": 100},
+    "score_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "evidence_grade": {"type": "string"},
+    "doc_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+    "files": {"type": "array", "items": {"type": "string"}},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  }
+}

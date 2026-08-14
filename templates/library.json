@@ -1,0 +1,7 @@
+{
+  "id": "library",
+  "extends": "base",
+  "emphasis": ["quickstart", "interfaces", "examples", "extension", "compatibility"],
+  "section_order": ["overview", "quickstart", "core-concepts", "architecture", "interfaces", "components", "configuration", "testing-quality", "extension", "troubleshooting", "faq", "glossary", "scorecard", "provenance", "machine-interfaces"],
+  "visual_additions": ["module-dependencies", "public-api-topology"]
+}

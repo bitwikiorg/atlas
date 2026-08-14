@@ -1,0 +1,7 @@
+{
+  "id": "service",
+  "extends": "base",
+  "emphasis": ["architecture", "interfaces", "data-state", "operations", "security", "failure-recovery"],
+  "section_order": ["overview", "quickstart", "architecture", "visual-system-map", "interfaces", "data-state", "configuration", "operations", "security", "testing-quality", "troubleshooting", "faq", "glossary", "scorecard", "history-change", "provenance", "machine-interfaces"],
+  "visual_additions": ["request-flow", "runtime-topology", "data-flow"]
+}

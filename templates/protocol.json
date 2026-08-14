@@ -1,0 +1,7 @@
+{
+  "id": "protocol",
+  "extends": "base",
+  "emphasis": ["core-concepts", "state-transitions", "interfaces", "security", "invariants", "deployment-network"],
+  "section_order": ["overview", "core-concepts", "architecture", "visual-system-map", "state-transitions", "interfaces", "data-state", "security", "testing-quality", "operations", "troubleshooting", "faq", "glossary", "scorecard", "history-change", "provenance", "machine-interfaces"],
+  "visual_additions": ["state-machine", "sequence-flow", "trust-boundaries"]
+}
