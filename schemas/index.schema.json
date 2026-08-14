@@ -7,25 +7,12 @@
   "properties": {
     "version": { "type": "integer", "minimum": 1 },
     "generated_at": { "type": ["string", "null"] },
-    "repositories": {
-      "type": "array",
-      "items": { "$ref": "#/$defs/repository" }
-    }
+    "repositories": { "type": "array", "items": { "$ref": "#/$defs/repository" } }
   },
   "$defs": {
     "repository": {
       "type": "object",
-      "required": [
-        "repo_id",
-        "owner",
-        "repo",
-        "repo_url",
-        "source_sha",
-        "last_indexed_at",
-        "template_id",
-        "github_docs_url",
-        "manifest_uri"
-      ],
+      "required": ["repo_id", "owner", "repo", "repo_url", "source_sha", "last_indexed_at", "template_id", "github_docs_url", "manifest_uri"],
       "properties": {
         "repo_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
         "owner": { "type": "string", "minLength": 1 },
@@ -42,7 +29,16 @@
         "doc_coverage": { "type": "number", "minimum": 0, "maximum": 1 },
         "github_stars": { "type": "integer", "minimum": 0 },
         "github_forks": { "type": "integer", "minimum": 0 },
-        "impressions": { "type": "integer", "minimum": 0 },
+        "version_count": { "type": "integer", "minimum": 1 },
+        "words_generated": { "type": "integer", "minimum": 0 },
+        "source_files_mapped": { "type": "integer", "minimum": 0 },
+        "agent_runs": { "type": "integer", "minimum": 0 },
+        "graph_nodes": { "type": "integer", "minimum": 0 },
+        "graph_edges": { "type": "integer", "minimum": 0 },
+        "graph_entities": { "type": "integer", "minimum": 0 },
+        "model_tokens": { "type": "integer", "minimum": 0 },
+        "generation_seconds": { "type": "number", "minimum": 0 },
+        "impressions": { "type": "integer", "minimum": 0, "description": "Optional analytics snapshot. Live Foundry impressions are measured from canonical /atlas/<owner>/<repo> pageviews." },
         "github_docs_url": { "type": "string", "format": "uri" },
         "download_url": { "type": "string" },
         "atlas_url": { "type": "string" },
