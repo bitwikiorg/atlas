@@ -1,149 +1,102 @@
-# BITwiki Atlas — Publishing Contract
+# BITwiki Atlas — Publication Contract
 
-This file defines how BITwiki Foundry publishes generated repository knowledge into Atlas.
+This file is the canonical write contract for generated repository knowledge.
 
-## Identity
+## Three repository roles
 
-For a source repository:
+A Foundry job always involves three distinct repositories/surfaces:
 
-```text
-https://github.com/<owner>/<repo>
-```
+1. **Foundry** — `bitwikiorg/foundry`: orchestration and public UI. A repository job never writes generated output here.
+2. **Source repository** — the user's submitted public GitHub repository: immutable, read-only evidence input pinned to one commit SHA. Never modify it.
+3. **Atlas** — `bitwikiorg/atlas`: the only per-job Git write destination.
 
-Foundry derives:
+Vercel is presentation only. Publishing an Atlas version does **not** deploy Vercel. Foundry reads this repository's root `index.json`, so a successful Atlas commit becomes visible to the site without modifying Foundry.
 
-```text
-repo_id = <owner>/<repo>   # normalized lowercase operational ID
-source_sha = pinned full Git commit SHA
-```
+## Exact destination
 
-The human-facing directory retains the normalized GitHub owner/repository path supplied by the publisher.
-
-## Destination
-
-A generated version MUST be written to:
+For source repository `OWNER/REPO` at source commit `SOURCE_SHA`, generated output belongs only at:
 
 ```text
-repos/<owner>/<repo>/versions/<source_sha>/
+repos/OWNER/REPO/
+  latest.json
+  versions/SOURCE_SHA/
+    README.md
+    docs/
+    graph.json
+    scorecard.json
+    provenance.jsonl
+    llms.txt
+    llms-full.txt
+    manifest.json
+    bundle.json
 ```
 
-Required portable outputs come from `templates/base.json` plus the selected archetype overlay.
+Do not place generated repository output at Atlas root, under `templates/`, under `schemas/`, or in the Foundry repository.
 
-The minimum version directory is:
+## Identity and immutability
 
-```text
-README.md
-docs/
-graph.json
-scorecard.json
-provenance.jsonl
-llms.txt
-llms-full.txt
-manifest.json
-```
+- `SOURCE_SHA` is the Git commit SHA pinned before analysis.
+- `versions/SOURCE_SHA/` is immutable once published.
+- If the same version already exists, never overwrite it with newly generated content.
+- A new source SHA creates a new version directory.
+- `latest.json` is a mutable pointer to the currently published source version.
 
-`docs/` contains the applicable generated Markdown sections. Unsupported sections are omitted rather than fabricated.
+## Templates
 
-## Write order
-
-Publication is complete only after all four steps succeed:
-
-```text
-1. immutable version directory
-2. repo latest.json pointer
-3. root index.json upsert
-4. Git commit/push verification
-```
-
-Prefer one Git commit containing steps 1–3.
-
-### 1. Version
-
-Write:
-
-```text
-repos/<owner>/<repo>/versions/<source_sha>/...
-```
-
-A published SHA directory is immutable. If the same SHA already exists with a matching manifest/content hashes, publication is idempotently complete. If content differs, stop rather than overwrite it.
-
-### 2. Latest pointer
-
-Write:
-
-```text
-repos/<owner>/<repo>/latest.json
-```
-
-The record MUST validate against `schemas/latest.schema.json` and point to the published version directory.
-
-### 3. Public registry
-
-Upsert exactly one entry for `repo_id` in root:
-
-```text
-index.json
-```
-
-The complete file MUST validate against `schemas/index.schema.json`.
-
-Foundry renders its public repository index from this file. If the repository is absent from `index.json`, it is not publicly indexed by Foundry even if version files exist.
-
-### 4. Verification
-
-After the Git commit/push:
-
-- fetch `github_docs_url` or `manifest_uri`
-- verify it resolves
-- only then mark the Foundry job published and delete the queue row
-
-## Public index fields
-
-The publisher should populate, when available:
-
-```text
-repo_id
-owner
-repo
-repo_url
-source_sha
-last_indexed_at
-template_id
-language
-foundry_score
-score_confidence
-evidence_grade
-doc_coverage
-github_stars
-github_forks
-github_docs_url
-download_url
-atlas_url
-manifest_uri
-```
-
-`atlas_url` is optional rendered presentation. `github_docs_url` and the underlying repository files are the durable output.
-
-## Template resolution
-
-```text
-templates/base.json
-  +
-templates/<archetype>.json
-```
-
-Supported overlays:
+Every build inherits `templates/base.json` plus at most one archetype overlay:
 
 `library | service | application | monorepo | protocol | research`
 
-If classification is uncertain, use `base` only.
+Templates shape output; source evidence remains authoritative.
 
-Templates control document shape and emphasis. Repository evidence controls truth.
+## Publication transaction
 
-## Ownership boundary
+The deterministic publisher—not an AI agent—must:
 
-**Foundry:** intake, analysis, RepoGraph, agents, queue, retries, validation, publication orchestration.
+1. Read the current Atlas `main` ref and tree.
+2. Check whether `repos/OWNER/REPO/versions/SOURCE_SHA/manifest.json` already exists.
+3. If new, add the complete immutable version directory.
+4. Write/update `repos/OWNER/REPO/latest.json`.
+5. Upsert the repository record in root `index.json`.
+6. Create one Git tree from the current base tree.
+7. Create one commit whose parent is the current `main` commit.
+8. Advance `refs/heads/main` without force.
+9. Fetch the published `manifest.json` from the exact new Atlas commit SHA.
+10. Verify source SHA and required-file inventory before Foundry marks the job published or deletes its queue row.
 
-**Atlas:** templates, schemas, public index, generated immutable versions, current pointers.
+Prefer one Git commit for the version, latest pointer, and root index so `index.json` cannot point at incomplete output.
 
-Do not place Foundry operational files in Atlas. Do not place generated Atlas versions in Foundry.
+## Credential boundary
+
+AI agents never receive GitHub write credentials.
+
+Source repository reads are public/read-only. The deterministic publisher uses a **separate GitHub credential restricted to `bitwikiorg/atlas`** with the minimum repository permission required for Git writes (`Contents: write`). That credential must not be reused for the intake webhook.
+
+## `latest.json`
+
+Must validate against `schemas/latest.schema.json` and identify:
+
+- `repo_id`
+- `source_sha`
+- `version_path`
+- `manifest_uri`
+- `published_at`
+
+## Root `index.json`
+
+This is the canonical public registry consumed by Foundry. Each published repository has exactly one current entry, validated against `schemas/index.schema.json`.
+
+The entry must point at the version that `latest.json` identifies and include durable GitHub docs/download/manifest links plus current score/evidence metadata.
+
+## Version manifest
+
+Each version's `manifest.json` must validate against `schemas/manifest.schema.json` and list the generated artifacts. Material claims in human-facing files should remain traceable through evidence IDs/source URLs represented in the version's provenance artifacts.
+
+## Failure rule
+
+If any Git write or post-write verification fails:
+
+- do not mark the Foundry job published;
+- do not delete the queue row;
+- retry from the current Atlas head;
+- never force-push over concurrent Atlas changes.
