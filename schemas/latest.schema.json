@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bitwikiorg/atlas/schemas/latest.schema.json",
+  "title": "BITwiki Atlas Latest Pointer",
+  "type": "object",
+  "required": ["repo_id", "source_sha", "version_path", "manifest_uri", "published_at"],
+  "properties": {
+    "repo_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+    "source_sha": { "type": "string", "minLength": 7 },
+    "version_path": { "type": "string", "pattern": "^repos/[^/]+/[^/]+/versions/[^/]+/$" },
+    "manifest_uri": { "type": "string", "format": "uri" },
+    "published_at": { "type": "string" },
+    "template_id": { "type": "string" },
+    "github_docs_url": { "type": "string", "format": "uri" },
+    "atlas_url": { "type": "string" }
+  },
+  "additionalProperties": true
+}
