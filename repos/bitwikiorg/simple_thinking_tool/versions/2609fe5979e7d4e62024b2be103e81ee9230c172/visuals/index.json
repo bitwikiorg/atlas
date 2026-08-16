@@ -1,0 +1,247 @@
+{
+  "version": 1,
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "views": [
+    {
+      "id": "repository-topology",
+      "title": "Repository topology",
+      "kind": "topology",
+      "purpose": "Directory and file structure of the pinned repository, bounded to the dominant source areas.",
+      "path": "visuals/views/repository-topology.json",
+      "layout": {
+        "family": "tree",
+        "direction": "LR"
+      },
+      "stats": {
+        "nodes": 29,
+        "edges": 28
+      },
+      "evidence_refs": []
+    },
+    {
+      "id": "dependency-surface",
+      "title": "Dependency surface",
+      "kind": "dependency",
+      "purpose": "Observed import/dependency relationships, including external dependencies referenced by sampled source files.",
+      "path": "visuals/views/dependency-surface.json",
+      "layout": {
+        "family": "force",
+        "direction": "LR"
+      },
+      "stats": {
+        "nodes": 46,
+        "edges": 51
+      },
+      "evidence_refs": [
+        "E001",
+        "E003",
+        "E004",
+        "E005",
+        "E007",
+        "E008",
+        "E009",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E021"
+      ]
+    },
+    {
+      "id": "evidence-map",
+      "title": "Evidence map",
+      "kind": "evidence",
+      "purpose": "The exact sampled source evidence used by the Atlas agents, anchored to the pinned source SHA.",
+      "path": "visuals/views/evidence-map.json",
+      "layout": {
+        "family": "radial",
+        "direction": "LR"
+      },
+      "stats": {
+        "nodes": 23,
+        "edges": 22
+      },
+      "evidence_refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022"
+      ]
+    },
+    {
+      "id": "architecture-clusters",
+      "title": "Architecture clusters",
+      "kind": "architecture",
+      "purpose": "Semantic component boundaries curated from the deterministic repository graph and source evidence.",
+      "path": "visuals/views/architecture-clusters.json",
+      "layout": {
+        "family": "layered",
+        "direction": "LR"
+      },
+      "stats": {
+        "nodes": 30,
+        "edges": 29
+      },
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-path",
+      "title": "Reading path",
+      "kind": "reading-path",
+      "purpose": "A curated order for understanding the repository without reading the codebase linearly.",
+      "path": "visuals/views/reading-path.json",
+      "layout": {
+        "family": "layered",
+        "direction": "LR"
+      },
+      "stats": {
+        "nodes": 20,
+        "edges": 19
+      },
+      "evidence_refs": []
+    },
+    {
+      "id": "v-module-architecture",
+      "title": "Internal Module Dependency Graph",
+      "kind": "dependency_graph",
+      "purpose": "Show which source modules import which internal modules, revealing the hub-and-spoke architecture with server.py as the central orchestrator and service.py as the secondary business-logic hub. Answers: what is the internal code structure and which modules depend on which?",
+      "path": "visuals/views/v-module-architecture.json",
+      "layout": {
+        "family": "layered",
+        "direction": "TB"
+      },
+      "stats": {
+        "nodes": 26,
+        "edges": 32
+      },
+      "evidence_refs": [
+        "E004",
+        "E012",
+        "E003",
+        "E007",
+        "E008",
+        "E009",
+        "E011",
+        "E013"
+      ]
+    },
+    {
+      "id": "v-request-lifecycle",
+      "title": "Think Tool Request Lifecycle",
+      "kind": "execution_flow",
+      "purpose": "Trace a think_<mode> MCP tool call from server entry through guard check, template filling from modes data, JSONL store append with fsync, optional hook firing, and response return. Answers: what is the exact runtime path of a thinking tool call through the system?",
+      "path": "visuals/views/v-request-lifecycle.json",
+      "layout": {
+        "family": "layered",
+        "direction": "LR"
+      },
+      "stats": {
+        "nodes": 25,
+        "edges": 32
+      },
+      "evidence_refs": [
+        "E004",
+        "E012",
+        "E011",
+        "E010",
+        "E008",
+        "E013",
+        "E009",
+        "E007",
+        "E003"
+      ]
+    },
+    {
+      "id": "v-test-coverage",
+      "title": "Test-to-Source Coverage Map",
+      "kind": "bipartite_coverage",
+      "purpose": "Map each test module to the source module(s) it exercises, revealing the 1:1 coverage pattern and the two test files (test_server, test_service) that additionally cover secondary modules. Answers: what source modules are tested and by which test files?",
+      "path": "visuals/views/v-test-coverage.json",
+      "layout": {
+        "family": "layered",
+        "direction": "LR"
+      },
+      "stats": {
+        "nodes": 38,
+        "edges": 43
+      },
+      "evidence_refs": [
+        "E005",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019"
+      ]
+    },
+    {
+      "id": "v-mode-registration",
+      "title": "Mode Data-to-Tool Registration Pipeline",
+      "kind": "data_pipeline",
+      "purpose": "Show how a mode entry in modes.json flows through modes.py (load, validate, register) to server.py (expose as think_<mode> MCP tool) and ultimately to service.py (template filling at call time). Answers: how does a JSON data entry become a callable MCP tool with no code change?",
+      "path": "visuals/views/v-mode-registration.json",
+      "layout": {
+        "family": "tree",
+        "direction": "LR"
+      },
+      "stats": {
+        "nodes": 17,
+        "edges": 19
+      },
+      "evidence_refs": [
+        "E010",
+        "E011",
+        "E004",
+        "E012"
+      ]
+    },
+    {
+      "id": "v-storage-lifecycle",
+      "title": "Data Persistence & Rotation Lifecycle",
+      "kind": "state_lifecycle",
+      "purpose": "Focus on the store.py persistence hub and its interactions with service.py (write path), config.py (rotation threshold, state dir), hooks.py (post-store trigger), and modes.json (note attribution). Shows how notes are written with fsync, how rotation is triggered by file size, and how journal read-back works. Answers: how are thinking notes stored, rotated, and retrieved?",
+      "path": "visuals/views/v-storage-lifecycle.json",
+      "layout": {
+        "family": "layered",
+        "direction": "TB"
+      },
+      "stats": {
+        "nodes": 21,
+        "edges": 24
+      },
+      "evidence_refs": [
+        "E013",
+        "E012",
+        "E003",
+        "E009",
+        "E010",
+        "E004"
+      ]
+    }
+  ]
+}

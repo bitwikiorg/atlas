@@ -1,0 +1,591 @@
+{
+  "version": 1,
+  "id": "evidence-map",
+  "title": "Evidence map",
+  "kind": "evidence",
+  "purpose": "The exact sampled source evidence used by the Atlas agents, anchored to the pinned source SHA.",
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "radial",
+    "direction": "LR"
+  },
+  "nodes": [
+    {
+      "id": "evidence:root",
+      "label": "Pinned evidence",
+      "type": "evidence-root",
+      "group": "",
+      "importance": 1,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "evidence:E001",
+      "label": "README.md",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E001"
+      ],
+      "source_paths": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "evidence:E002",
+      "label": "pyproject.toml",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E002"
+      ],
+      "source_paths": [
+        "pyproject.toml"
+      ]
+    },
+    {
+      "id": "evidence:E003",
+      "label": "src/simple_thinking_tool/config.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E003"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/config.py"
+      ]
+    },
+    {
+      "id": "evidence:E004",
+      "label": "src/simple_thinking_tool/server.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E004"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/server.py"
+      ]
+    },
+    {
+      "id": "evidence:E005",
+      "label": "tests/test_server.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E005"
+      ],
+      "source_paths": [
+        "tests/test_server.py"
+      ]
+    },
+    {
+      "id": "evidence:E006",
+      "label": "src/simple_thinking_tool/__init__.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E006"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/__init__.py"
+      ]
+    },
+    {
+      "id": "evidence:E007",
+      "label": "src/simple_thinking_tool/auth.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E007"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/auth.py"
+      ]
+    },
+    {
+      "id": "evidence:E008",
+      "label": "src/simple_thinking_tool/guard.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E008"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ]
+    },
+    {
+      "id": "evidence:E009",
+      "label": "src/simple_thinking_tool/hooks.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E009"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/hooks.py"
+      ]
+    },
+    {
+      "id": "evidence:E010",
+      "label": "src/simple_thinking_tool/modes.json",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E010"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ]
+    },
+    {
+      "id": "evidence:E011",
+      "label": "src/simple_thinking_tool/modes.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E011"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/modes.py"
+      ]
+    },
+    {
+      "id": "evidence:E012",
+      "label": "src/simple_thinking_tool/service.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E012"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/service.py"
+      ]
+    },
+    {
+      "id": "evidence:E013",
+      "label": "src/simple_thinking_tool/store.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E013"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ]
+    },
+    {
+      "id": "evidence:E014",
+      "label": "tests/test_auth.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E014"
+      ],
+      "source_paths": [
+        "tests/test_auth.py"
+      ]
+    },
+    {
+      "id": "evidence:E015",
+      "label": "tests/test_guard.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E015"
+      ],
+      "source_paths": [
+        "tests/test_guard.py"
+      ]
+    },
+    {
+      "id": "evidence:E016",
+      "label": "tests/test_hooks.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E016"
+      ],
+      "source_paths": [
+        "tests/test_hooks.py"
+      ]
+    },
+    {
+      "id": "evidence:E017",
+      "label": "tests/test_modes.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E017"
+      ],
+      "source_paths": [
+        "tests/test_modes.py"
+      ]
+    },
+    {
+      "id": "evidence:E018",
+      "label": "tests/test_service.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E018"
+      ],
+      "source_paths": [
+        "tests/test_service.py"
+      ]
+    },
+    {
+      "id": "evidence:E019",
+      "label": "tests/test_store.py",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E019"
+      ],
+      "source_paths": [
+        "tests/test_store.py"
+      ]
+    },
+    {
+      "id": "evidence:E020",
+      "label": "AUDIT.md",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E020"
+      ],
+      "source_paths": [
+        "AUDIT.md"
+      ]
+    },
+    {
+      "id": "evidence:E021",
+      "label": "LICENSE",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E021"
+      ],
+      "source_paths": [
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "evidence:E022",
+      "label": "requirements.txt",
+      "type": "evidence",
+      "group": "",
+      "importance": 0.55,
+      "evidence_refs": [
+        "E022"
+      ],
+      "source_paths": [
+        "requirements.txt"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "evidence-link:0",
+      "source": "evidence:root",
+      "target": "evidence:E001",
+      "label": "E001",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E001"
+      ]
+    },
+    {
+      "id": "evidence-link:1",
+      "source": "evidence:root",
+      "target": "evidence:E002",
+      "label": "E002",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E002"
+      ]
+    },
+    {
+      "id": "evidence-link:2",
+      "source": "evidence:root",
+      "target": "evidence:E003",
+      "label": "E003",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E003"
+      ]
+    },
+    {
+      "id": "evidence-link:3",
+      "source": "evidence:root",
+      "target": "evidence:E004",
+      "label": "E004",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "evidence-link:4",
+      "source": "evidence:root",
+      "target": "evidence:E005",
+      "label": "E005",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "evidence-link:5",
+      "source": "evidence:root",
+      "target": "evidence:E006",
+      "label": "E006",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "evidence-link:6",
+      "source": "evidence:root",
+      "target": "evidence:E007",
+      "label": "E007",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E007"
+      ]
+    },
+    {
+      "id": "evidence-link:7",
+      "source": "evidence:root",
+      "target": "evidence:E008",
+      "label": "E008",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "evidence-link:8",
+      "source": "evidence:root",
+      "target": "evidence:E009",
+      "label": "E009",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E009"
+      ]
+    },
+    {
+      "id": "evidence-link:9",
+      "source": "evidence:root",
+      "target": "evidence:E010",
+      "label": "E010",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E010"
+      ]
+    },
+    {
+      "id": "evidence-link:10",
+      "source": "evidence:root",
+      "target": "evidence:E011",
+      "label": "E011",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E011"
+      ]
+    },
+    {
+      "id": "evidence-link:11",
+      "source": "evidence:root",
+      "target": "evidence:E012",
+      "label": "E012",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E012"
+      ]
+    },
+    {
+      "id": "evidence-link:12",
+      "source": "evidence:root",
+      "target": "evidence:E013",
+      "label": "E013",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E013"
+      ]
+    },
+    {
+      "id": "evidence-link:13",
+      "source": "evidence:root",
+      "target": "evidence:E014",
+      "label": "E014",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E014"
+      ]
+    },
+    {
+      "id": "evidence-link:14",
+      "source": "evidence:root",
+      "target": "evidence:E015",
+      "label": "E015",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E015"
+      ]
+    },
+    {
+      "id": "evidence-link:15",
+      "source": "evidence:root",
+      "target": "evidence:E016",
+      "label": "E016",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E016"
+      ]
+    },
+    {
+      "id": "evidence-link:16",
+      "source": "evidence:root",
+      "target": "evidence:E017",
+      "label": "E017",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E017"
+      ]
+    },
+    {
+      "id": "evidence-link:17",
+      "source": "evidence:root",
+      "target": "evidence:E018",
+      "label": "E018",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E018"
+      ]
+    },
+    {
+      "id": "evidence-link:18",
+      "source": "evidence:root",
+      "target": "evidence:E019",
+      "label": "E019",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "evidence-link:19",
+      "source": "evidence:root",
+      "target": "evidence:E020",
+      "label": "E020",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E020"
+      ]
+    },
+    {
+      "id": "evidence-link:20",
+      "source": "evidence:root",
+      "target": "evidence:E021",
+      "label": "E021",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E021"
+      ]
+    },
+    {
+      "id": "evidence-link:21",
+      "source": "evidence:root",
+      "target": "evidence:E022",
+      "label": "E022",
+      "type": "supports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E022"
+      ]
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "evidence",
+      "evidence-root"
+    ],
+    "edge_types": [
+      "supports"
+    ]
+  },
+  "evidence_refs": [
+    "E001",
+    "E002",
+    "E003",
+    "E004",
+    "E005",
+    "E006",
+    "E007",
+    "E008",
+    "E009",
+    "E010",
+    "E011",
+    "E012",
+    "E013",
+    "E014",
+    "E015",
+    "E016",
+    "E017",
+    "E018",
+    "E019",
+    "E020",
+    "E021",
+    "E022"
+  ],
+  "stats": {
+    "nodes": 23,
+    "edges": 22
+  }
+}

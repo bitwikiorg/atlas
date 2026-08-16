@@ -1,0 +1,1177 @@
+
+
+# FILE: README.md
+
+# simple_thinking_tool — BITwiki Atlas
+
+**Pinned source:** [`bitwikiorg/simple_thinking_tool`](https://github.com/bitwikiorg/simple_thinking_tool) at commit [`2609fe5979e7d4e62024b2be103e81ee9230c172`](https://github.com/bitwikiorg/simple_thinking_tool/commit/2609fe5979e7d4e62024b2be103e81ee9230c172) (2026-08-05). [E001]
+
+This atlas documents the repository as it exists at the pinned SHA. Claimed behavior is tied to evidence IDs (e.g. `[E001]`) and to files in the pinned tree; links below point at the `main` branch and should be read against the pinned SHA.
+
+## What this repository is
+
+`simple_thinking_tool` is a small **Model Context Protocol (MCP) server** written in Python (target 3.12) that holds **a catalog of thinking methods** ([E001], [E002]). Each method is exposed as one MCP tool. The design principle is **"the LLM is the router"**: the server contains no deterministic routing logic; the model that consumes the tools reads each tool's description and picks the fitting method. [E001]
+
+The server itself **never thinks**:
+
+- It never calls an LLM.
+- It makes zero outbound network calls ("no egress").
+- Its only operation is filling a string template from caller-supplied fields and appending the rendered note to a plain, readable JSONL log. [E001]
+
+> [!NOTE]
+> The README states the rationale directly: "For an LLM, the text it produces *is* the thinking. Forcing articulation forces the cognition. This tool inserts a required checkpoint between 'I could answer' and 'I act.'" [E001]
+
+## Fast facts (verified from evidence)
+
+| Item | Value | Evidence |
+|---|---|---|
+| Package name | `simple_thinking_tool` | [E001] |
+| Language / target | Python 3.12 | [E002], [E001] |
+| Protocol | MCP server; stdio (default) or HTTP transport | [E001], [E004] |
+| Deployment model | single-serve, private (one instance per agent) | [E001] |
+| Tool surface | 18 tools: `health`, `definitions`, `journal`, and 15 `think_<mode>` tools | [E001], [E010] |
+| Persistence | append-only JSONL with `fsync` per write; rotation on by default (5 MB) | [E001], [E013] |
+| LLM calls / egress | none by design | [E001] |
+| Loop guard | optional, off by default (`NUT_THINKING_GUARD_ENABLED`) | [E001], [E008] |
+| Hooks | optional fire-and-forget background scripts | [E001], [E009] |
+| License | PolyForm Noncommercial 1.0.0 | [E001], [E021] |
+| Test status (per README) | 32 passed, 1 skipped | [E001] |
+
+## Repository layout (pinned SHA)
+
+- `src/simple_thinking_tool/` — the package: `server.py`, `service.py`, `store.py`, `modes.py` (+ `modes.json`), `guard.py`, `hooks.py`, `auth.py`, `config.py`, `__init__.py`. [E003]–[E013]
+- `tests/` — seven test modules mapped ~1:1 to source modules. [E005], [E014]–[E019]
+- `README.md`, `AUDIT.md`, `LICENSE`, `pyproject.toml`, `requirements.txt`, `assets/`. [E001], [E002], [E020], [E021], [E022]
+
+## Where to go next
+
+- [docs/overview.md](docs/overview.md) — purpose, the tool catalog, deployment, storage, hooks, guard, configuration, and security posture.
+- [docs/architecture.md](docs/architecture.md) — module map, request lifecycle, mode registration, guard/error paths, and test coverage.
+
+## Verification limits
+
+The following could **not** be verified from the provided evidence and should be read as unknown:
+
+- The full contents of `pyproject.toml` ([E002]) and `requirements.txt` ([E022]) — manifest and dependency details are beyond what the evidence exposes.
+- The contents and findings of `AUDIT.md` ([E020]) — the audit document exists but its scope is not disclosed in this evidence pack.
+- Exact source-level details of `config.py`, `server.py`, `service.py`, `store.py`, `modes.py`, `guard.py`, `hooks.py`, `auth.py`, and `__init__.py` (whether `__init__.py` exports public APIs, exact import edges, and the full JSONL note schema) — these are inferred from the README and module naming and are not fully visible in the provided evidence. [E003]–[E013]
+- GitHub's license detection field reports `NOASSERTION` despite the README and LICENSE file asserting PolyForm Noncommercial 1.0.0 ([E021], [E001]); the cause of the mismatch is unknown.
+
+No CI configuration files were detected in the pinned tree (CI files: 0 in the repository summary).
+
+# FILE: docs/overview.md
+
+# Overview — simple_thinking_tool
+
+This document describes the `simple_thinking_tool` repository at pinned SHA [`2609fe5979e7d4e62024b2be103e81ee9230c172`](https://github.com/bitwikiorg/simple_thinking_tool/commit/2609fe5979e7d4e62024b2be103e81ee9230c172) (2026-08-05). [E001]
+
+## Core idea
+
+A small MCP server holds **a catalog of thinking methods**; each method is one tool; the calling LLM picks the tool that fits the problem. "The server does not think; it fills a template from your fields and stores the note in a plain, readable log." [E001]
+
+Why it exists: agents act too fast — they retry broken calls, over-engineer, and burn compute — because nothing forces a deliberate thought between seeing a problem and acting on it. The baseline discipline is a single sentence: **"Never call the same tool twice in a row."** [E001]
+
+## The tool surface (18 tools)
+
+Per the README `The tools` table: `health`, `definitions`, `journal`, and 15 mode tools. [E001]
+
+| Tool | Purpose |
+|---|---|
+| `health` | Server name, transport, state dir, tool count |
+| `definitions` | The catalog — every mode, purpose, when-to-use, fields. Read first |
+| `journal` | Read back stored notes (with filters) |
+| `think_goal_distill` | Reduce a turn to one objective, priority, first action (default) |
+| `think_understand` | Digest new or complex material before acting |
+| `think_plan` | Order steps + success criteria for a multi-step task |
+| `think_chain_of_thought` | Linear step-by-step reasoning |
+| `think_first_principles` | Strip inherited assumptions, rebuild from fundamentals |
+| `think_creative` | Divergent idea generation |
+| `think_deep` | Rephrase → decompose → hypothesize → verify → synthesize |
+| `think_tree` | Branch, score, prune, pick |
+| `think_graph` | Interacting pieces with feedback loops, aggregated |
+| `think_bias_check` | Confirmation / survivorship / authority scan |
+| `think_metacognitive` | Audit the reasoning itself |
+| `think_adversarial_review` | Try to disprove your own conclusion |
+| `think_reinforced` | Multiple takes + red-team attack |
+| `think_distill` | Compress a long chain to its essence |
+| `think_reflect` | Socratic: what is actually true? |
+
+Each mode is backed by either an academic paper (arXiv) or an existing thinking-MCP server, or is honestly flagged as an operational pattern with no canonical citation. [E001] The catalog of 15 modes lives in `src/simple_thinking_tool/modes.json`. [E010]
+
+### Adding a mode (no code change)
+
+Modes are **data**. Editing `src/simple_thinking_tool/modes.json` and adding an entry — `id`, `label`, `purpose`, `when`, `level`, `typical_stage`, `fields`, `template`, and optional `references` — auto-registers a `think_<id>` tool and surfaces it in `definitions`. No Python and no redeploy logic is required. [E001]
+
+## How to use / deploy
+
+This is a **private, single-instance server**: each agent runs its own copy; nothing is shared or multi-tenant. It is a standard MCP server consumable by any MCP client (the README names Claude Desktop, Cursor, Agent Zero, and others). [E001]
+
+Local (stdio, default):
+
+```bash
+pip install -e .
+mkdir -p state
+NUT_THINKING_STATE_DIR="$PWD/state" python -m simple_thinking_tool.server
+```
+
+Remote (HTTP, optional):
+
+```bash
+NUT_THINKING_TRANSPORT=http NUT_THINKING_PORT=9100 python -m simple_thinking_tool.server
+```
+
+HTTP binds `127.0.0.1` by default; if exposed beyond localhost, protect it with bearer tokens (`NUT_THINKING_TOKEN`, `NUT_THINKING_BOSS_TOKEN`). [E001]
+
+Quick start (from README):
+
+```bash
+python -m venv .venv
+. .venv/bin/activate
+pip install -e .
+python -m pytest tests/ -q          # 32 passed, 1 skipped
+mkdir -p state
+python -m simple_thinking_tool.server
+```
+
+[E001]
+
+## Storage
+
+- Plain **JSONL**, one JSON object per line, append-only, `fsync` after every write.
+- No database, no in-memory reindex.
+- Rotation is on by default (5 MB); tune with `NUT_THINKING_ROTATE_BYTES` or set `0` to disable.
+- The state directory is your private reasoning notebook — keep it out of version control and never commit the JSONL or credentials. [E001]
+
+## Events (hooks)
+
+Thinking tools record; **hooks act**. Set `NUT_THINKING_HOOKS` to a directory of scripts; the server fires a matching script as a fire-and-forget background task after a note is persisted. [E001]
+
+- A script named `<mode>.py` fires for that mode only (e.g. `tree.py` fires for `think_tree`).
+- A script named `on_think.py` fires for every mode without a dedicated script.
+- Mode-specific scripts win over the generic one.
+- Each hook receives one argument: the path to a small JSON payload (`mode`, `note`, `actor`, `ts`) written to the system temp dir and removed after the run.
+- Hooks are background and best-effort — treated as events, never a guarantee. [E001]
+
+## Loop guard (optional, off by default)
+
+Because a thinking call "looks like progress" and "cannot fail the way a search or execute can," the optional guard prevents loop churn while keeping the reasoning value. [E001]
+
+- Same-mode-in-a-row → hard block.
+- Consecutive-count escalation: warn at `NUT_THINKING_GUARD_WARN_AT` (default 3), hard block at `NUT_THINKING_GUARD_BLOCK_AT` (default 5).
+- Enabled via `NUT_THINKING_GUARD_ENABLED=1`; off by default so the server stays simple out of the box.
+- Blocked response shape: `{ "ok": false, "blocked": true, "status": "block", "message": "…" }`. [E001]
+
+## Security & privacy posture
+
+- **No egress.** Zero outbound calls.
+- **No LLM calls.** It never thinks; it never queries a model.
+- **Private by default.** The JSONL is your reasoning notebook.
+- **Optional auth.** Bearer tokens protect HTTP transport; the actor derives from the token, never from tool args.
+- **Bound localhost.** HTTP binds `127.0.0.1` unless overridden.
+- **Public repo only.** Ship code and docs; never ship state, thoughts, keys, or internal context. [E001]
+
+## Configuration reference (env vars)
+
+| Env var | Default | Notes | Evidence |
+|---|---|---|---|
+| `NUT_THINKING_STATE_DIR` | `state` | where `thoughts.jsonl` lives | [E001] |
+| `NUT_THINKING_TRANSPORT` | `stdio` | `stdio` or `http` | [E001] |
+| `NUT_THINKING_HOST` | `127.0.0.1` | localhost only | [E001] |
+| `NUT_THINKING_PORT` | `9100` | HTTP transport port | [E001] |
+| `NUT_THINKING_TOKEN` | — | optional bearer token (agent) | [E001] |
+| `NUT_THINKING_BOSS_TOKEN` | — | optional read-only token | [E001] |
+| `NUT_THINKING_MAX_NOTE_CHARS` | `800` | note cap | [E001] |
+| `NUT_THINKING_ROTATE_BYTES` | `5242880` | JSONL rotation threshold | [E001] |
+| `NUT_THINKING_HOOKS` | — | directory of background hook scripts (empty = disabled) | [E001] |
+| `NUT_THINKING_HOOK_TIMEOUT` | `10.0` | max seconds a hook may run | [E001] |
+| `NUT_THINKING_GUARD_ENABLED` | `0` | set `1` to enable the loop guard | [E001] |
+| `NUT_THINKING_GUARD_SAME_MODE_BLOCK` | `1` | block same-mode twice-in-a-row | [E001] |
+| `NUT_THINKING_GUARD_WARN_AT` | `3` | consecutive calls before a warning | [E001] |
+| `NUT_THINKING_GUARD_BLOCK_AT` | `5` | consecutive calls before a hard block | [E001] |
+
+Configuration and guard/hook settings are read from environment variables by the configuration layer (`src/simple_thinking_tool/config.py`), per the module inventory. [E003]
+
+## What could not be verified
+
+- Full `pyproject.toml` and `requirements.txt` contents (dependencies, build config, any `console_scripts` beyond the `python -m simple_thinking_tool.server` invocation). [E002], [E022]
+- `AUDIT.md` findings. [E020]
+- Exact per-mode field lists and templates inside `modes.json`; this document lists the 15 mode names from the README but not each mode's exact schema. [E010], [E001]
+- The exact JSONL note schema beyond what the README and hook payload imply (`mode`, `note`, `actor`, `ts`, unique `id`). [E001]
+- License-detection mismatch (`NOASSERTION` on GitHub metadata vs. PolyForm Noncommercial in `LICENSE`) — the cause is unknown. [E021], [E001]
+
+See [docs/architecture.md](architecture.md) for the internal module structure and request lifecycle.
+
+# FILE: docs/architecture.md
+
+# Architecture — simple_thinking_tool
+
+Pinned source: [`bitwikiorg/simple_thinking_tool`](https://github.com/bitwikiorg/simple_thinking_tool) at commit [`2609fe5979e7d4e62024b2be103e81ee9230c172`](https://github.com/bitwikiorg/simple_thinking_tool/commit/2609fe5979e7d4e62024b2be103e81ee9230c172) (2026-08-05). [E001]
+
+> **Scope and confidence note:** the source files exist at the pinned paths below, but the provided evidence exposes the README ([E001]) plus module/file identity ([E003]–[E013], [E014]–[E019]) rather than full source text. The import topology and request flow are **inferred** from the README architecture description, the module file map, and the preplan's module inventory, and are marked as inferred where they are not directly quoted. Do not treat un-shown implementation details (exact function signatures, exact JSONL field set, exact import edges) as verified.
+
+## Design philosophy (from README)
+
+- **The LLM is the router.** Every tool has a description saying what it does and *when* to use it; the model's native tool-picker chooses. There is no second deterministic router. The README explicitly rejects a deterministic router because it "failed by gating modes behind priority lanes." [E001]
+- **One tool per mode.** `think_goal_distill`, `think_tree`, `think_bias_check`, … each with its own required fields. [E001]
+- **Modes are data.** They live in `modes.json`; adding or editing a mode requires no Python and no redeploy logic. [E001]
+- **The server never thinks.** It fills templates and appends notes; zero LLM calls, zero egress. [E001]
+
+## Module map (inferred topology)
+
+The package is `src/simple_thinking_tool/` ([E003]–[E013]) with tests in `tests/` ([E005], [E014]–[E019]). The repository summary lists 10 files under `src/` and 7 under `tests/`.
+
+| Module | Responsibility | Evidence |
+|---|---|---|
+| `__init__.py` | Package init and version metadata | [E006] |
+| `config.py` | Environment-driven configuration (state dir, transport, port, tokens, rotation, guard, hooks settings) | [E003] |
+| `server.py` | MCP server entry point; tool registration, transport setup (stdio/http), request dispatch | [E004] |
+| `service.py` | Core service logic: template filling, note rendering, guard integration, hook firing orchestration | [E012] |
+| `store.py` | JSONL append-only storage with fsync, log rotation, journal read-back with filters | [E013] |
+| `modes.py` | Mode loading from `modes.json`, validation, dynamic tool/definition registration | [E011] |
+| `modes.json` | Data file defining all 15 thinking modes | [E010] |
+| `guard.py` | Optional loop guard: same-mode block, consecutive-count warn/block escalation, per-actor state | [E008] |
+| `auth.py` | Optional bearer-token authentication for HTTP transport; actor derivation from token | [E007] |
+| `hooks.py` | Optional background hook system: script resolution (`<mode>.py` vs `on_think.py`), payload writing, fire-and-forget daemon thread execution | [E009] |
+
+Inferred dependency shape (from the preplan's architecture analysis): `server.py` is the central orchestration hub importing all six functional modules (auth, config, guard, hooks, modes, store); `service.py` is the secondary business-logic hub importing auth, modes, and store. `config.py` appears to be consumed at the server dispatch layer. These edges are inferred, not directly quoted from source.
+
+## Request lifecycle (a `think_<mode>` call)
+
+Per the README's sequence diagram and storage/hook documentation [E001], the runtime path is:
+
+1. **Call** — the LLM calls `think_<mode>(fields…)` into the MCP server (`server.py`, [E004]).
+2. **Auth gate (HTTP only, if enabled)** — `auth.py` validates the bearer token; the actor derives from the token, never from tool args ([E007], [E001]). Token/auth failure is rejected before any storage or hook. [E001]
+3. **Guard check** — `guard.py` evaluates the same-mode block and consecutive-count thresholds before processing ([E008], [E001]). A blocked call returns `{ "ok": false, "blocked": true, "status": "block", "message": "…" }` and stores nothing. [E001]
+4. **Template fill** — `service.py` fills the mode's template from the caller's fields, using the mode data from `modes.py` / `modes.json` ([E012], [E011], [E010]).
+5. **Store append** — `store.py` appends the rendered note to the JSONL with `fsync` ([E013], [E001]).
+6. **Hook firing (optional)** — if hooks are configured, a matching script fires as a fire-and-forget background task after the note is persisted ([E009], [E001]).
+7. **Response** — the server returns `{ ok, mode, note, id, hook? }` (schema from README). [E001]
+
+Hooks fire **only in the successful note-storage path**. They do not fire on guard-blocks, on auth failures, on note-size rejection (`NUT_THINKING_MAX_NOTE_CHARS`), or for the read-only tools `health` / `definitions` / `journal`. A `warn` (guard allowed-but-warned) does not suppress storage or hooks. [E001]
+
+## Mode registration pipeline (data → tool)
+
+1. `modes.json` holds the 15 mode entries (schema: `id`, `label`, `purpose`, `when`, `level`, `typical_stage`, `fields`, `template`, optional `references`) [E010], [E001].
+2. `modes.py` loads and validates entries and drives dynamic tool/definition registration [E011].
+3. `server.py` exposes each as `think_<id>` MCP tool and the `definitions` tool surfaces the catalog for the LLM to read first [E004], [E001].
+4. At call time, `service.py` renders the template from the registered mode data [E012]. Adding a JSON entry yields a new tool with no code change. [E001]
+
+## Storage & rotation
+
+- Append-only JSONL, one JSON object per line, `fsync` after every write; no database, no in-memory reindex. [E001]
+- Rotation: when the file exceeds `NUT_THINKING_ROTATE_BYTES` (default 5 MB / 5242880), a new file is created; set `0` to disable. [E001]
+- `journal` reads stored notes back with filters; the raw log is plain JSONL openable in any editor. [E001]
+- The exact JSONL field set is **not fully verified**; the README and hook payload imply at least `mode`, `note`, `actor`, `ts` and a unique `id`. [E001]
+
+## Guard enforcement path
+
+1. `service.py` consults `guard.py` before processing [E012], [E008].
+2. **Same-mode-in-a-row: hard block** (default on via `NUT_THINKING_GUARD_SAME_MODE_BLOCK=1`). [E001]
+3. **Consecutive-count escalation:** at `warn_at` (default 3) inject state ("you have called thinking tools 3× in a row…"); at `block_at` (default 5) block until a real, non-thinking-tool action occurs. [E001]
+4. Guard off by default (`NUT_THINKING_GUARD_ENABLED=0`). [E001]
+
+The README describes the design as a middle path: "context injection + escalating warnings + a hard ceiling — keeps the reasoning value while killing the loop economics." [E001]
+
+## Hooks execution model
+
+- Resolution: `<mode>.py` → else `on_think.py` → else no-op. Mode-specific wins. [E001]
+- Payload: `{mode, note, actor, ts}` only — no secrets, no request context, no caller arguments beyond the rendered note. [E001]
+- Fire-and-forget, best-effort: hook failures never fail or slow the `think_*` call; hook runtimes are non-blocking in a daemon thread; timeouts governed by `NUT_THINKING_HOOK_TIMEOUT` (default 10.0 s). [E001], [E009]
+- Off by default: no hooks dir = zero overhead. [E001]
+
+## Config foundation
+
+`config.py` reads the `NUT_THINKING_*` environment variables (state dir, transport, host, port, tokens, note cap, rotation, hooks, guard settings) [E003]. The full var table with defaults is in [docs/overview.md](overview.md); the README is the authoritative table [E001].
+
+## Test suite
+
+Seven test modules under `tests/` with a near 1:1 mapping to source modules [E005], [E014]–[E019]:
+
+| Test file | Targets | Evidence |
+|---|---|---|
+| `tests/test_server.py` | `server.py` (also modes integration) | [E005] |
+| `tests/test_auth.py` | `auth.py` | [E014] |
+| `tests/test_guard.py` | `guard.py` | [E015] |
+| `tests/test_hooks.py` | `hooks.py` | [E016] |
+| `tests/test_modes.py` | `modes.py` / `modes.json` | [E017] |
+| `tests/test_service.py` | `service.py` (also store integration) | [E018] |
+| `tests/test_store.py` | `store.py` | [E019] |
+
+The README reports the suite as **32 passed, 1 skipped** (`python -m pytest tests/ -q`). [E001] No CI configuration files were detected in the pinned tree.
+
+## Unverified / uncertain
+
+- **Exact import graph** between modules — inferred from file inventory and README, not confirmed from source text.
+- **Exact JSONL note schema** in `store.py` — inferred; the README's hook payload and response schemas are the only confirmed shape.
+- **Exact `modes.json` content** (per-mode fields and templates) — only mode names and the entry schema are confirmed from README.
+- **`pyproject.toml` / `requirements.txt` contents** and any `console_scripts` beyond `python -m simple_thinking_tool.server`. [E002], [E022]
+- **`AUDIT.md` findings** — the file exists ([E020]) but its contents are not exposed in this evidence pack.
+- **`__init__.py` API surface** ([E006]) — whether it exports public API is unknown.
+- The README's tools table and mermaid diagrams describe behavior; diagrams themselves are documentation, and the rendered behavior should be treated as inferred unless independently confirmed from source.
+
+# FILE: docs/quickstart.md
+
+# Quick Start
+
+This guide gets a local, private instance of `simple_thinking_tool` — an MCP server that holds a catalog of thinking methods — up and running. The server itself never thinks: it fills templates from your fields and appends the rendered note to a plain JSONL log. The LLM that consumes the server is the router that picks the right thinking tool.
+
+## Prerequisites
+
+- Python 3.12 (per project metadata).
+- `pip` and the ability to create a virtual environment.
+
+## Install
+
+From the repository root:
+
+```bash
+python -m venv .venv
+. .venv/bin/activate
+pip install -e .
+```
+
+Run the test suite to confirm the install (per the README this reports 32 passed, 1 skipped):
+
+```bash
+python -m pytest tests/ -q
+```
+
+## First run (stdio transport, default)
+
+Create a state directory, set it via `NUT_THINKING_STATE_DIR`, and start the server:
+
+```bash
+mkdir -p state
+NUT_THINKING_STATE_DIR="$PWD/state" python -m simple_thinking_tool.server
+```
+
+The default transport is stdio, spawned locally — no port, no network.
+
+## Register in an MCP client
+
+Point your MCP client at the server. A generic client config that spawns it locally:
+
+```json
+{
+  "mcpServers": {
+    "simple-thinking-tool": {
+      "command": "python3",
+      "args": ["-m", "simple_thinking_tool.server"],
+      "env": {
+        "NUT_THINKING_STATE_DIR": "/absolute/path/to/your/state"
+      }
+    }
+  }
+}
+```
+
+Any harness that speaks MCP can consume it (examples named in the README include Claude Desktop, Cursor, and Agent Zero). Each agent runs its own copy — this is a single-serve, private server.
+
+## Call the catalog first
+
+Call the **`definitions`** tool. It lists every mode, what it does, when to use it, and its required fields. Read this catalog before the first call; this is how an LLM learns to route.
+
+## Pick a mode and fill its fields
+
+Each mode is its own tool with explicit string fields. Example from the README:
+
+```
+think_goal_distill(
+  priority="ship v2",
+  why="users blocked on auth",
+  action="write PRD"
+)
+```
+
+The server fills the template and appends the rendered note to the log.
+
+## The loop rule
+
+- Never call the same mode tool twice in a row.
+- A thinking call is a checkpoint *before* work, not work itself. After 3–5 thinking calls, produce a real, verifiable action.
+
+## Audit
+
+Call **`journal`** to read back stored notes. The raw log is a plain JSONL file openable in any editor.
+
+## Serve over HTTP (optional)
+
+For harnesses that need a network endpoint:
+
+```bash
+NUT_THINKING_TRANSPORT=http NUT_THINKING_PORT=9100 python -m simple_thinking_tool.server
+```
+
+Binds `127.0.0.1` by default. If you expose it beyond localhost, protect it with bearer tokens (`NUT_THINKING_TOKEN`, `NUT_THINKING_BOSS_TOKEN`). See the configuration guide for details.
+
+## What the server does not do
+
+- It makes no outbound network calls (no egress).
+- It never calls an LLM.
+- It keeps your thinking log private: keep the state directory out of version control, and never commit the JSONL or credentials.
+
+> Confidence note: this guide reflects the pinned repository evidence (README at commit `2609fe5` and supporting source layout). Exact tool response fields beyond what the README shows could not be verified from the provided source blobs.
+
+---
+
+Evidence references: [E001] (all commands, the loop rule, the `think_goal_distill` example, and the transport/config env vars are sourced from the README).
+
+# FILE: docs/configuration.md
+
+# Configuration
+
+`simple_thinking_tool` is configured entirely through environment variables with a consistent `NUT_THINKING_*` prefix. Configuration is read by `src/simple_thinking_tool/config.py` and applied via server dispatch.
+
+## Environment variables
+
+| Env var | Default | Notes |
+|---|---|---|
+| `NUT_THINKING_STATE_DIR` | `state` | where `thoughts.jsonl` lives |
+| `NUT_THINKING_TRANSPORT` | `stdio` | `stdio` or `http` |
+| `NUT_THINKING_HOST` | `127.0.0.1` | localhost only |
+| `NUT_THINKING_PORT` | `9100` | HTTP transport port |
+| `NUT_THINKING_TOKEN` | — | optional bearer token (agent) |
+| `NUT_THINKING_BOSS_TOKEN` | — | optional read-only token |
+| `NUT_THINKING_MAX_NOTE_CHARS` | `800` | note cap |
+| `NUT_THINKING_ROTATE_BYTES` | `5242880` | JSONL rotation threshold (5 MB); set `0` to disable |
+| `NUT_THINKING_HOOKS` | — | directory of background hook scripts (empty = disabled) |
+| `NUT_THINKING_HOOK_TIMEOUT` | `10.0` | max seconds a hook may run |
+
+These defaults are taken verbatim from the README storage table. [E001]
+
+## Loop guard variables
+
+The optional loop guard is off by default. It prevents agents from churning on repeated thinking calls.
+
+| Env var | Default | Meaning |
+|---|---|---|
+| `NUT_THINKING_GUARD_ENABLED` | `0` | set `1` to enable the loop guard |
+| `NUT_THINKING_GUARD_SAME_MODE_BLOCK` | `1` | block same-mode twice-in-a-row |
+| `NUT_THINKING_GUARD_WARN_AT` | `3` | consecutive calls before a warning |
+| `NUT_THINKING_GUARD_BLOCK_AT` | `5` | consecutive calls before a hard block |
+
+[E001], [E008]
+
+Behavior:
+
+- Same-mode-in-a-row is a hard block: the server refuses and returns `{ "ok": false, "blocked": true, "status": "block", "message": "…" }`; nothing is stored.
+- At `warn_at` consecutive calls, the server injects state about the loop threshold (a warning does not suppress storage or hooks).
+- At `block_at`, it blocks until the agent performs a real, non-thinking-tool action.
+- Below `warn_at`, calls behave exactly as before.
+
+## Serving examples
+
+### HTTP transport with hooks and auth
+
+```bash
+NUT_THINKING_TRANSPORT=http \
+NUT_THINKING_PORT=9100 \
+NUT_THINKING_TOKEN=secret-agent-token \
+NUT_THINKING_BOSS_TOKEN=readonly-token \
+NUT_THINKING_HOOKS=/path/to/hooks \
+NUT_THINKING_STATE_DIR=/path/to/state \
+python -m simple_thinking_tool.server
+```
+
+### stdio transport with the guard enabled
+
+```bash
+NUT_THINKING_GUARD_ENABLED=1 \
+NUT_THINKING_STATE_DIR=/path/to/state \
+python -m simple_thinking_tool.server
+```
+
+## Notes and caveats
+
+- With HTTP transport, the actor identity is derived from the bearer token, never from tool arguments. `NUT_THINKING_BOSS_TOKEN` is described as a read-only token; the exact privilege boundary could not be verified from the provided source blobs beyond the README description.
+- Rotation threshold applies to the JSONL log file: when it is exceeded a new file is created.
+- Python 3.12 is specified by project metadata; exact dependency pinning in `pyproject.toml` and `requirements.txt` could not be verified from the provided evidence (the manifest contents were not visible).
+- There is no visible CI or `.env.example` in the pinned tree; config validation at startup (for invalid combinations) is not documented in the evidence.
+
+---
+
+Evidence references: [E001] (env var tables, guard behavior, serving examples from the README), [E003] (configuration layer is read via `config.py`), [E008] (guard env vars and behavior).
+
+# FILE: docs/extension.md
+
+# Extension
+
+`simple_thinking_tool` is designed for extension in two main ways:
+
+1. **Adding a thinking mode** — pure data, no code change.
+2. **Hooks** — background scripts that act after a note is stored.
+
+The reader is referred to the repository README for the full architecture; this document captures what the pinned evidence supports.
+
+## Adding a thinking mode
+
+Modes are data. They live in `src/simple_thinking_tool/modes.json`. Add one entry to register a new mode; the server auto-registers it as a tool named `think_<id>` and it appears in the `definitions` catalog. No code change.
+
+Schema of a mode entry (per the README):
+
+```json
+{
+  "id": "my_mode",
+  "label": "My Mode",
+  "purpose": "One sentence on what it does.",
+  "when": "Use when ...",
+  "level": 1,
+  "typical_stage": "any",
+  "fields": ["input_a", "input_b"],
+  "template": "Input A: {input_a}\nInput B: {input_b}",
+  "references": ["https://arxiv.org/abs/XXXX"]
+}
+```
+
+Notes:
+
+- `id` must be a unique slug; it becomes `think_<id>`.
+- `fields` are the required string fields the caller supplies.
+- `template` is a string with `{field}` placeholders that the server fills with the caller's values.
+- `references` (optional) is surfaced in `definitions` so an LLM can see provenance at call time.
+- A single JSON entry produces a new callable MCP tool without touching Python.
+
+The README states that 15 mode tools ship out of the box (plus `health`, `definitions`, and `journal` — 18 tools total).
+
+## Hooks: background scripts
+
+Thinking tools record; hooks act. A hook is a background script you drop into a directory; the server fires it as a fire-and-forget task after a matching note is persisted.
+
+### Configure
+
+Set `NUT_THINKING_HOOKS` to a directory containing scripts. Example:
+
+```bash
+NUT_THINKING_HOOKS=/path/to/hooks NUT_THINKING_STATE_DIR=/path/to/state python -m simple_thinking_tool.server
+```
+
+### Script resolution
+
+- A script named `<mode>.py` fires for that mode only (e.g. `tree.py` fires for `think_tree`).
+- A script named `on_think.py` fires for every mode without a dedicated script.
+- Mode-specific scripts win over the generic one.
+- Resolution order: `<mode>.py` → `on_think.py` → no-op.
+
+### Payload
+
+Each hook receives one argument: the path to a small JSON payload written to the system temp dir, removed after the run. The payload is exactly `{ "mode", "note", "actor", "ts" }` — no secrets, no request context, no caller arguments beyond the rendered note.
+
+### When hooks fire
+
+Hooks fire only in the **successful note-storage path**, as background, best-effort events:
+
+| Event | Fires? | Notes |
+|---|---|---|
+| `think_<mode>` call, guard disabled/allowed | yes | after the note is fsync'd to JSONL |
+| `think_<mode>` call, guard blocked | no | no note stored; response is `blocked: true` |
+| `think_<mode>` call, guard warned (allowed) | yes | warn does not suppress storage or hooks |
+| Hook script missing for mode + no `on_think.py` | no-op | nothing runs; call unaffected |
+| Hook script throws / times out | best-effort | failure isolated; call already returned |
+| `health`, `definitions`, `journal` | no | read-only tools, never fire hooks |
+| Token/auth failure | no | rejected before any storage or hook |
+| Note exceeds `NUT_THINKING_MAX_NOTE_CHARS` | no | rejected before storage; no hook |
+
+### Design rules
+
+- Caller side stays simple: no new tool args or required return fields.
+- Fire-and-forget, best-effort: a hook failure never fails or slows the `think_*` call; hook runtimes are non-blocking in a daemon thread.
+- No secrets, no egress: a hook is a local subprocess the operator owns.
+- Off by default: no hooks dir means zero overhead.
+
+### Example: from trees to a forest of thought
+
+Point a `tree.py` hook at every `think_tree` call and have it append each pruned, scored branch to a `forest-of-thought.md`:
+
+```python
+# tree.py — dropped in NUT_THINKING_HOOKS
+import json, sys
+payload = json.load(open(sys.argv[1], encoding="utf-8"))
+with open("forest-of-thought.md", "a") as f:
+    f.write("## " + payload["mode"] + "\n" + payload["note"] + "\n")
+```
+
+The README generalizes the pattern: audit a `bias_check` stream, forward `goal_distill` to a planner, feed `metacognitive` output into a review queue.
+
+## Caveats from the evidence
+
+- The full contents of `modes.json` (all 15 mode definitions with exact field lists and templates) were not visible in the provided evidence, so only the schema structure and mode names from the README table are documented here.
+- The exact JSONL note schema (`id`, `mode`, `note`, `actor`, `ts`) is inferred from the hook payload schema and README examples, not confirmed from `store.py` source, which was not fully visible.
+- No hot-reloading of `modes.json`, no plugin manifest format, and no formal schema validation files are documented in the evidence.
+
+---
+
+Evidence references: [E001] (mode schema, hook configuration/resolution/payload/event table, design rules and example), [E009] (hooks module), [E010] (modes.json data file holding the 15 modes).
+
+# FILE: docs/reference.md
+
+# simple_thinking_tool — Reference
+
+This is the technical reference for the `simple_thinking_tool` package, an MCP (Model Context Protocol) server that exposes a catalog of structured thinking methods as individual MCP tools. It is a private, single-serve, per-agent reasoning ledger.
+
+> **Scope and confidence note:** this document was produced from the pinned repository state at commit `2609fe5979e7d4e62024b2be103e81ee9230c172` (2026-08-05) of `bitwikiorg/simple_thinking_tool`. The provided evidence exposes the README ([E001]) plus module/file identity ([E003]–[E013], [E014]–[E019]); the full source text of the modules is **not** part of the visible evidence. Where a claim is directly quoted from the README it is verified against [E001]; everything about internal implementation (function names, class names, exact signatures, exact return fields, exact JSONL schema) is **inferred** and labeled as such. Do not treat un-shown implementation details as verified.
+
+## 1. Overview
+
+The server's core idea: hold a catalog of thinking methods, each exposed as one MCP tool. The LLM that consumes the server acts as the router — it reads tool descriptions and picks the appropriate thinking tool. The server never calls an LLM, makes zero outbound network calls, and performs no reasoning; it fills string templates from caller-supplied fields and appends the rendered note to a durable JSONL log. [E001]
+
+Design principles stated in the README:
+
+- **"The LLM is the router"** — the server has no deterministic routing logic; the README explicitly rejects a second deterministic router because it "failed by gating modes behind priority lanes." [E001]
+- **"The server never thinks"** — it fills templates and appends notes; zero LLM calls, zero egress. [E001]
+- **"Modes are data"** — adding a thinking mode is a single JSON entry in `modes.json` with no code change. [E001]
+
+The repository summary counts 24 files: 10 source files under `src/simple_thinking_tool/`, 7 test files, `pyproject.toml`, `requirements.txt`, `README.md`, `AUDIT.md`, `LICENSE`, `.gitignore`, and `assets/`. No CI configuration files were detected (CI files: 0). [repository summary, E001]
+
+## 2. Design Principles
+
+### 2.1 LLM as router
+
+The server does not decide which thinking mode to use. Each tool's description states what it does and *when* to use it; the model's native tool-picker chooses. [E001]
+
+### 2.2 Server never thinks
+
+Operations performed by the server are limited to: filling a mode template from caller fields and appending the note to a JSONL log. No LLM calls, no egress. [E001]
+
+### 2.3 Modes as data
+
+Thinking modes live in `modes.json`. Each entry auto-registers as a tool named `think_<id>` with its fields as explicit required arguments. Adding or editing a mode requires no Python and no redeploy logic — the README states "no code changed" when adding a JSON entry. [E001]
+
+## 3. Architecture
+
+The README's architecture description and the module file map imply a hub-and-spoke layout where `server.py` is the central entry point and `service.py` handles business logic. These relationships are **inferred** from the README, the file inventory, and module naming; the exact import graph is not confirmed from source text. [E001], [E003]–[E013]
+
+### 3.1 Module map (inferred roles)
+
+| Module | Responsibility | Evidence |
+| --- | --- | --- |
+| `__init__.py` | Package init; version metadata (exact value unverified) | [E006] |
+| `config.py` | Environment-driven configuration (state dir, transport, port, tokens, rotation, guard, hooks settings) | [E003] |
+| `server.py` | MCP server entry point; tool registration; transport setup (stdio/http); request dispatch | [E004] |
+| `service.py` | Core service logic: template filling, note rendering, guard/hook/store orchestration | [E012] |
+| `store.py` | JSONL append-only storage with fsync, rotation, journal read-back with filters | [E013] |
+| `modes.py` | Mode loading from `modes.json`; dynamic tool/definition registration | [E011] |
+| `modes.json` | Data file defining all 15 thinking modes | [E010] |
+| `guard.py` | Optional loop guard: same-mode block, consecutive-count warn/block escalation, per-actor state | [E008] |
+| `auth.py` | Optional bearer-token authentication for HTTP transport; actor derivation from token | [E007] |
+| `hooks.py` | Optional background hook system: script resolution, payload writing, fire-and-forget execution | [E009] |
+
+Roles are inferred from the README architecture description and module naming; exact function-level responsibility is **not verified** from source text.
+
+### 3.2 Request lifecycle (inferred)
+
+Per the README's sequence diagram and storage/hook documentation [E001], the runtime path of a `think_<mode>` call is inferred to be:
+
+1. **Call** — the LLM calls `think_<mode>(fields…)` into the MCP server (`server.py`, [E004]).
+2. **Auth gate (HTTP only, if enabled)** — the bearer token is validated; the actor derives from the token, never from tool args. Token/auth failure is rejected before any storage or hook. [E001], [E007]
+3. **Guard check** — the optional guard evaluates the same-mode block and consecutive-count thresholds. A blocked call returns `{ ok, blocked, status, message }` and stores nothing. [E001], [E008]
+4. **Template fill** — the mode's template is filled from the caller's fields, using mode data from `modes.json` / `modes.py`. [E001], [E011], [E012]
+5. **Store append** — the rendered note is appended to the JSONL with `fsync`. [E001], [E013]
+6. **Hook firing (optional)** — if hooks are configured, a matching script fires as a fire-and-forget background task after the note is persisted. [E001], [E009]
+7. **Response** — the server returns `{ ok, mode, note, id, hook? }` (schema from the README sequence diagram). [E001]
+
+The exact function names, call order, and internal data flow are **inferred**; only the outer behavior above is documented in the README.
+
+### 3.3 Critical paths
+
+The following paths are **inferred** from the README architecture description and module roles, not verified from source text:
+
+- **MCP tool call path:** `server.py` receives the call → template fill → optional guard check → store append with fsync → optional hook fire → response.
+- **Mode registration path:** `modes.json` (data) → `modes.py` (load/validate/register) → `server.py` (expose as `think_<mode>` tools) → `definitions` tool (catalog exposure).
+- **Configuration foundation path:** `config.py` reads `NUT_THINKING_*` env vars; the server uses them for transport/state/tokens.
+- **HTTP auth gate path:** `auth.py` validates the bearer token → actor identity derived from token → guard/store attribute the note to that actor.
+- **Guard enforcement path:** same-mode block first, then consecutive count against `warn_at`/`block_at` thresholds.
+- **Storage rotation path:** append → fsync → check file size against rotation threshold → rotate if exceeded.
+
+## 4. Configuration (Environment Variables)
+
+All configuration comes from environment variables; there are no hardcoded secrets. Defaults are documented in the README storage table [E001]. The table below is taken verbatim from the README.
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `NUT_THINKING_STATE_DIR` | `state` | Directory for the JSONL log file |
+| `NUT_THINKING_TRANSPORT` | `stdio` | Transport: `stdio` or `http` |
+| `NUT_THINKING_HOST` | `127.0.0.1` | HTTP transport bind host (localhost only) |
+| `NUT_THINKING_PORT` | `9100` | HTTP transport bind port |
+| `NUT_THINKING_TOKEN` | — | Optional bearer token (agent) |
+| `NUT_THINKING_BOSS_TOKEN` | — | Optional read-only token |
+| `NUT_THINKING_MAX_NOTE_CHARS` | `800` | Maximum characters per stored note |
+| `NUT_THINKING_ROTATE_BYTES` | `5242880` (5 MB) | JSONL rotation threshold; `0` disables |
+| `NUT_THINKING_HOOKS` | — | Directory for background hook scripts (empty = disabled) |
+| `NUT_THINKING_HOOK_TIMEOUT` | `10.0` | Max seconds a hook may run |
+
+### Loop guard variables
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `NUT_THINKING_GUARD_ENABLED` | `0` | Set to `1` to enable the loop guard |
+| `NUT_THINKING_GUARD_SAME_MODE_BLOCK` | `1` | `1` enables hard block on same-mode repeat |
+| `NUT_THINKING_GUARD_WARN_AT` | `3` | Consecutive count to begin warning |
+| `NUT_THINKING_GUARD_BLOCK_AT` | `5` | Consecutive count to hard-block |
+
+[E001]
+
+> **Note:** transport is `stdio` or `http` per the README; `sse` and `streamable-http` are **not** documented in the evidence and are not listed here. The env vars `NUT_THINKING_BURST_LIMIT`, `NUT_THINKING_ACTOR`, and `NUT_THINKING_ALLOW_MODES` are **not** present in the README tables and are therefore omitted until verified from source.
+
+## 5. Transport and Serving
+
+The README documents two serving modes [E001]:
+
+- **Local (stdio — default):** most desktop MCP clients spawn a local server over stdio; no port, no network.
+  ```bash
+  NUT_THINKING_STATE_DIR="$PWD/state" python -m simple_thinking_tool.server
+  ```
+- **Remote (HTTP — optional):** for harnesses that need a network endpoint.
+  ```bash
+  NUT_THINKING_TRANSPORT=http NUT_THINKING_PORT=9100 python -m simple_thinking_tool.server
+  ```
+
+HTTP binds `127.0.0.1` by default; if exposed beyond localhost, protect it with bearer tokens (`NUT_THINKING_TOKEN`, `NUT_THINKING_BOSS_TOKEN`). [E001]
+
+Three utility tools are always registered alongside the mode tools [E001]:
+
+- **`health`** — returns server name, transport, state dir, tool count.
+- **`definitions`** — the catalog: "every mode, what it does, when to use it, and its required fields. Read first." Intended to be called before the first mode call so the LLM learns to route.
+- **`journal`** — reads back stored notes with filters; the raw log is a plain JSONL file.
+
+Exact return-field sets for these tools beyond the README descriptions are **not verified** from source.
+
+## 6. Thinking Modes and Tools
+
+Modes are defined in `src/simple_thinking_tool/modes.json`. Each registers as a tool named `think_<id>`. The catalog contains 15 mode tools (plus `health`, `definitions`, `journal` — 18 tools total). [E001], [E010]
+
+The following table lists the 15 mode tools and their README-described purposes [E001]. Per-mode field lists, levels, and `typical_stage` values are **not** exposed in the README beyond the `think_goal_distill(priority, why, action)` example and the general `modes.json` entry schema; they are therefore **unverified** here.
+
+| Tool | Purpose (from README) |
+| --- | --- |
+| `think_goal_distill` | Reduce a turn to one objective, priority, first action (default) |
+| `think_understand` | Digest new or complex material before acting |
+| `think_plan` | Order steps + success criteria for a multi-step task |
+| `think_chain_of_thought` | Linear step-by-step reasoning |
+| `think_first_principles` | Strip inherited assumptions, rebuild from fundamentals |
+| `think_creative` | Divergent idea generation |
+| `think_deep` | Rephrase → decompose → hypothesize → verify → synthesize |
+| `think_tree` | Branch, score, prune, pick |
+| `think_graph` | Interacting pieces with feedback loops, aggregated |
+| `think_bias_check` | Confirmation / survivorship / authority scan |
+| `think_metacognitive` | Audit the reasoning itself |
+| `think_adversarial_review` | Try to disprove your own conclusion |
+| `think_reinforced` | Multiple takes + red-team attack |
+| `think_distill` | Compress a long chain to its essence |
+| `think_reflect` | Socratic: what is actually true? |
+
+### 6.1 Template filling
+
+Each mode has a template with `{field}` placeholders. The server fills the template from the caller's fields and appends the rendered note to the log. The `modes.json` entry schema (from the README) is: `id`, `label`, `purpose`, `when`, `level` (int), `typical_stage`, `fields` (list), `template` (with `{field}` placeholders), and optional `references`. [E001] The exact per-mode templates and field lists inside `modes.json` are **not** visible in the evidence. [E010]
+
+### 6.2 Tool response schema
+
+Success response (schema shown in the README sequence diagram) [E001]:
+
+```json
+{ "ok": true, "mode": "<id>", "note": "<rendered>", "id": "<id>", "hook": "<path>" }
+```
+
+The `hook` field is present only when a hook fired.
+
+Guard block response (documented in the README) [E001]:
+
+```json
+{ "ok": false, "blocked": true, "status": "block", "message": "…" }
+```
+
+Any additional fields beyond these four on a guard block are **unverified**.
+
+### 6.3 Adding modes
+
+Edit `modes.json` to add or change a mode. A single JSON entry (`id`, `label`, `purpose`, `when`, `level`, `typical_stage`, `fields`, `template`, optional `references`) auto-registers as `think_<id>` and appears in `definitions`; no code change is required. [E001] Whether `modes.json` supports hot-reloading without a server restart is **not** documented in the evidence and is **unverified**.
+
+## 7. Storage (JSONL Store)
+
+Per the README [E001]:
+
+- Plain **JSONL**, one JSON object per line, append-only, `fsync` after every write.
+- The file is `thoughts.jsonl` by default, inside the state directory (`NUT_THINKING_STATE_DIR`, default `state`).
+- No database, no in-memory reindex.
+- Rotation is on by default (5 MB / 5242880 bytes), tuned with `NUT_THINKING_ROTATE_BYTES` or disabled by setting `0`.
+- `journal` reads stored notes back with filters; the raw log is openable in any editor.
+
+The exact JSONL note record field set is **not** visible in the evidence. The README response schema and the hook payload imply at least `{id, mode, note, actor, ts}`, but the precise record schema and class/API shape of `store.py` are **unverified**. [E013]
+
+## 8. Authentication (HTTP Transport)
+
+Optional bearer-token authentication protects the HTTP transport [E001]:
+
+- `NUT_THINKING_TOKEN` — agent token (full access).
+- `NUT_THINKING_BOSS_TOKEN` — read-only token.
+
+The actor identity is derived from the token, never from tool arguments. [E001], [E007] The specific token-validation functions and the constant-time comparison implementation are **not visible** in the evidence and are **unverified**.
+
+## 9. Loop Guard
+
+The optional loop guard is **off by default** (`NUT_THINKING_GUARD_ENABLED=0`). Enable via `NUT_THINKING_GUARD_ENABLED=1`. [E001]
+
+Behavior when enabled [E001]:
+
+1. **Same-mode hard block:** if same-mode-in-a-row blocking is on (default `NUT_THINKING_GUARD_SAME_MODE_BLOCK=1`), repeating the identical mode is blocked as pure churn.
+2. **Consecutive-count escalation:** at `NUT_THINKING_GUARD_WARN_AT` (default 3) consecutive `think_*` calls, the guard injects state (a warning that does not suppress storage or hooks); at `NUT_THINKING_GUARD_BLOCK_AT` (default 5), it blocks until the agent performs a real, verifiable action (a non-thinking-tool call).
+
+When blocked, the tool responds `{ "ok": false, "blocked": true, "status": "block", "message": "…" }` and nothing is stored. [E001] When enabled and below `warn_at`, calls behave exactly as before. [E001]
+
+The README characterizes the design as "context injection + escalating warnings + a hard ceiling — keeps the reasoning value while killing the loop economics." [E001] Internal state structures, per-actor tracking details, and exact warning message text are **not visible** in the evidence and are **unverified**. [E008]
+
+## 10. Hooks (Background Processing)
+
+Hooks are **off by default**: no hooks directory means zero overhead. Set `NUT_THINKING_HOOKS` to a directory containing scripts. [E001]
+
+- **Resolution:** a script named `<mode>.py` fires for that mode only; a script named `on_think.py` fires for every mode without a dedicated script; mode-specific scripts win. Resolution order: `<mode>.py` → `on_think.py` → no-op. [E001]
+- **Payload:** each hook receives one argument: the path to a small JSON payload (`{mode, note, actor, ts}`) written to the system temp dir and removed after the run. The payload carries no secrets, no request context, no caller arguments beyond the rendered note. [E001]
+- **Execution:** fire-and-forget, best-effort; a hook failure never fails or slows the `think_*` call; timeouts governed by `NUT_THINKING_HOOK_TIMEOUT` (default 10.0 s). [E001]
+- **When fires:** hooks fire only in the **successful note-storage path** — not on guard-blocks, auth failures, or note-size rejection, and never for `health` / `definitions` / `journal`. [E001]
+
+The internal hook-runner class shape, subprocess invocation details, and return shape of the dispatch are **not visible** in the evidence and are **unverified**. [E009]
+
+## 11. Security and Privacy Posture
+
+From the README [E001]:
+
+- **No egress:** the server makes zero outbound network calls; it fills templates and appends to local JSONL.
+- **No LLM calls:** it never thinks; it never queries a model.
+- **Private by default:** the JSONL is your reasoning notebook; keep the state directory out of version control.
+- **Optional auth:** bearer tokens protect HTTP transport; the actor derives from the token, never from tool args.
+- **Bound localhost:** HTTP binds `127.0.0.1` unless overridden.
+- **Public repo only:** ship code and docs; never ship state, thoughts, keys, or internal context.
+- **Hooks are local:** background hooks (if enabled) run as your own subprocess; the server still makes no outbound calls and sends no secrets.
+
+## 12. Testing
+
+The repository contains 7 test modules with a near 1:1 mapping to source modules [E005], [E014]–[E019]:
+
+| Test file | Target module(s) | Evidence |
+| --- | --- | --- |
+| `tests/test_server.py` | `server.py` (also modes integration) | [E005] |
+| `tests/test_auth.py` | `auth.py` | [E014] |
+| `tests/test_guard.py` | `guard.py` | [E015] |
+| `tests/test_hooks.py` | `hooks.py` | [E016] |
+| `tests/test_modes.py` | `modes.py` / `modes.json` | [E017] |
+| `tests/test_service.py` | `service.py` (also store integration) | [E018] |
+| `tests/test_store.py` | `store.py` | [E019] |
+
+The README reports the suite as **32 passed, 1 skipped** (`python -m pytest tests/ -q`); a per-test breakdown is not independently verifiable from the evidence. [E001] No CI configuration files were detected in the pinned tree.
+
+## 13. Licensing and Metadata
+
+- **License:** the README declares **PolyForm Noncommercial 1.0.0** with an SPDX-style badge, and a `LICENSE` file is present ([E001], [E021]). The exact contents of `LICENSE` were not provided in the evidence, and GitHub's automated license detection reports `NOASSERTION`; the cause of the mismatch is unknown.
+- **Version:** a specific `__version__` value in `__init__.py` is **not** present in the README and was not visible in the evidence; it is **unverified**. [E006]
+- **Python:** README and project metadata reference Python 3.12. The `pyproject.toml` contents (dependencies, build config, entry points) were not visible in the evidence; treat the declared Python requirement as supported by the README badge but the manifest internals as **unverified**. [E002]
+
+## 14. Unverified Items
+
+The following could not be verified from the pinned repository evidence and are intentionally not detailed here:
+
+- The exact source of `config.py`, `server.py`, `service.py`, `store.py`, `modes.py`, `guard.py`, `hooks.py`, `auth.py`, and `__init__.py` — function names, class names, exact signatures, and return fields are inferred, not verified. [E003]–[E013]
+- The exact JSONL note record schema from `store.py`.
+- The full `pyproject.toml` configuration (dependencies, entry points, build system). [E002]
+- The contents of `AUDIT.md` ([E020]) and `LICENSE` ([E021]).
+- The contents of `requirements.txt` ([E022]).
+- The exact per-mode field lists, levels, `typical_stage` values, and templates inside `modes.json` beyond the README's entry schema and `think_goal_distill` example.
+- Whether `modes.json` supports hot-reload without a server restart.
+- `assets/hero-banner.svg` contents.
+
+## 15. Rough Gotchas
+
+- The guard, hooks, and auth are all optional and off by default. Do not assume they are active without setting the corresponding env vars. [E001]
+- Transport is `stdio` or `http` per the README; do not assume `sse` / `streamable-http` support. [E001]
+- The `health` tool reports a tool count; the README totals 18 tools (15 modes + 3 utilities). [E001]
+- Reading back history may require consideration of rotated files; read-back implementation details in `store.py` are not visible. [E013]
+
+# FILE: docs/faq.md
+
+# FAQ — simple_thinking_tool
+
+This FAQ is compiled from the repository at pinned source SHA `2609fe5979e7d4e62024b2be103e81ee9230c172` (main branch, commit dated 2026-08-05). Where a claim could not be verified from the pinned evidence, that is stated explicitly.
+
+## Design & behavior
+
+### Does the server call an LLM?
+No. The server fills template strings from your fields and appends the rendered notes to the JSONL log. There are no model calls and no network egress, ever. [E001]
+
+### Why is there no router inside the server?
+Because the LLM that calls the tools is already a router. The authors judged a second deterministic router to be redundant machinery — one that previously "failed by gating modes behind priority lanes." The tool descriptions carry the routing logic. [E001]
+
+### What does "the LLM is the router" mean?
+Each `think_*` tool has a description stating what it does and *when* to use it. The model's native tool-picker chooses which mode fits the problem. The server never decides which mode to use. [E001]
+
+### Does the server "think"?
+No. The server only fills templates and appends notes. Zero LLM calls, zero egress. The note in the README: "forcing articulation forces the cognition" — the text the LLM produces *is* the thinking; the tool is a required checkpoint between "I could answer" and "I act." [E001]
+
+### Why JSONL and not a database?
+Because it is the readable notebook: open the file, read the audit. Append-only means no corruption risk from partial writes, and a dump tool is trivial. This is a "notepad" use case, not a transactional system. [E001]
+
+## Usage & integration
+
+### Can any agent / harness use this?
+Yes. It is a standard MCP server. Install it locally and register it in any MCP client (the README names Claude Desktop, Cursor, Agent Zero, and others). It is single-serve: each agent runs its own instance; nothing is shared or multi-tenant. [E001]
+
+### How do I stop loop-calling?
+One baseline rule: **never call the same tool twice in a row.** That is the loop-break. If loop-abuse appears, enable the optional loop guard for a togglable escalation (warn at 3 consecutive calls, hard block at 5). See "Loop guard" below. [E001, E008]
+
+### What should I call first?
+Call the **`definitions`** tool. It lists every mode, what it does, when to use it, and its required fields. The README recommends reading this catalog before the first call — it is how the LLM learns to route. [E001]
+
+### Can I build on top of a thinking call?
+Yes. Set `NUT_THINKING_HOOKS` to a directory of scripts and the server fires a matching `<mode>.py` (or the generic `on_think.py`) as a background task after each note is stored. This is for processing and automation; the raw JSONL is already the durable audit trail. [E001, E009]
+
+### How do I add a new thinking mode?
+Edit `src/simple_thinking_tool/modes.json` and add one entry (`id`, `label`, `purpose`, `when`, `level`, `typical_stage`, `fields`, `template`, optional `references`). It auto-registers as `think_<mode>(...)` and appears in `definitions`. No code change is needed. [E001, E010, E011]
+
+## Storage & privacy
+
+### Where are notes stored?
+In a plain JSONL file (`thoughts.jsonl` by default) inside the state directory (`NUT_THINKING_STATE_DIR`, default `state`). The file is append-only with `fsync` after every write. Each mode call appends one JSON object per line. [E001, E013]
+
+### How do I audit or read back stored notes?
+Call the **`journal`** tool, which reads back stored notes with filters. The raw log is a plain JSONL file you can open in any editor. [E001]
+
+### Can I keep my thinking log private?
+The thinking log is private by design — it is your reasoning notebook. Keep the state directory out of version control. Never commit the JSONL or any credentials. If you publish a fork, publish only public code and docs — never state, thoughts, or secrets. [E001]
+
+### Is log rotation configurable?
+Yes. Rotation is on by default at 5 MB (5242880 bytes). Tune with `NUT_THINKING_ROTATE_BYTES` or set it to `0` to disable. [E001, E013]
+
+## Security
+
+### Does the server make outbound network calls?
+No. The server makes zero outbound calls. It fills templates and appends to local JSONL. It also makes no LLM calls. [E001]
+
+### Are hooks a security or egress concern?
+No. Hooks (if enabled) run as your own local subprocesses. The server still makes no outbound calls and sends no secrets. [E001]
+
+### Is authentication available?
+Optional bearer tokens protect the HTTP transport: `NUT_THINKING_TOKEN` (agent, full access) and `NUT_THINKING_BOSS_TOKEN` (read-only). The actor identity is derived from the token, never from tool arguments. [E001, E007]
+
+### Why does HTTP bind to localhost by default?
+`NUT_THINKING_HOST` defaults to `127.0.0.1`. If you expose the server beyond localhost, protect it with bearer tokens. [E001, E003]
+
+## Configuration
+
+### What environment variables configure the server?
+
+| Env var | Default | Notes |
+|---|---|---|
+| `NUT_THINKING_STATE_DIR` | `state` | where `thoughts.jsonl` lives |
+| `NUT_THINKING_TRANSPORT` | `stdio` | `stdio` or `http` |
+| `NUT_THINKING_HOST` | `127.0.0.1` | localhost only |
+| `NUT_THINKING_PORT` | `9100` | HTTP transport port |
+| `NUT_THINKING_TOKEN` | — | optional bearer token (agent) |
+| `NUT_THINKING_BOSS_TOKEN` | — | optional read-only token |
+| `NUT_THINKING_MAX_NOTE_CHARS` | `800` | note cap |
+| `NUT_THINKING_ROTATE_BYTES` | `5242880` | JSONL rotation threshold |
+| `NUT_THINKING_HOOKS` | — | directory of background hook scripts (empty = disabled) |
+| `NUT_THINKING_HOOK_TIMEOUT` | `10.0` | max seconds a hook may run |
+
+[E001]
+
+### Loop guard variables
+
+| Env var | Default | Meaning |
+|---|---|---|
+| `NUT_THINKING_GUARD_ENABLED` | `0` | set `1` to enable the loop guard |
+| `NUT_THINKING_GUARD_SAME_MODE_BLOCK` | `1` | block same-mode twice-in-a-row |
+| `NUT_THINKING_GUARD_WARN_AT` | `3` | consecutive calls before a warning |
+| `NUT_THINKING_GUARD_BLOCK_AT` | `5` | consecutive calls before a hard block |
+
+[E001, E008]
+
+## Loop guard
+
+### When is a call blocked?
+Two conditions trigger a hard block: (1) same-mode-in-a-row (a hard block by default), and (2) consecutive `think_*` calls at or above `block_at` (default 5). When blocked, the tool responds `{ "ok": false, "blocked": true, "status": "block", "message": "…" }` and nothing is stored. [E001, E008]
+
+### What happens on a warning?
+At `warn_at` consecutive calls (default 3), the guard injects state — telling the agent how many times it has called thinking tools in a row and prompting real work or a conscious mode change. Warn does not suppress storage or hooks. [E001, E008]
+
+### Is the guard on by default?
+No. It is off by default (`NUT_THINKING_GUARD_ENABLED` defaults to `0`) so the server stays simple out of the box. When enabled and below `warn_at`, calls behave exactly as before. [E001, E008]
+
+## Hooks
+
+### When do hooks fire?
+Hooks fire only in the **successful note-storage path**, as background best-effort events — never as a guarantee.
+
+| Event | Fires? | Notes |
+|---|---|---|
+| `think_<mode>` call, guard disabled / allowed | ✅ yes | after the note is fsync'd to JSONL |
+| `think_<mode>` call, guard blocked | ❌ no | no note stored ⇒ no hook; response is `blocked:true` |
+| `think_<mode>` call, guard warned (but allowed) | ✅ yes | warn does not suppress storage or hooks |
+| Hook script missing for mode + no `on_think.py` | no-op | nothing runs; call unaffected |
+| Hook script throws / times out | ⚠️ best-effort | failure isolated; call already returned |
+| `health`, `definitions`, `journal` | ❌ no | read-only tools, never fire hooks |
+| Token/auth failure | ❌ no | rejected before any storage or hook |
+| Note exceeds `NUT_THINKING_MAX_NOTE_CHARS` | ❌ no | rejected before storage; no hook |
+
+Resolution order: `<mode>.py` → else `on_think.py` → else no-op. Mode-specific scripts win. The payload is `{mode, note, actor, ts}` only — no secrets, no request context. [E001, E009]
+
+### What is the baseline loop-break rule?
+"Never call the same tool twice in a row." That single sentence is enough to start; the guard is a documented, optional escalation. [E001]
+
+## Licensing
+
+### Under what license is this released?
+The README declares **PolyForm Noncommercial 1.0.0** with SPDX badge `PolyForm-Noncommercial-1.0.0`, and a LICENSE file is present in the repository. Note: the repository metadata used in this analysis reported GitHub's automated license detection as "NOASSERTION," a discrepancy between the README declaration and GitHub's detection. The license is source-available but not OSI-approved, and restricts commercial use. [E001, E021]
+
+## Things not verified from pinned evidence
+
+- **Exact JSONL note schema** — the repository's `store.py` content was not part of the provided evidence. The README and hook payload imply fields `id`, `mode`, `note`, `actor`, `ts`, but the exact `store.py` implementation and any additional fields could not be confirmed.
+- **`AUDIT.md` contents** — the file exists (security/code audit document) but its contents were not provided in the evidence, so its scope and findings are unknown. [E020]
+- **`pyproject.toml` internals** — build configuration, dependencies, and entry points beyond the documented `python -m simple_thinking_tool.server` invocation were not visible in the evidence. [E002]
+- **Test suite results** — the README reports 32 passed, 1 skipped from `python -m pytest tests/ -q`, but this could not be independently re-run from the provided evidence. [E001]
+
+# FILE: docs/glossary.md
+
+# Glossary — simple_thinking_tool
+
+Terms are defined from repository evidence at pinned SHA `2609fe5979e7d4e62024b2be103e81ee9230c172`. Primary source is the README [E001]; definitions informed by the module layout and documented schemas. Items marked "inferred" could not be confirmed directly from source code in the provided evidence and are labeled as such.
+
+## Terms
+
+### Actor
+The identity associated with a thinking call. Derived from the bearer token in HTTP mode (or a default identity in stdio mode). Used for guard state tracking and note attribution. **Never** derived from tool arguments. [E001, E007]
+
+### Bearer token auth
+Optional authentication for the HTTP transport, using `NUT_THINKING_TOKEN` (agent / full access) and `NUT_THINKING_BOSS_TOKEN` (read-only). The actor identity is derived from which token was used. [E001, E007]
+
+### Definitions tool
+One of three utility MCP tools (alongside `health` and `journal`). Returns the full catalog of modes — purpose, when-to-use, and required fields — so the LLM can learn the routing options. Intended to be called first. [E001, E011]
+
+### Health tool
+Utility MCP tool returning server metadata: name, transport, state directory, and tool count. [E001]
+
+### Hook
+An optional background script (a file in a configured directory) that the server fires as a fire-and-forget task after a note is successfully stored. Mode-specific scripts (`<mode>.py`) take precedence over the generic `on_think.py`. Hooks are best-effort, off by default, and receive a payload of `{mode, note, actor, ts}`. [E001, E009]
+
+### Journal tool
+Utility MCP tool that reads back stored notes from the JSONL store with optional filters, used for auditing and reviewing the thinking log. [E001]
+
+### JSONL store
+The persistence layer: a plain append-only JSON Lines file (`thoughts.jsonl` by default) where each rendered note is stored as one JSON object per line, written with `fsync` for durability. [E001, E013]
+
+### LLM as router
+The design principle that the server contains no deterministic routing logic. The LLM consuming the tools reads tool descriptions and picks the appropriate thinking mode. The server never decides which mode to use. [E001]
+
+### Loop guard
+An optional feature (off by default) that prevents agents from repeatedly calling thinking tools without producing real work. Enforces a same-mode-in-a-row hard block and consecutive-count escalation (warn at 3, block at 5 by default). [E001, E008]
+
+### Loop-break rule
+The baseline discipline enforced without the guard: never call the same thinking tool twice in a row. The optional guard extends this with consecutive-count escalation. [E001]
+
+### MCP
+Model Context Protocol — a standard for exposing tools to LLM agents. This project implements the MCP server side and can be consumed by any MCP client (Claude Desktop, Cursor, Agent Zero, and others). [E001]
+
+### Mode level
+A numeric field in `modes.json` (e.g., `level: 1`) indicating the cognitive depth tier of a mode. Referenced in mode definitions; routing is left to the LLM. [E001, E010]
+
+### No egress
+The security guarantee that the server makes zero outbound network calls. It only fills templates and writes to local files. Hooks, if enabled, are local subprocesses owned by the operator. [E001]
+
+### Rotation
+Log file rotation: when `thoughts.jsonl` exceeds `NUT_THINKING_ROTATE_BYTES` (default 5 MB / 5242880 bytes), a new file is created. Set to `0` to disable. [E001, E013]
+
+### State directory
+The filesystem location (`NUT_THINKING_STATE_DIR`, default `state`) where the JSONL log file resides. Must be kept out of version control for privacy. [E001, E003]
+
+### Template filling
+The server's only operation: take the caller's field values, substitute them into the mode's template string, and produce a rendered note. No reasoning, no LLM calls, no egress. [E001]
+
+### Thinking mode
+A named reasoning pattern (e.g., `goal_distill`, `tree`, `bias_check`) defined in `modes.json`, exposed as its own MCP tool named `think_<mode>`. Each mode has a template with required string fields the caller fills. [E001, E010]
+
+### typical_stage
+A field in `modes.json` (e.g., `any`, `planning`, `review`) indicating when in a problem-solving lifecycle a mode is typically used. [E001, E010]
+
+## Schemas
+
+### modes.json entry schema
+```json
+{
+  "id": "unique slug (str)",
+  "label": "display name (str)",
+  "purpose": "one sentence (str)",
+  "when": "when to use (str)",
+  "level": "cognitive depth (int)",
+  "typical_stage": "lifecycle stage (str)",
+  "fields": ["required field names (str)"],
+  "template": "template with {field} placeholders (str)",
+  "references": ["optional citation URLs (str)"]
+}
+```
+[E001, E010]
+
+### Config environment variables
+
+| Variable | Default | Meaning |
+|---|---|---|
+| `NUT_THINKING_STATE_DIR` | `state` | where `thoughts.jsonl` lives |
+| `NUT_THINKING_TRANSPORT` | `stdio` | `stdio` or `http` |
+| `NUT_THINKING_HOST` | `127.0.0.1` | localhost only |
+| `NUT_THINKING_PORT` | `9100` | HTTP transport port |
+| `NUT_THINKING_TOKEN` | — | optional bearer token (agent) |
+| `NUT_THINKING_BOSS_TOKEN` | — | optional read-only token |
+| `NUT_THINKING_MAX_NOTE_CHARS` | `800` | note cap |
+| `NUT_THINKING_ROTATE_BYTES` | `5242880` | JSONL rotation threshold |
+| `NUT_THINKING_HOOKS` | — | directory of background hook scripts (empty = disabled) |
+| `NUT_THINKING_HOOK_TIMEOUT` | `10.0` | max seconds a hook may run |
+| `NUT_THINKING_GUARD_ENABLED` | `0` | set `1` to enable the loop guard |
+| `NUT_THINKING_GUARD_SAME_MODE_BLOCK` | `1` | block same-mode twice-in-a-row |
+| `NUT_THINKING_GUARD_WARN_AT` | `3` | consecutive calls before a warning |
+| `NUT_THINKING_GUARD_BLOCK_AT` | `5` | consecutive calls before a hard block |
+
+[E001, E008]
+
+### JSONL note schema (inferred)
+The exact `store.py` implementation was not in the provided evidence, so this schema is **inferred** from the README and the documented hook payload:
+```json
+{
+  "id": "unique note id",
+  "mode": "mode id",
+  "note": "rendered template output",
+  "actor": "caller identity",
+  "ts": "ISO timestamp"
+}
+```
+[E001, E012, E013 — inference]
+
+### Hook payload schema
+```json
+{
+  "mode": "str",
+  "note": "str",
+  "actor": "str",
+  "ts": "str"
+}
+```
+Written to a temp JSON file; the path is passed as `argv[1]` to the hook script and removed after the run. [E001, E009]
+
+### Tool response schemas
+- Success (inferred): `{ ok: true, mode: str, note: str, id: str, hook: str|null }` [E001, E012]
+- Guard block (documented): `{ ok: false, blocked: true, status: "block", message: "…" }` [E001, E008]
+- Guard warn (documented as not suppressing storage): normal success plus a `status: "warn"` and injected state message [E001]
+
+## Module map
+
+| Module | Role |
+|---|---|
+| `src/simple_thinking_tool/config.py` | environment-driven configuration [E003] |
+| `src/simple_thinking_tool/server.py` | MCP server entry point; tool registration, transport, dispatch [E004] |
+| `src/simple_thinking_tool/service.py` | template filling, note rendering, guard + hook orchestration [E012] |
+| `src/simple_thinking_tool/store.py` | JSONL append-only storage, fsync, rotation, journal read-back [E013] |
+| `src/simple_thinking_tool/modes.py` | mode loading/validation, dynamic tool registration [E011] |
+| `src/simple_thinking_tool/modes.json` | data file defining all 15 thinking modes [E010] |
+| `src/simple_thinking_tool/guard.py` | optional loop guard [E008] |
+| `src/simple_thinking_tool/auth.py` | optional bearer-token auth [E007] |
+| `src/simple_thinking_tool/hooks.py` | optional background hook system [E009] |
+
+## Notes on evidence limits
+
+- The exact contents of `store.py`, `service.py`, `config.py`, and other source modules were **not** provided in the evidence; module roles above are taken from the README and the documented repository structure.
+- The `AUDIT.md` file exists [E020] but its contents were not available; its scope and findings are unknown.
+- `pyproject.toml` internals (dependencies, build config, entry points) were not visible in the evidence [E002].

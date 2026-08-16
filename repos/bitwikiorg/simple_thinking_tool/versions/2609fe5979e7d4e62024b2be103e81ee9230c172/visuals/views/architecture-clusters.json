@@ -1,0 +1,655 @@
+{
+  "version": 1,
+  "id": "architecture-clusters",
+  "title": "Architecture clusters",
+  "kind": "architecture",
+  "purpose": "Semantic component boundaries curated from the deterministic repository graph and source evidence.",
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "layered",
+    "direction": "LR"
+  },
+  "nodes": [
+    {
+      "id": "architecture:root",
+      "label": "Architecture",
+      "type": "system",
+      "group": "",
+      "importance": 1,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "cluster:core-server-dispatch",
+      "label": "Core Server & Dispatch",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/__init__.py",
+      "label": "src/simple_thinking_tool/__init__.py",
+      "type": "file",
+      "group": "cluster:core-server-dispatch",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E006"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/__init__.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/server.py",
+      "label": "src/simple_thinking_tool/server.py",
+      "type": "file",
+      "group": "cluster:core-server-dispatch",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E004"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/server.py"
+      ]
+    },
+    {
+      "id": "cluster:business-logic-modes",
+      "label": "Business Logic & Modes",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/service.py",
+      "label": "src/simple_thinking_tool/service.py",
+      "type": "file",
+      "group": "cluster:business-logic-modes",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E012"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/service.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/modes.py",
+      "label": "src/simple_thinking_tool/modes.py",
+      "type": "file",
+      "group": "cluster:business-logic-modes",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E011"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/modes.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/modes.json",
+      "label": "src/simple_thinking_tool/modes.json",
+      "type": "file",
+      "group": "cluster:business-logic-modes",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E010"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ]
+    },
+    {
+      "id": "cluster:persistence-layer",
+      "label": "Persistence Layer",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/store.py",
+      "label": "src/simple_thinking_tool/store.py",
+      "type": "file",
+      "group": "cluster:persistence-layer",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E013"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ]
+    },
+    {
+      "id": "cluster:cross-cutting-security-optional-features",
+      "label": "Cross-cutting Security & Optional Features",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/config.py",
+      "label": "src/simple_thinking_tool/config.py",
+      "type": "file",
+      "group": "cluster:cross-cutting-security-optional-features",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E003"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/config.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/auth.py",
+      "label": "src/simple_thinking_tool/auth.py",
+      "type": "file",
+      "group": "cluster:cross-cutting-security-optional-features",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E007"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/auth.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/guard.py",
+      "label": "src/simple_thinking_tool/guard.py",
+      "type": "file",
+      "group": "cluster:cross-cutting-security-optional-features",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E008"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/hooks.py",
+      "label": "src/simple_thinking_tool/hooks.py",
+      "type": "file",
+      "group": "cluster:cross-cutting-security-optional-features",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E009"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/hooks.py"
+      ]
+    },
+    {
+      "id": "cluster:test-suite",
+      "label": "Test Suite",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:tests/test_auth.py",
+      "label": "tests/test_auth.py",
+      "type": "file",
+      "group": "cluster:test-suite",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E014"
+      ],
+      "source_paths": [
+        "tests/test_auth.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_guard.py",
+      "label": "tests/test_guard.py",
+      "type": "file",
+      "group": "cluster:test-suite",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E015"
+      ],
+      "source_paths": [
+        "tests/test_guard.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_hooks.py",
+      "label": "tests/test_hooks.py",
+      "type": "file",
+      "group": "cluster:test-suite",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E016"
+      ],
+      "source_paths": [
+        "tests/test_hooks.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_modes.py",
+      "label": "tests/test_modes.py",
+      "type": "file",
+      "group": "cluster:test-suite",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E017"
+      ],
+      "source_paths": [
+        "tests/test_modes.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_server.py",
+      "label": "tests/test_server.py",
+      "type": "file",
+      "group": "cluster:test-suite",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E005"
+      ],
+      "source_paths": [
+        "tests/test_server.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_service.py",
+      "label": "tests/test_service.py",
+      "type": "file",
+      "group": "cluster:test-suite",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E018"
+      ],
+      "source_paths": [
+        "tests/test_service.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_store.py",
+      "label": "tests/test_store.py",
+      "type": "file",
+      "group": "cluster:test-suite",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E019"
+      ],
+      "source_paths": [
+        "tests/test_store.py"
+      ]
+    },
+    {
+      "id": "cluster:project-metadata-documentation",
+      "label": "Project Metadata & Documentation",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:README.md",
+      "label": "README.md",
+      "type": "file",
+      "group": "cluster:project-metadata-documentation",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E001"
+      ],
+      "source_paths": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "file:AUDIT.md",
+      "label": "AUDIT.md",
+      "type": "file",
+      "group": "cluster:project-metadata-documentation",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E020"
+      ],
+      "source_paths": [
+        "AUDIT.md"
+      ]
+    },
+    {
+      "id": "file:LICENSE",
+      "label": "LICENSE",
+      "type": "file",
+      "group": "cluster:project-metadata-documentation",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E021"
+      ],
+      "source_paths": [
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "file:pyproject.toml",
+      "label": "pyproject.toml",
+      "type": "file",
+      "group": "cluster:project-metadata-documentation",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E002"
+      ],
+      "source_paths": [
+        "pyproject.toml"
+      ]
+    },
+    {
+      "id": "file:requirements.txt",
+      "label": "requirements.txt",
+      "type": "file",
+      "group": "cluster:project-metadata-documentation",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E022"
+      ],
+      "source_paths": [
+        "requirements.txt"
+      ]
+    },
+    {
+      "id": "dir:assets",
+      "label": "assets",
+      "type": "directory",
+      "group": "cluster:project-metadata-documentation",
+      "importance": 0.65,
+      "evidence_refs": [],
+      "source_paths": [
+        "assets"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "arch-root-0",
+      "source": "architecture:root",
+      "target": "cluster:core-server-dispatch",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-0-0",
+      "source": "cluster:core-server-dispatch",
+      "target": "file:src/simple_thinking_tool/__init__.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-0-1",
+      "source": "cluster:core-server-dispatch",
+      "target": "file:src/simple_thinking_tool/server.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-root-1",
+      "source": "architecture:root",
+      "target": "cluster:business-logic-modes",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-1-0",
+      "source": "cluster:business-logic-modes",
+      "target": "file:src/simple_thinking_tool/service.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-1-1",
+      "source": "cluster:business-logic-modes",
+      "target": "file:src/simple_thinking_tool/modes.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-1-2",
+      "source": "cluster:business-logic-modes",
+      "target": "file:src/simple_thinking_tool/modes.json",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-root-2",
+      "source": "architecture:root",
+      "target": "cluster:persistence-layer",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-2-0",
+      "source": "cluster:persistence-layer",
+      "target": "file:src/simple_thinking_tool/store.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-root-3",
+      "source": "architecture:root",
+      "target": "cluster:cross-cutting-security-optional-features",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-3-0",
+      "source": "cluster:cross-cutting-security-optional-features",
+      "target": "file:src/simple_thinking_tool/config.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-3-1",
+      "source": "cluster:cross-cutting-security-optional-features",
+      "target": "file:src/simple_thinking_tool/auth.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-3-2",
+      "source": "cluster:cross-cutting-security-optional-features",
+      "target": "file:src/simple_thinking_tool/guard.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-3-3",
+      "source": "cluster:cross-cutting-security-optional-features",
+      "target": "file:src/simple_thinking_tool/hooks.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-root-4",
+      "source": "architecture:root",
+      "target": "cluster:test-suite",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-4-0",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_auth.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-4-1",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_guard.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-4-2",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_hooks.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-4-3",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_modes.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-4-4",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_server.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-4-5",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_service.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-4-6",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_store.py",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-root-5",
+      "source": "architecture:root",
+      "target": "cluster:project-metadata-documentation",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-5-0",
+      "source": "cluster:project-metadata-documentation",
+      "target": "file:README.md",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-5-1",
+      "source": "cluster:project-metadata-documentation",
+      "target": "file:AUDIT.md",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-5-2",
+      "source": "cluster:project-metadata-documentation",
+      "target": "file:LICENSE",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-5-3",
+      "source": "cluster:project-metadata-documentation",
+      "target": "file:pyproject.toml",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-5-4",
+      "source": "cluster:project-metadata-documentation",
+      "target": "file:requirements.txt",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-5-5",
+      "source": "cluster:project-metadata-documentation",
+      "target": "dir:assets",
+      "label": "member",
+      "type": "member_of",
+      "confidence": 1,
+      "evidence_refs": []
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "component",
+      "directory",
+      "file",
+      "system"
+    ],
+    "edge_types": [
+      "contains",
+      "member_of"
+    ]
+  },
+  "evidence_refs": [],
+  "stats": {
+    "nodes": 30,
+    "edges": 29
+  }
+}
