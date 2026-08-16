@@ -1,17 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/bitwikiorg/atlas/schemas/visual.schema.json",
-  "title": "BITwiki Atlas Visual Data View",
+  "title": "BITwiki Atlas Semantic Visual View",
   "type": "object",
   "additionalProperties": true,
-  "required": ["version", "id", "title", "kind", "purpose", "origin", "layout", "renderer", "nodes", "edges"],
+  "required": ["version", "id", "title", "kind", "question", "purpose", "origin", "diagram_type", "doc_paths", "layout", "renderer", "presentation", "nodes", "edges", "evidence_refs", "stats"],
   "properties": {
-    "version": {"type": "integer", "minimum": 1},
+    "version": {"type": "integer", "minimum": 2},
     "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
     "title": {"type": "string", "minLength": 1},
     "kind": {"type": "string", "minLength": 1},
-    "purpose": {"type": "string"},
-    "origin": {"type": "string", "enum": ["deterministic", "curated", "semantic"]},
+    "question": {"type": "string", "minLength": 1},
+    "purpose": {"type": "string", "minLength": 1},
+    "origin": {"type": "string", "enum": ["deterministic", "semantic"]},
+    "diagram_type": {"type": "string", "enum": ["flowchart", "swimlane", "sequence", "class", "state", "er", "user_journey", "gantt", "pie", "quadrant", "requirement", "gitgraph", "c4", "mindmap", "timeline", "zenuml", "sankey", "xy", "block", "packet", "kanban", "architecture", "radar", "event_modeling", "treemap", "venn", "ishikawa", "wardley", "cynefin", "treeview", "network"]},
+    "doc_paths": {"type": "array", "items": {"type": "string"}},
     "layout": {
       "type": "object",
       "required": ["family", "direction"],
@@ -30,17 +33,27 @@
         "source_of_truth": {"const": "visual-data"}
       }
     },
+    "presentation": {
+      "type": "object",
+      "required": ["renderer", "diagram_type", "source_of_truth"],
+      "properties": {
+        "renderer": {"type": "string", "enum": ["mermaid", "cytoscape"]},
+        "diagram_type": {"type": "string"},
+        "mermaid_source": {"type": "string"},
+        "source_of_truth": {"const": "visual-data"}
+      }
+    },
     "nodes": {
       "type": "array",
-      "minItems": 2,
       "items": {
         "type": "object",
-        "required": ["id", "label", "type", "evidence_refs"],
+        "required": ["id", "label", "type", "evidence_refs", "source_paths"],
         "properties": {
           "id": {"type": "string", "minLength": 1},
           "label": {"type": "string", "minLength": 1},
           "group": {"type": "string"},
           "type": {"type": "string", "minLength": 1},
+          "description": {"type": "string"},
           "importance": {"type": "number", "minimum": 0, "maximum": 1},
           "source_paths": {"type": "array", "items": {"type": "string"}},
           "evidence_refs": {"type": "array", "items": {"type": "string"}}
@@ -51,7 +64,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "source", "target", "type", "evidence_refs"],
+        "required": ["id", "source", "target", "type", "confidence", "evidence_refs"],
         "properties": {
           "id": {"type": "string", "minLength": 1},
           "source": {"type": "string", "minLength": 1},
@@ -59,9 +72,14 @@
           "label": {"type": "string"},
           "type": {"type": "string", "minLength": 1},
           "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "value": {"type": "number"},
+          "order": {"type": "number"},
           "evidence_refs": {"type": "array", "items": {"type": "string"}}
         }
       }
-    }
+    },
+    "data_points": {"type": "array", "items": {"type": "object"}},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "stats": {"type": "object"}
   }
 }
