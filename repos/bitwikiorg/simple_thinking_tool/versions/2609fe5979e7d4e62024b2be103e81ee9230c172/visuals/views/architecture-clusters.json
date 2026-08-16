@@ -1,0 +1,627 @@
+{
+  "version": 2,
+  "id": "architecture-clusters",
+  "title": "Architecture map",
+  "kind": "architecture",
+  "question": "What does architecture map reveal about this repository?",
+  "purpose": "Repository-specific subsystem boundaries with source files attached as supporting evidence.",
+  "origin": "curated",
+  "diagram_type": "architecture",
+  "doc_paths": [
+    "docs/architecture.md",
+    "docs/overview.md"
+  ],
+  "renderer": {
+    "interactive": "cytoscape",
+    "portable_fallback": "semantic-json",
+    "source_of_truth": "visual-data"
+  },
+  "presentation": {
+    "renderer": "cytoscape",
+    "diagram_type": "architecture",
+    "source_of_truth": "visual-data"
+  },
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "layered",
+    "direction": "LR"
+  },
+  "nodes": [
+    {
+      "id": "architecture:root",
+      "label": "System",
+      "type": "system",
+      "group": "",
+      "importance": 1,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "cluster:server-wiring",
+      "label": "Server & Wiring",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/server.py",
+      "label": "server.py",
+      "full_label": "src/simple_thinking_tool/server.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E006"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/server.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/config.py",
+      "label": "config.py",
+      "full_label": "src/simple_thinking_tool/config.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E003"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/config.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/__init__.py",
+      "label": "__init__.py",
+      "full_label": "src/simple_thinking_tool/__init__.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E018"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/__init__.py"
+      ]
+    },
+    {
+      "id": "cluster:mode-system",
+      "label": "Mode System",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/modes.py",
+      "label": "modes.py",
+      "full_label": "src/simple_thinking_tool/modes.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E020"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/modes.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/modes.json",
+      "label": "modes.json",
+      "full_label": "src/simple_thinking_tool/modes.json",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E019"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ]
+    },
+    {
+      "id": "cluster:storage-layer",
+      "label": "Storage Layer",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/store.py",
+      "label": "store.py",
+      "full_label": "src/simple_thinking_tool/store.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E008"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ]
+    },
+    {
+      "id": "cluster:security-identity",
+      "label": "Security & Identity",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/auth.py",
+      "label": "auth.py",
+      "full_label": "src/simple_thinking_tool/auth.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E002"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/auth.py"
+      ]
+    },
+    {
+      "id": "cluster:loop-guard",
+      "label": "Loop Guard",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/guard.py",
+      "label": "guard.py",
+      "full_label": "src/simple_thinking_tool/guard.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E004"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ]
+    },
+    {
+      "id": "cluster:event-hooks",
+      "label": "Event Hooks",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/hooks.py",
+      "label": "hooks.py",
+      "full_label": "src/simple_thinking_tool/hooks.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E005"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/hooks.py"
+      ]
+    },
+    {
+      "id": "cluster:service-layer",
+      "label": "Service Layer",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/service.py",
+      "label": "service.py",
+      "full_label": "src/simple_thinking_tool/service.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E007"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/service.py"
+      ]
+    },
+    {
+      "id": "cluster:test-suite",
+      "label": "Test Suite",
+      "type": "component",
+      "group": "",
+      "importance": 0.82,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:tests/test_auth.py",
+      "label": "test_auth.py",
+      "full_label": "tests/test_auth.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E012"
+      ],
+      "source_paths": [
+        "tests/test_auth.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_guard.py",
+      "label": "test_guard.py",
+      "full_label": "tests/test_guard.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E013"
+      ],
+      "source_paths": [
+        "tests/test_guard.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_hooks.py",
+      "label": "test_hooks.py",
+      "full_label": "tests/test_hooks.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E014"
+      ],
+      "source_paths": [
+        "tests/test_hooks.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_modes.py",
+      "label": "test_modes.py",
+      "full_label": "tests/test_modes.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E021"
+      ],
+      "source_paths": [
+        "tests/test_modes.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_server.py",
+      "label": "test_server.py",
+      "full_label": "tests/test_server.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E015"
+      ],
+      "source_paths": [
+        "tests/test_server.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_service.py",
+      "label": "test_service.py",
+      "full_label": "tests/test_service.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E016"
+      ],
+      "source_paths": [
+        "tests/test_service.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_store.py",
+      "label": "test_store.py",
+      "full_label": "tests/test_store.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E017"
+      ],
+      "source_paths": [
+        "tests/test_store.py"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "arch-root-0",
+      "source": "architecture:root",
+      "target": "cluster:server-wiring",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-member-0-0",
+      "source": "cluster:server-wiring",
+      "target": "file:src/simple_thinking_tool/server.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "arch-member-0-1",
+      "source": "cluster:server-wiring",
+      "target": "file:src/simple_thinking_tool/config.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E003"
+      ]
+    },
+    {
+      "id": "arch-member-0-2",
+      "source": "cluster:server-wiring",
+      "target": "file:src/simple_thinking_tool/__init__.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E018"
+      ]
+    },
+    {
+      "id": "arch-root-1",
+      "source": "architecture:root",
+      "target": "cluster:mode-system",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-member-1-0",
+      "source": "cluster:mode-system",
+      "target": "file:src/simple_thinking_tool/modes.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E020"
+      ]
+    },
+    {
+      "id": "arch-member-1-1",
+      "source": "cluster:mode-system",
+      "target": "file:src/simple_thinking_tool/modes.json",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "arch-root-2",
+      "source": "architecture:root",
+      "target": "cluster:storage-layer",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-member-2-0",
+      "source": "cluster:storage-layer",
+      "target": "file:src/simple_thinking_tool/store.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "arch-root-3",
+      "source": "architecture:root",
+      "target": "cluster:security-identity",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-member-3-0",
+      "source": "cluster:security-identity",
+      "target": "file:src/simple_thinking_tool/auth.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E002"
+      ]
+    },
+    {
+      "id": "arch-root-4",
+      "source": "architecture:root",
+      "target": "cluster:loop-guard",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-member-4-0",
+      "source": "cluster:loop-guard",
+      "target": "file:src/simple_thinking_tool/guard.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "arch-root-5",
+      "source": "architecture:root",
+      "target": "cluster:event-hooks",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-member-5-0",
+      "source": "cluster:event-hooks",
+      "target": "file:src/simple_thinking_tool/hooks.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "arch-root-6",
+      "source": "architecture:root",
+      "target": "cluster:service-layer",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-member-6-0",
+      "source": "cluster:service-layer",
+      "target": "file:src/simple_thinking_tool/service.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E007"
+      ]
+    },
+    {
+      "id": "arch-root-7",
+      "source": "architecture:root",
+      "target": "cluster:test-suite",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": []
+    },
+    {
+      "id": "arch-member-7-0",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_auth.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E012"
+      ]
+    },
+    {
+      "id": "arch-member-7-1",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_guard.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E013"
+      ]
+    },
+    {
+      "id": "arch-member-7-2",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_hooks.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E014"
+      ]
+    },
+    {
+      "id": "arch-member-7-3",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_modes.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E021"
+      ]
+    },
+    {
+      "id": "arch-member-7-4",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_server.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E015"
+      ]
+    },
+    {
+      "id": "arch-member-7-5",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_service.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E016"
+      ]
+    },
+    {
+      "id": "arch-member-7-6",
+      "source": "cluster:test-suite",
+      "target": "file:tests/test_store.py",
+      "label": "supported by",
+      "type": "contains",
+      "confidence": 0.9,
+      "evidence_refs": [
+        "E017"
+      ]
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "component",
+      "file",
+      "system"
+    ],
+    "edge_types": [
+      "contains"
+    ]
+  },
+  "evidence_refs": [],
+  "stats": {
+    "nodes": 26,
+    "edges": 25
+  }
+}

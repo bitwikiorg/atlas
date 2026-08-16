@@ -1,0 +1,216 @@
+{
+  "version": 2,
+  "id": "view-3-store-lifecycle",
+  "title": "JSONL Store Lifecycle",
+  "kind": "state",
+  "question": "What states does the JSONL store go through during append and rotation?",
+  "purpose": "Show the states the JSONL store transitions through during startup, append operations, fsync, and rotation.",
+  "origin": "semantic",
+  "diagram_type": "state",
+  "doc_paths": [
+    "docs/architecture.md",
+    "docs/overview.md"
+  ],
+  "renderer": {
+    "interactive": "mermaid",
+    "portable_fallback": "semantic-json",
+    "source_of_truth": "visual-data"
+  },
+  "presentation": {
+    "renderer": "mermaid",
+    "diagram_type": "state",
+    "source_of_truth": "visual-data"
+  },
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "layered",
+    "direction": "TB"
+  },
+  "nodes": [
+    {
+      "id": "semantic:view-3-store-lifecycle:store-loading",
+      "label": "Loading",
+      "full_label": "Loading",
+      "type": "state",
+      "group": "",
+      "importance": 0.8,
+      "description": "On startup, reads existing JSONL file line by line into in-memory _records list. Tolerates partial tail lines (JSONDecodeError skipped).",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic:view-3-store-lifecycle:store-idle",
+      "label": "Idle",
+      "full_label": "Idle",
+      "type": "state",
+      "group": "",
+      "importance": 0.9,
+      "description": "Store loaded and ready. In-memory records cached. Waiting for append_note or export calls.",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic:view-3-store-lifecycle:store-appending",
+      "label": "Appending",
+      "full_label": "Appending",
+      "type": "state",
+      "group": "",
+      "importance": 1,
+      "description": "Writing a new JSON record as one line to the file. Checks file size for rotation threshold before writing. Acquires threading.Lock.",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic:view-3-store-lifecycle:store-rotating",
+      "label": "Rotating",
+      "full_label": "Rotating",
+      "type": "state",
+      "group": "",
+      "importance": 0.7,
+      "description": "File exceeds rotate_bytes (default 5MB). Current file renamed to <stem>.<timestamp>.bak.jsonl. New empty file created for subsequent appends.",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic:view-3-store-lifecycle:store-fsynced",
+      "label": "Fsynced",
+      "full_label": "Fsynced",
+      "type": "state",
+      "group": "",
+      "importance": 1,
+      "description": "Line written and os.fsync() called for durability. Record appended to in-memory _records list.",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic:view-3-store-lifecycle:store-closed",
+      "label": "Closed",
+      "full_label": "Closed",
+      "type": "state",
+      "group": "",
+      "importance": 0.5,
+      "description": "Server shutdown. Store no longer active. No explicit close method — relies on process exit.",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "semantic-edge:view-3-store-lifecycle:0",
+      "source": "semantic:view-3-store-lifecycle:store-loading",
+      "target": "semantic:view-3-store-lifecycle:store-idle",
+      "label": "file loaded or created",
+      "type": "transition",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-3-store-lifecycle:1",
+      "source": "semantic:view-3-store-lifecycle:store-idle",
+      "target": "semantic:view-3-store-lifecycle:store-appending",
+      "label": "append_note() called",
+      "type": "transition",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-3-store-lifecycle:2",
+      "source": "semantic:view-3-store-lifecycle:store-appending",
+      "target": "semantic:view-3-store-lifecycle:store-rotating",
+      "label": "file size > rotate_bytes",
+      "type": "transition",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-3-store-lifecycle:3",
+      "source": "semantic:view-3-store-lifecycle:store-rotating",
+      "target": "semantic:view-3-store-lifecycle:store-appending",
+      "label": "rotation complete, write to new file",
+      "type": "transition",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-3-store-lifecycle:4",
+      "source": "semantic:view-3-store-lifecycle:store-appending",
+      "target": "semantic:view-3-store-lifecycle:store-fsynced",
+      "label": "line written + fsync + flush",
+      "type": "transition",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-3-store-lifecycle:5",
+      "source": "semantic:view-3-store-lifecycle:store-fsynced",
+      "target": "semantic:view-3-store-lifecycle:store-idle",
+      "label": "record added to memory list",
+      "type": "transition",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-3-store-lifecycle:6",
+      "source": "semantic:view-3-store-lifecycle:store-idle",
+      "target": "semantic:view-3-store-lifecycle:store-closed",
+      "label": "server shutdown (process exit)",
+      "type": "transition",
+      "confidence": 0.7,
+      "evidence_refs": [
+        "E008"
+      ]
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "state"
+    ],
+    "edge_types": [
+      "transition"
+    ]
+  },
+  "evidence_refs": [
+    "E008"
+  ],
+  "stats": {
+    "nodes": 6,
+    "edges": 7
+  }
+}

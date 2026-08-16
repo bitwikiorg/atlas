@@ -1,0 +1,1005 @@
+{
+  "version": 2,
+  "id": "dependency-surface",
+  "title": "Dependency surface",
+  "kind": "dependency",
+  "question": "What does dependency surface reveal about this repository?",
+  "purpose": "Verified internal imports plus classified standard-library and third-party dependencies. External noise can be hidden in the interactive renderer.",
+  "origin": "deterministic",
+  "diagram_type": "network",
+  "doc_paths": [
+    "docs/architecture.md",
+    "docs/overview.md"
+  ],
+  "renderer": {
+    "interactive": "cytoscape",
+    "portable_fallback": "semantic-json",
+    "source_of_truth": "visual-data"
+  },
+  "presentation": {
+    "renderer": "cytoscape",
+    "diagram_type": "network",
+    "source_of_truth": "visual-data"
+  },
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "force",
+    "direction": "LR"
+  },
+  "nodes": [
+    {
+      "id": "file:src/simple_thinking_tool/auth.py",
+      "label": "auth.py",
+      "full_label": "src/simple_thinking_tool/auth.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E002"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/auth.py"
+      ]
+    },
+    {
+      "id": "external:hmac",
+      "label": "hmac",
+      "full_label": "hmac",
+      "type": "third-party",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/config.py",
+      "label": "config.py",
+      "full_label": "src/simple_thinking_tool/config.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E003"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/config.py"
+      ]
+    },
+    {
+      "id": "external:pathlib",
+      "label": "pathlib",
+      "full_label": "pathlib",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "external:os",
+      "label": "os",
+      "full_label": "os",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/guard.py",
+      "label": "guard.py",
+      "full_label": "src/simple_thinking_tool/guard.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E004"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ]
+    },
+    {
+      "id": "external:dataclasses",
+      "label": "dataclasses",
+      "full_label": "dataclasses",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/hooks.py",
+      "label": "hooks.py",
+      "full_label": "src/simple_thinking_tool/hooks.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E005"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/hooks.py"
+      ]
+    },
+    {
+      "id": "external:json",
+      "label": "json",
+      "full_label": "json",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "external:logging",
+      "label": "logging",
+      "full_label": "logging",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "external:subprocess",
+      "label": "subprocess",
+      "full_label": "subprocess",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "external:sys",
+      "label": "sys",
+      "full_label": "sys",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "external:tempfile",
+      "label": "tempfile",
+      "full_label": "tempfile",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "external:threading",
+      "label": "threading",
+      "full_label": "threading",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "external:time",
+      "label": "time",
+      "full_label": "time",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/server.py",
+      "label": "server.py",
+      "full_label": "src/simple_thinking_tool/server.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E006"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/server.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/modes.py",
+      "label": "modes.py",
+      "full_label": "src/simple_thinking_tool/modes.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E020"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/modes.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/store.py",
+      "label": "store.py",
+      "full_label": "src/simple_thinking_tool/store.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E008"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ]
+    },
+    {
+      "id": "external:fastmcp.server.dependencies",
+      "label": "fastmcp.server.dependencies",
+      "full_label": "fastmcp.server.dependencies",
+      "type": "third-party",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "external:fastmcp",
+      "label": "fastmcp",
+      "full_label": "fastmcp",
+      "type": "third-party",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:src/simple_thinking_tool/service.py",
+      "label": "service.py",
+      "full_label": "src/simple_thinking_tool/service.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E007"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/service.py"
+      ]
+    },
+    {
+      "id": "external:datetime",
+      "label": "datetime",
+      "full_label": "datetime",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "external:hashlib",
+      "label": "hashlib",
+      "full_label": "hashlib",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:tests/test_auth.py",
+      "label": "test_auth.py",
+      "full_label": "tests/test_auth.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E012"
+      ],
+      "source_paths": [
+        "tests/test_auth.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_guard.py",
+      "label": "test_guard.py",
+      "full_label": "tests/test_guard.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E013"
+      ],
+      "source_paths": [
+        "tests/test_guard.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_hooks.py",
+      "label": "test_hooks.py",
+      "full_label": "tests/test_hooks.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E014"
+      ],
+      "source_paths": [
+        "tests/test_hooks.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_server.py",
+      "label": "test_server.py",
+      "full_label": "tests/test_server.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E015"
+      ],
+      "source_paths": [
+        "tests/test_server.py"
+      ]
+    },
+    {
+      "id": "external:asyncio",
+      "label": "asyncio",
+      "full_label": "asyncio",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "external:pytest",
+      "label": "pytest",
+      "full_label": "pytest",
+      "type": "third-party",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:tests/test_service.py",
+      "label": "test_service.py",
+      "full_label": "tests/test_service.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E016"
+      ],
+      "source_paths": [
+        "tests/test_service.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_store.py",
+      "label": "test_store.py",
+      "full_label": "tests/test_store.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E017"
+      ],
+      "source_paths": [
+        "tests/test_store.py"
+      ]
+    },
+    {
+      "id": "external:string",
+      "label": "string",
+      "full_label": "string",
+      "type": "stdlib",
+      "group": "",
+      "importance": 0.4,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:tests/test_modes.py",
+      "label": "test_modes.py",
+      "full_label": "tests/test_modes.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E021"
+      ],
+      "source_paths": [
+        "tests/test_modes.py"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:file-src-simple-thinking-tool-auth-py:external-hmac:0",
+      "source": "file:src/simple_thinking_tool/auth.py",
+      "target": "external:hmac",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E002"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-config-py:external-pathlib:1",
+      "source": "file:src/simple_thinking_tool/config.py",
+      "target": "external:pathlib",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E003"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-config-py:external-os:2",
+      "source": "file:src/simple_thinking_tool/config.py",
+      "target": "external:os",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E003"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-guard-py:external-dataclasses:3",
+      "source": "file:src/simple_thinking_tool/guard.py",
+      "target": "external:dataclasses",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-hooks-py:external-pathlib:4",
+      "source": "file:src/simple_thinking_tool/hooks.py",
+      "target": "external:pathlib",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-hooks-py:external-json:5",
+      "source": "file:src/simple_thinking_tool/hooks.py",
+      "target": "external:json",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-hooks-py:external-logging:6",
+      "source": "file:src/simple_thinking_tool/hooks.py",
+      "target": "external:logging",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-hooks-py:external-subprocess:7",
+      "source": "file:src/simple_thinking_tool/hooks.py",
+      "target": "external:subprocess",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-hooks-py:external-sys:8",
+      "source": "file:src/simple_thinking_tool/hooks.py",
+      "target": "external:sys",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-hooks-py:external-tempfile:9",
+      "source": "file:src/simple_thinking_tool/hooks.py",
+      "target": "external:tempfile",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-hooks-py:external-threading:10",
+      "source": "file:src/simple_thinking_tool/hooks.py",
+      "target": "external:threading",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-hooks-py:external-time:11",
+      "source": "file:src/simple_thinking_tool/hooks.py",
+      "target": "external:time",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-server-py:file-src-simple-thinking-tool-auth-py:12",
+      "source": "file:src/simple_thinking_tool/server.py",
+      "target": "file:src/simple_thinking_tool/auth.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-server-py:file-src-simple-thinking-tool-config-py:13",
+      "source": "file:src/simple_thinking_tool/server.py",
+      "target": "file:src/simple_thinking_tool/config.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-server-py:file-src-simple-thinking-tool-guard-py:14",
+      "source": "file:src/simple_thinking_tool/server.py",
+      "target": "file:src/simple_thinking_tool/guard.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-server-py:file-src-simple-thinking-tool-hooks-py:15",
+      "source": "file:src/simple_thinking_tool/server.py",
+      "target": "file:src/simple_thinking_tool/hooks.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-server-py:file-src-simple-thinking-tool-modes-py:16",
+      "source": "file:src/simple_thinking_tool/server.py",
+      "target": "file:src/simple_thinking_tool/modes.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-server-py:file-src-simple-thinking-tool-store-py:17",
+      "source": "file:src/simple_thinking_tool/server.py",
+      "target": "file:src/simple_thinking_tool/store.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-server-py:external-fastmcp-server-dependencies:18",
+      "source": "file:src/simple_thinking_tool/server.py",
+      "target": "external:fastmcp.server.dependencies",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-server-py:external-fastmcp:19",
+      "source": "file:src/simple_thinking_tool/server.py",
+      "target": "external:fastmcp",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-service-py:file-src-simple-thinking-tool-auth-py:20",
+      "source": "file:src/simple_thinking_tool/service.py",
+      "target": "file:src/simple_thinking_tool/auth.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E007"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-service-py:file-src-simple-thinking-tool-modes-py:21",
+      "source": "file:src/simple_thinking_tool/service.py",
+      "target": "file:src/simple_thinking_tool/modes.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E007"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-service-py:file-src-simple-thinking-tool-store-py:22",
+      "source": "file:src/simple_thinking_tool/service.py",
+      "target": "file:src/simple_thinking_tool/store.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E007"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-store-py:external-pathlib:23",
+      "source": "file:src/simple_thinking_tool/store.py",
+      "target": "external:pathlib",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-store-py:external-datetime:24",
+      "source": "file:src/simple_thinking_tool/store.py",
+      "target": "external:datetime",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-store-py:external-json:25",
+      "source": "file:src/simple_thinking_tool/store.py",
+      "target": "external:json",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-store-py:external-hashlib:26",
+      "source": "file:src/simple_thinking_tool/store.py",
+      "target": "external:hashlib",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-auth-py:file-src-simple-thinking-tool-auth-py:27",
+      "source": "file:tests/test_auth.py",
+      "target": "file:src/simple_thinking_tool/auth.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E012"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-guard-py:external-pathlib:28",
+      "source": "file:tests/test_guard.py",
+      "target": "external:pathlib",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E013"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-guard-py:file-src-simple-thinking-tool-guard-py:29",
+      "source": "file:tests/test_guard.py",
+      "target": "file:src/simple_thinking_tool/guard.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E013"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-guard-py:external-sys:30",
+      "source": "file:tests/test_guard.py",
+      "target": "external:sys",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E013"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-hooks-py:external-pathlib:31",
+      "source": "file:tests/test_hooks.py",
+      "target": "external:pathlib",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E014"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-hooks-py:file-src-simple-thinking-tool-hooks-py:32",
+      "source": "file:tests/test_hooks.py",
+      "target": "file:src/simple_thinking_tool/hooks.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E014"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-hooks-py:external-time:33",
+      "source": "file:tests/test_hooks.py",
+      "target": "external:time",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E014"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-hooks-py:external-json:34",
+      "source": "file:tests/test_hooks.py",
+      "target": "external:json",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E014"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-hooks-py:external-sys:35",
+      "source": "file:tests/test_hooks.py",
+      "target": "external:sys",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E014"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-server-py:file-src-simple-thinking-tool-server-py:36",
+      "source": "file:tests/test_server.py",
+      "target": "file:src/simple_thinking_tool/server.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E015"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-server-py:file-src-simple-thinking-tool-modes-py:37",
+      "source": "file:tests/test_server.py",
+      "target": "file:src/simple_thinking_tool/modes.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E015"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-server-py:external-asyncio:38",
+      "source": "file:tests/test_server.py",
+      "target": "external:asyncio",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E015"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-server-py:external-pytest:39",
+      "source": "file:tests/test_server.py",
+      "target": "external:pytest",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E015"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-service-py:file-src-simple-thinking-tool-service-py:40",
+      "source": "file:tests/test_service.py",
+      "target": "file:src/simple_thinking_tool/service.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E016"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-service-py:file-src-simple-thinking-tool-store-py:41",
+      "source": "file:tests/test_service.py",
+      "target": "file:src/simple_thinking_tool/store.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E016"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-service-py:external-pytest:42",
+      "source": "file:tests/test_service.py",
+      "target": "external:pytest",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E016"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-store-py:file-src-simple-thinking-tool-store-py:43",
+      "source": "file:tests/test_store.py",
+      "target": "file:src/simple_thinking_tool/store.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E017"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-store-py:external-pytest:44",
+      "source": "file:tests/test_store.py",
+      "target": "external:pytest",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E017"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-modes-py:external-dataclasses:45",
+      "source": "file:src/simple_thinking_tool/modes.py",
+      "target": "external:dataclasses",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E020"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-modes-py:external-pathlib:46",
+      "source": "file:src/simple_thinking_tool/modes.py",
+      "target": "external:pathlib",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E020"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-modes-py:external-json:47",
+      "source": "file:src/simple_thinking_tool/modes.py",
+      "target": "external:json",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E020"
+      ]
+    },
+    {
+      "id": "edge:file-src-simple-thinking-tool-modes-py:external-string:48",
+      "source": "file:src/simple_thinking_tool/modes.py",
+      "target": "external:string",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E020"
+      ]
+    },
+    {
+      "id": "edge:file-tests-test-modes-py:file-src-simple-thinking-tool-modes-py:49",
+      "source": "file:tests/test_modes.py",
+      "target": "file:src/simple_thinking_tool/modes.py",
+      "label": "imports",
+      "type": "imports",
+      "confidence": 1,
+      "evidence_refs": [
+        "E021"
+      ]
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "file",
+      "stdlib",
+      "third-party"
+    ],
+    "edge_types": [
+      "imports"
+    ]
+  },
+  "evidence_refs": [
+    "E002",
+    "E003",
+    "E004",
+    "E005",
+    "E006",
+    "E007",
+    "E008",
+    "E012",
+    "E013",
+    "E014",
+    "E015",
+    "E016",
+    "E017",
+    "E020",
+    "E021"
+  ],
+  "stats": {
+    "nodes": 33,
+    "edges": 50
+  }
+}

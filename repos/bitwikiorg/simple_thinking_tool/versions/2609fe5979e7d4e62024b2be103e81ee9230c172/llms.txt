@@ -1,0 +1,30 @@
+# BITwiki Atlas
+Repository: bitwikiorg/simple_thinking_tool
+Source SHA: 2609fe5979e7d4e62024b2be103e81ee9230c172
+
+- README.md: simple_thinking_tool
+- docs/overview.md: Overview — simple_thinking_tool
+- docs/architecture.md: Architecture — simple_thinking_tool
+- docs/quickstart.md: Quickstart
+- docs/configuration.md: Configuration
+- docs/extension.md: Extending the Tool
+- docs/reference.md: Reference — simple_thinking_tool
+- docs/operations.md: Operations — simple_thinking_tool
+- docs/security.md: Security — simple_thinking_tool
+- docs/testing.md: Testing
+- docs/faq.md: FAQ — simple_thinking_tool
+- docs/glossary.md: Glossary — simple_thinking_tool
+
+Visual views: 12
+- Repository topology: Directory and file hierarchy of the pinned repository. Filenames are concise; exact paths remain attached as source metadata.
+- Dependency surface: Verified internal imports plus classified standard-library and third-party dependencies. External noise can be hidden in the interactive renderer.
+- Evidence map: The pinned source evidence used by Atlas agents, organized as a readable source map.
+- Architecture map: Repository-specific subsystem boundaries with source files attached as supporting evidence.
+- Recommended reading path: A curated sequence for understanding the repository without reading the codebase linearly.
+- think_* Call Lifecycle: Show the complete sequence of events when an LLM invokes a think_<mode> tool, from authentication through persistence to hook dispatch and response.
+- Loop Guard Decision Logic: Show the branching decision tree the loop guard uses to determine whether a think_* call is allowed, warned, or hard-blocked.
+- JSONL Store Lifecycle: Show the states the JSONL store transitions through during startup, append operations, fsync, and rotation.
+- System Component Map: Show the major system components, their roles, and how they connect — from the external LLM agent through the FastMCP server to the JSONL file on disk and background hook scripts.
+- Thinking Modes Catalog: Show all 15 thinking modes organized by their difficulty level (1-4), with each mode's typical workflow stage, giving a quick visual overview of the available reasoning methods.
+- Core Data Schemas: Show the key data structures in the system — Mode, Note record, Session record, GuardResult, Settings, and Hook payload — and their relationships.
+- Repository File Map: Show the complete repository structure with module responsibilities, giving a quick orientation to the codebase layout.

@@ -1,0 +1,690 @@
+{
+  "version": 2,
+  "id": "repository-topology",
+  "title": "Repository topology",
+  "kind": "topology",
+  "question": "What does repository topology reveal about this repository?",
+  "purpose": "Directory and file hierarchy of the pinned repository. Filenames are concise; exact paths remain attached as source metadata.",
+  "origin": "deterministic",
+  "diagram_type": "treeview",
+  "doc_paths": [
+    "docs/architecture.md",
+    "docs/overview.md"
+  ],
+  "renderer": {
+    "interactive": "cytoscape",
+    "portable_fallback": "semantic-json",
+    "source_of_truth": "visual-data"
+  },
+  "presentation": {
+    "renderer": "cytoscape",
+    "diagram_type": "treeview",
+    "source_of_truth": "visual-data"
+  },
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "tree",
+    "direction": "LR"
+  },
+  "nodes": [
+    {
+      "id": "repo:root",
+      "label": "simple_thinking_tool",
+      "type": "repository",
+      "group": "",
+      "importance": 1,
+      "evidence_refs": [],
+      "source_paths": []
+    },
+    {
+      "id": "file:.gitignore",
+      "label": ".gitignore",
+      "full_label": ".gitignore",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [],
+      "source_paths": [
+        ".gitignore"
+      ]
+    },
+    {
+      "id": "file:AUDIT.md",
+      "label": "AUDIT.md",
+      "full_label": "AUDIT.md",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E009"
+      ],
+      "source_paths": [
+        "AUDIT.md"
+      ]
+    },
+    {
+      "id": "file:LICENSE",
+      "label": "LICENSE",
+      "full_label": "LICENSE",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E010"
+      ],
+      "source_paths": [
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "file:README.md",
+      "label": "README.md",
+      "full_label": "README.md",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E001"
+      ],
+      "source_paths": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "dir:assets",
+      "label": "assets",
+      "full_label": "assets",
+      "type": "directory",
+      "group": "",
+      "importance": 0.65,
+      "evidence_refs": [],
+      "source_paths": [
+        "assets"
+      ]
+    },
+    {
+      "id": "file:assets/hero-banner.svg",
+      "label": "hero-banner.svg",
+      "full_label": "assets/hero-banner.svg",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [],
+      "source_paths": [
+        "assets/hero-banner.svg"
+      ]
+    },
+    {
+      "id": "file:pyproject.toml",
+      "label": "pyproject.toml",
+      "full_label": "pyproject.toml",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E011"
+      ],
+      "source_paths": [
+        "pyproject.toml"
+      ]
+    },
+    {
+      "id": "file:requirements.txt",
+      "label": "requirements.txt",
+      "full_label": "requirements.txt",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E022"
+      ],
+      "source_paths": [
+        "requirements.txt"
+      ]
+    },
+    {
+      "id": "dir:src",
+      "label": "src",
+      "full_label": "src",
+      "type": "directory",
+      "group": "",
+      "importance": 0.65,
+      "evidence_refs": [],
+      "source_paths": [
+        "src"
+      ]
+    },
+    {
+      "id": "dir:src/simple_thinking_tool",
+      "label": "simple_thinking_tool",
+      "full_label": "src/simple_thinking_tool",
+      "type": "directory",
+      "group": "",
+      "importance": 0.65,
+      "evidence_refs": [],
+      "source_paths": [
+        "src/simple_thinking_tool"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/__init__.py",
+      "label": "__init__.py",
+      "full_label": "src/simple_thinking_tool/__init__.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E018"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/__init__.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/auth.py",
+      "label": "auth.py",
+      "full_label": "src/simple_thinking_tool/auth.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E002"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/auth.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/config.py",
+      "label": "config.py",
+      "full_label": "src/simple_thinking_tool/config.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E003"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/config.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/guard.py",
+      "label": "guard.py",
+      "full_label": "src/simple_thinking_tool/guard.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E004"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/hooks.py",
+      "label": "hooks.py",
+      "full_label": "src/simple_thinking_tool/hooks.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E005"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/hooks.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/modes.json",
+      "label": "modes.json",
+      "full_label": "src/simple_thinking_tool/modes.json",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E019"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/modes.py",
+      "label": "modes.py",
+      "full_label": "src/simple_thinking_tool/modes.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E020"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/modes.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/server.py",
+      "label": "server.py",
+      "full_label": "src/simple_thinking_tool/server.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E006"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/server.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/service.py",
+      "label": "service.py",
+      "full_label": "src/simple_thinking_tool/service.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E007"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/service.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/store.py",
+      "label": "store.py",
+      "full_label": "src/simple_thinking_tool/store.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E008"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ]
+    },
+    {
+      "id": "dir:tests",
+      "label": "tests",
+      "full_label": "tests",
+      "type": "directory",
+      "group": "",
+      "importance": 0.65,
+      "evidence_refs": [],
+      "source_paths": [
+        "tests"
+      ]
+    },
+    {
+      "id": "file:tests/test_auth.py",
+      "label": "test_auth.py",
+      "full_label": "tests/test_auth.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E012"
+      ],
+      "source_paths": [
+        "tests/test_auth.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_guard.py",
+      "label": "test_guard.py",
+      "full_label": "tests/test_guard.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E013"
+      ],
+      "source_paths": [
+        "tests/test_guard.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_hooks.py",
+      "label": "test_hooks.py",
+      "full_label": "tests/test_hooks.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E014"
+      ],
+      "source_paths": [
+        "tests/test_hooks.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_modes.py",
+      "label": "test_modes.py",
+      "full_label": "tests/test_modes.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E021"
+      ],
+      "source_paths": [
+        "tests/test_modes.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_server.py",
+      "label": "test_server.py",
+      "full_label": "tests/test_server.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E015"
+      ],
+      "source_paths": [
+        "tests/test_server.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_service.py",
+      "label": "test_service.py",
+      "full_label": "tests/test_service.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E016"
+      ],
+      "source_paths": [
+        "tests/test_service.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_store.py",
+      "label": "test_store.py",
+      "full_label": "tests/test_store.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "evidence_refs": [
+        "E017"
+      ],
+      "source_paths": [
+        "tests/test_store.py"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "contains:repo-root-file-gitignore",
+      "source": "repo:root",
+      "target": "file:.gitignore",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:repo-root-file-audit-md",
+      "source": "repo:root",
+      "target": "file:AUDIT.md",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:repo-root-file-license",
+      "source": "repo:root",
+      "target": "file:LICENSE",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:repo-root-file-readme-md",
+      "source": "repo:root",
+      "target": "file:README.md",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:repo-root-dir-assets",
+      "source": "repo:root",
+      "target": "dir:assets",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-assets-file-assets-hero-banner-svg",
+      "source": "dir:assets",
+      "target": "file:assets/hero-banner.svg",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:repo-root-file-pyproject-toml",
+      "source": "repo:root",
+      "target": "file:pyproject.toml",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:repo-root-file-requirements-txt",
+      "source": "repo:root",
+      "target": "file:requirements.txt",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:repo-root-dir-src",
+      "source": "repo:root",
+      "target": "dir:src",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-src-dir-src-simple-thinking-tool",
+      "source": "dir:src",
+      "target": "dir:src/simple_thinking_tool",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-src-simple-thinking-tool-file-src-simple-thinking-tool-init-",
+      "source": "dir:src/simple_thinking_tool",
+      "target": "file:src/simple_thinking_tool/__init__.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-src-simple-thinking-tool-file-src-simple-thinking-tool-auth-",
+      "source": "dir:src/simple_thinking_tool",
+      "target": "file:src/simple_thinking_tool/auth.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-src-simple-thinking-tool-file-src-simple-thinking-tool-confi",
+      "source": "dir:src/simple_thinking_tool",
+      "target": "file:src/simple_thinking_tool/config.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-src-simple-thinking-tool-file-src-simple-thinking-tool-guard",
+      "source": "dir:src/simple_thinking_tool",
+      "target": "file:src/simple_thinking_tool/guard.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-src-simple-thinking-tool-file-src-simple-thinking-tool-hooks",
+      "source": "dir:src/simple_thinking_tool",
+      "target": "file:src/simple_thinking_tool/hooks.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-src-simple-thinking-tool-file-src-simple-thinking-tool-modes",
+      "source": "dir:src/simple_thinking_tool",
+      "target": "file:src/simple_thinking_tool/modes.json",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-src-simple-thinking-tool-file-src-simple-thinking-tool-modes",
+      "source": "dir:src/simple_thinking_tool",
+      "target": "file:src/simple_thinking_tool/modes.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-src-simple-thinking-tool-file-src-simple-thinking-tool-serve",
+      "source": "dir:src/simple_thinking_tool",
+      "target": "file:src/simple_thinking_tool/server.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-src-simple-thinking-tool-file-src-simple-thinking-tool-servi",
+      "source": "dir:src/simple_thinking_tool",
+      "target": "file:src/simple_thinking_tool/service.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-src-simple-thinking-tool-file-src-simple-thinking-tool-store",
+      "source": "dir:src/simple_thinking_tool",
+      "target": "file:src/simple_thinking_tool/store.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:repo-root-dir-tests",
+      "source": "repo:root",
+      "target": "dir:tests",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-tests-file-tests-test-auth-py",
+      "source": "dir:tests",
+      "target": "file:tests/test_auth.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-tests-file-tests-test-guard-py",
+      "source": "dir:tests",
+      "target": "file:tests/test_guard.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-tests-file-tests-test-hooks-py",
+      "source": "dir:tests",
+      "target": "file:tests/test_hooks.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-tests-file-tests-test-modes-py",
+      "source": "dir:tests",
+      "target": "file:tests/test_modes.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-tests-file-tests-test-server-py",
+      "source": "dir:tests",
+      "target": "file:tests/test_server.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-tests-file-tests-test-service-py",
+      "source": "dir:tests",
+      "target": "file:tests/test_service.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "contains:dir-tests-file-tests-test-store-py",
+      "source": "dir:tests",
+      "target": "file:tests/test_store.py",
+      "label": "",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "directory",
+      "file",
+      "repository"
+    ],
+    "edge_types": [
+      "contains"
+    ]
+  },
+  "evidence_refs": [],
+  "stats": {
+    "nodes": 29,
+    "edges": 28
+  }
+}

@@ -1,0 +1,561 @@
+{
+  "version": 2,
+  "id": "view-5-modes-catalog",
+  "title": "Thinking Modes Catalog",
+  "kind": "mindmap",
+  "question": "What thinking modes are available and how are they organized by level?",
+  "purpose": "Show all 15 thinking modes organized by their difficulty level (1-4), with each mode's typical workflow stage, giving a quick visual overview of the available reasoning methods.",
+  "origin": "semantic",
+  "diagram_type": "mindmap",
+  "doc_paths": [
+    "docs/architecture.md",
+    "docs/overview.md"
+  ],
+  "renderer": {
+    "interactive": "mermaid",
+    "portable_fallback": "semantic-json",
+    "source_of_truth": "visual-data"
+  },
+  "presentation": {
+    "renderer": "mermaid",
+    "diagram_type": "mindmap",
+    "source_of_truth": "visual-data"
+  },
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "radial",
+    "direction": "TB"
+  },
+  "nodes": [
+    {
+      "id": "semantic:view-5-modes-catalog:mind-root",
+      "label": "Thinking Methods",
+      "full_label": "Thinking Methods",
+      "type": "root",
+      "group": "",
+      "importance": 1,
+      "description": "15 named reasoning modes auto-registered as MCP tools from modes.json",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-l1",
+      "label": "Level 1: Core",
+      "full_label": "Level 1: Core",
+      "type": "category",
+      "group": "",
+      "importance": 0.9,
+      "description": "Cheapest, most-used modes for everyday reasoning",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-l2",
+      "label": "Level 2: Structured",
+      "full_label": "Level 2: Structured",
+      "type": "category",
+      "group": "",
+      "importance": 0.8,
+      "description": "Structured depth modes for moderate-complexity problems",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-l3",
+      "label": "Level 3: Advanced",
+      "full_label": "Level 3: Advanced",
+      "type": "category",
+      "group": "",
+      "importance": 0.7,
+      "description": "Advanced multi-path and audit modes for complex problems",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-l4",
+      "label": "Level 4: High-Stakes",
+      "full_label": "Level 4: High-Stakes",
+      "type": "category",
+      "group": "",
+      "importance": 0.7,
+      "description": "Adversarial and red-team modes for irreversible decisions",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-goal-distill",
+      "label": "Goal Distillation (plan)",
+      "full_label": "Goal Distillation (plan)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.9,
+      "description": "Reduce turn to one objective, core priority, and first action. Use by default at start of any task.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-understand",
+      "label": "modes.json",
+      "full_label": "Understand / Digest (understand)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.9,
+      "description": "Digest context and content: code, tools, documents, user intents. Use before acting on new material.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-plan",
+      "label": "Plan (plan)",
+      "full_label": "Plan (plan)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.8,
+      "description": "Structure ordered steps before execution with success criteria and blockers.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-chain-of-thought",
+      "label": "Chain of Thought (execute)",
+      "full_label": "Chain of Thought (execute)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.8,
+      "description": "Walk a linear chain of intermediate conclusions from premise to answer.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-creative",
+      "label": "modes.json",
+      "full_label": "Creative / Divergent (any)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.7,
+      "description": "Generate open directions and wildcard ideas without premature selection.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-deep",
+      "label": "Deep Think (execute)",
+      "full_label": "Deep Think (execute)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.7,
+      "description": "Rephrase, decompose, hypothesize, verify, then synthesize for hard problems.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-distill",
+      "label": "modes.json",
+      "full_label": "Distill / Compress (handoff)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.7,
+      "description": "Compress what survives rephrasing into its essence. Use at handoff or wrap-up.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-reflect",
+      "label": "modes.json",
+      "full_label": "Reflect / Socratic (review)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.7,
+      "description": "Socratic self-interrogation: what is actually true here?",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-first-principles",
+      "label": "First Principles (any)",
+      "full_label": "First Principles (any)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.7,
+      "description": "Reduce to fundamental facts and rebuild without inherited assumptions.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-tree",
+      "label": "Tree of Thoughts (any)",
+      "full_label": "Tree of Thoughts (any)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.6,
+      "description": "Branch multiple paths, score them, prune weak ones, pick a branch.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-graph",
+      "label": "Graph of Thoughts (any)",
+      "full_label": "Graph of Thoughts (any)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.6,
+      "description": "Build partial solutions as a graph with feedback loops, then aggregate.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-bias-check",
+      "label": "Bias Check (review)",
+      "full_label": "Bias Check (review)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.6,
+      "description": "Scan for confirmation, survivorship, and authority bias before high-stakes calls.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-metacognitive",
+      "label": "modes.json",
+      "full_label": "Metacognitive / Self-Audit (review)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.6,
+      "description": "Audit the reasoning itself for bias, uncertainty, and contradictions.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-reinforced",
+      "label": "modes.json",
+      "full_label": "Reinforced / Red Team (review)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.5,
+      "description": "Multiple complete takes plus an adversarial red-team attack for high-stakes conclusions.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-5-modes-catalog:mind-adversarial-review",
+      "label": "Adversarial Review (review)",
+      "full_label": "Adversarial Review (review)",
+      "type": "mode",
+      "group": "",
+      "importance": 0.5,
+      "description": "Attempt to disprove the provisional conclusion before committing.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "semantic-edge:view-5-modes-catalog:0",
+      "source": "semantic:view-5-modes-catalog:mind-root",
+      "target": "semantic:view-5-modes-catalog:mind-l1",
+      "label": "contains",
+      "type": "category",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:1",
+      "source": "semantic:view-5-modes-catalog:mind-root",
+      "target": "semantic:view-5-modes-catalog:mind-l2",
+      "label": "contains",
+      "type": "category",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:2",
+      "source": "semantic:view-5-modes-catalog:mind-root",
+      "target": "semantic:view-5-modes-catalog:mind-l3",
+      "label": "contains",
+      "type": "category",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:3",
+      "source": "semantic:view-5-modes-catalog:mind-root",
+      "target": "semantic:view-5-modes-catalog:mind-l4",
+      "label": "contains",
+      "type": "category",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:4",
+      "source": "semantic:view-5-modes-catalog:mind-l1",
+      "target": "semantic:view-5-modes-catalog:mind-goal-distill",
+      "label": "level 1 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:5",
+      "source": "semantic:view-5-modes-catalog:mind-l1",
+      "target": "semantic:view-5-modes-catalog:mind-understand",
+      "label": "level 1 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:6",
+      "source": "semantic:view-5-modes-catalog:mind-l1",
+      "target": "semantic:view-5-modes-catalog:mind-plan",
+      "label": "level 1 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:7",
+      "source": "semantic:view-5-modes-catalog:mind-l1",
+      "target": "semantic:view-5-modes-catalog:mind-chain-of-thought",
+      "label": "level 1 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:8",
+      "source": "semantic:view-5-modes-catalog:mind-l2",
+      "target": "semantic:view-5-modes-catalog:mind-creative",
+      "label": "level 2 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:9",
+      "source": "semantic:view-5-modes-catalog:mind-l2",
+      "target": "semantic:view-5-modes-catalog:mind-deep",
+      "label": "level 2 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:10",
+      "source": "semantic:view-5-modes-catalog:mind-l2",
+      "target": "semantic:view-5-modes-catalog:mind-distill",
+      "label": "level 2 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:11",
+      "source": "semantic:view-5-modes-catalog:mind-l2",
+      "target": "semantic:view-5-modes-catalog:mind-reflect",
+      "label": "level 2 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:12",
+      "source": "semantic:view-5-modes-catalog:mind-l2",
+      "target": "semantic:view-5-modes-catalog:mind-first-principles",
+      "label": "level 2 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:13",
+      "source": "semantic:view-5-modes-catalog:mind-l3",
+      "target": "semantic:view-5-modes-catalog:mind-tree",
+      "label": "level 3 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:14",
+      "source": "semantic:view-5-modes-catalog:mind-l3",
+      "target": "semantic:view-5-modes-catalog:mind-graph",
+      "label": "level 3 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:15",
+      "source": "semantic:view-5-modes-catalog:mind-l3",
+      "target": "semantic:view-5-modes-catalog:mind-bias-check",
+      "label": "level 3 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:16",
+      "source": "semantic:view-5-modes-catalog:mind-l3",
+      "target": "semantic:view-5-modes-catalog:mind-metacognitive",
+      "label": "level 3 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:17",
+      "source": "semantic:view-5-modes-catalog:mind-l4",
+      "target": "semantic:view-5-modes-catalog:mind-reinforced",
+      "label": "level 4 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-5-modes-catalog:18",
+      "source": "semantic:view-5-modes-catalog:mind-l4",
+      "target": "semantic:view-5-modes-catalog:mind-adversarial-review",
+      "label": "level 4 mode",
+      "type": "member",
+      "confidence": 1,
+      "evidence_refs": [
+        "E019"
+      ]
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "category",
+      "mode",
+      "root"
+    ],
+    "edge_types": [
+      "category",
+      "member"
+    ]
+  },
+  "evidence_refs": [
+    "E019"
+  ],
+  "stats": {
+    "nodes": 20,
+    "edges": 19
+  }
+}

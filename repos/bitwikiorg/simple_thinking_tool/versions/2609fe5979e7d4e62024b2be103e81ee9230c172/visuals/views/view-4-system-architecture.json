@@ -1,0 +1,364 @@
+{
+  "version": 2,
+  "id": "view-4-system-architecture",
+  "title": "System Component Map",
+  "kind": "architecture",
+  "question": "What are the major components and how do they connect?",
+  "purpose": "Show the major system components, their roles, and how they connect — from the external LLM agent through the FastMCP server to the JSONL file on disk and background hook scripts.",
+  "origin": "semantic",
+  "diagram_type": "architecture",
+  "doc_paths": [
+    "docs/architecture.md",
+    "docs/overview.md"
+  ],
+  "renderer": {
+    "interactive": "mermaid",
+    "portable_fallback": "semantic-json",
+    "source_of_truth": "visual-data"
+  },
+  "presentation": {
+    "renderer": "mermaid",
+    "diagram_type": "architecture",
+    "source_of_truth": "visual-data"
+  },
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "layered",
+    "direction": "LR"
+  },
+  "nodes": [
+    {
+      "id": "semantic:view-4-system-architecture:arch-llm",
+      "label": "LLM Agent",
+      "full_label": "LLM Agent",
+      "type": "external",
+      "group": "",
+      "importance": 1,
+      "description": "The calling AI agent (Claude Desktop, Cursor, Agent Zero, etc.) that connects via MCP protocol and selects thinking mode tools",
+      "source_paths": [],
+      "evidence_refs": [
+        "E001",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic:view-4-system-architecture:arch-fastmcp",
+      "label": "FastMCP Runtime",
+      "full_label": "FastMCP Runtime",
+      "type": "framework",
+      "group": "",
+      "importance": 0.9,
+      "description": "FastMCP v3.2+ framework providing MCP protocol handling, tool registration, and transport (stdio or HTTP)",
+      "source_paths": [
+        "src/simple_thinking_tool/server.py"
+      ],
+      "evidence_refs": [
+        "E006",
+        "E011"
+      ]
+    },
+    {
+      "id": "semantic:view-4-system-architecture:arch-server",
+      "label": "Server Wiring",
+      "full_label": "Server Wiring",
+      "type": "component",
+      "group": "",
+      "importance": 1,
+      "description": "build_server() orchestrates all components: loads modes, creates store, initializes guard and hooks, auto-registers 15 think_* tools plus health/definitions/journal",
+      "source_paths": [
+        "src/simple_thinking_tool/server.py"
+      ],
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic:view-4-system-architecture:arch-config",
+      "label": "Config",
+      "full_label": "Config",
+      "type": "component",
+      "group": "",
+      "importance": 0.8,
+      "description": "Environment-driven Settings: tokens, state dir, transport, guard thresholds, hooks dir, max note chars, rotation size",
+      "source_paths": [
+        "src/simple_thinking_tool/config.py"
+      ],
+      "evidence_refs": [
+        "E003"
+      ]
+    },
+    {
+      "id": "semantic:view-4-system-architecture:arch-auth",
+      "label": "Auth",
+      "full_label": "Auth",
+      "type": "component",
+      "group": "",
+      "importance": 0.9,
+      "description": "Token-based actor identity: verify_token (constant-time), extract_bearer. Returns 'agent' or 'boss'. Prevents spoofing.",
+      "source_paths": [
+        "src/simple_thinking_tool/auth.py"
+      ],
+      "evidence_refs": [
+        "E002"
+      ]
+    },
+    {
+      "id": "semantic:view-4-system-architecture:arch-modes",
+      "label": "Modes Loader",
+      "full_label": "Modes Loader",
+      "type": "component",
+      "group": "",
+      "importance": 0.9,
+      "description": "Loads modes.json into frozen Mode dataclasses. Renders templates with missing-field tolerance. Exposes definitions catalog for LLM routing.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.py",
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E020",
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-4-system-architecture:arch-guard",
+      "label": "Loop Guard",
+      "full_label": "Loop Guard",
+      "type": "component",
+      "group": "",
+      "importance": 0.7,
+      "description": "Optional anti-churn control. Evaluates trailing think_* calls per actor. Same-mode block, warn_at escalation, block_at ceiling.",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic:view-4-system-architecture:arch-hooks",
+      "label": "Hook Runner",
+      "full_label": "Hook Runner",
+      "type": "component",
+      "group": "",
+      "importance": 0.6,
+      "description": "Background fire-and-forget hook dispatch. Resolves mode-specific or generic scripts, writes JSON payload, runs as daemon thread subprocess.",
+      "source_paths": [
+        "src/simple_thinking_tool/hooks.py"
+      ],
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "semantic:view-4-system-architecture:arch-store",
+      "label": "JSONL Store",
+      "full_label": "JSONL Store",
+      "type": "component",
+      "group": "",
+      "importance": 1,
+      "description": "Append-only JSONL log with fsync, rotation, idempotency (run_id), input_hash. In-memory record cache with threading.Lock.",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic:view-4-system-architecture:arch-jsonl",
+      "label": "thoughts.jsonl",
+      "full_label": "thoughts.jsonl",
+      "type": "datastore",
+      "group": "",
+      "importance": 1,
+      "description": "The durable JSONL log file on disk. One JSON object per line. Rotated to .bak.jsonl when exceeding rotate_bytes.",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic:view-4-system-architecture:arch-hookscripts",
+      "label": "Hook Scripts",
+      "full_label": "Hook Scripts",
+      "type": "external",
+      "group": "",
+      "importance": 0.5,
+      "description": "User-provided Python scripts in hooks directory. Mode-specific (<mode>.py) or generic (on_think.py). Receive JSON payload file path as argument.",
+      "source_paths": [
+        "src/simple_thinking_tool/hooks.py"
+      ],
+      "evidence_refs": [
+        "E005"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "semantic-edge:view-4-system-architecture:0",
+      "source": "semantic:view-4-system-architecture:arch-llm",
+      "target": "semantic:view-4-system-architecture:arch-fastmcp",
+      "label": "MCP tool calls (stdio or HTTP)",
+      "type": "protocol",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E001"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-4-system-architecture:1",
+      "source": "semantic:view-4-system-architecture:arch-fastmcp",
+      "target": "semantic:view-4-system-architecture:arch-server",
+      "label": "dispatch tool call",
+      "type": "dispatch",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-4-system-architecture:2",
+      "source": "semantic:view-4-system-architecture:arch-server",
+      "target": "semantic:view-4-system-architecture:arch-config",
+      "label": "load settings from env",
+      "type": "configure",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E003"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-4-system-architecture:3",
+      "source": "semantic:view-4-system-architecture:arch-server",
+      "target": "semantic:view-4-system-architecture:arch-auth",
+      "label": "resolve actor from token",
+      "type": "authenticate",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E002"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-4-system-architecture:4",
+      "source": "semantic:view-4-system-architecture:arch-server",
+      "target": "semantic:view-4-system-architecture:arch-guard",
+      "label": "evaluate anti-churn rules",
+      "type": "validate",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-4-system-architecture:5",
+      "source": "semantic:view-4-system-architecture:arch-server",
+      "target": "semantic:view-4-system-architecture:arch-modes",
+      "label": "load modes, render template",
+      "type": "use",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E020"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-4-system-architecture:6",
+      "source": "semantic:view-4-system-architecture:arch-server",
+      "target": "semantic:view-4-system-architecture:arch-store",
+      "label": "append note with fsync",
+      "type": "persist",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-4-system-architecture:7",
+      "source": "semantic:view-4-system-architecture:arch-server",
+      "target": "semantic:view-4-system-architecture:arch-hooks",
+      "label": "fire background hook",
+      "type": "dispatch",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E005"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-4-system-architecture:8",
+      "source": "semantic:view-4-system-architecture:arch-store",
+      "target": "semantic:view-4-system-architecture:arch-jsonl",
+      "label": "fsync write to disk",
+      "type": "write",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-4-system-architecture:9",
+      "source": "semantic:view-4-system-architecture:arch-hooks",
+      "target": "semantic:view-4-system-architecture:arch-hookscripts",
+      "label": "subprocess.run with timeout",
+      "type": "execute",
+      "confidence": 1,
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-4-system-architecture:10",
+      "source": "semantic:view-4-system-architecture:arch-fastmcp",
+      "target": "semantic:view-4-system-architecture:arch-llm",
+      "label": "tool response {ok, mode, note, id}",
+      "type": "protocol",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "component",
+      "datastore",
+      "external",
+      "framework"
+    ],
+    "edge_types": [
+      "authenticate",
+      "configure",
+      "dispatch",
+      "execute",
+      "persist",
+      "protocol",
+      "use",
+      "validate",
+      "write"
+    ]
+  },
+  "evidence_refs": [
+    "E001",
+    "E006",
+    "E011",
+    "E003",
+    "E002",
+    "E020",
+    "E019",
+    "E004",
+    "E005",
+    "E008"
+  ],
+  "stats": {
+    "nodes": 11,
+    "edges": 11
+  }
+}

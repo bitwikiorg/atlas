@@ -1,0 +1,117 @@
+{
+  "version": 2,
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "primary_page": "docs/overview.md",
+  "quality": {
+    "strategy": "deterministic-conceptual-fallback",
+    "group_count": 6,
+    "page_count": 14,
+    "coverage_ratio": 1,
+    "fallback_count": 14,
+    "fallback_ratio": 1,
+    "generic_only": false,
+    "score": 1,
+    "duplicate_paths": 0
+  },
+  "groups": [
+    {
+      "id": "getting-started",
+      "title": "Getting Started",
+      "description": "Understand the project, install it, and configure the common path.",
+      "pages": [
+        {
+          "path": "README.md",
+          "title": "simple_thinking_tool"
+        },
+        {
+          "path": "docs/overview.md",
+          "title": "Overview — simple_thinking_tool"
+        },
+        {
+          "path": "docs/quickstart.md",
+          "title": "Quickstart"
+        },
+        {
+          "path": "docs/configuration.md",
+          "title": "Configuration"
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "title": "Architecture",
+      "description": "How the system is organized and how its major parts relate.",
+      "pages": [
+        {
+          "path": "docs/architecture.md",
+          "title": "Architecture — simple_thinking_tool"
+        }
+      ]
+    },
+    {
+      "id": "operations-security",
+      "title": "Operations & Security",
+      "description": "Runtime behavior, deployment concerns, safeguards, and operational boundaries.",
+      "pages": [
+        {
+          "path": "docs/operations.md",
+          "title": "Operations — simple_thinking_tool"
+        },
+        {
+          "path": "docs/security.md",
+          "title": "Security — simple_thinking_tool"
+        }
+      ]
+    },
+    {
+      "id": "development",
+      "title": "Development",
+      "description": "Testing, extension points, and contributor-facing implementation guidance.",
+      "pages": [
+        {
+          "path": "docs/extension.md",
+          "title": "Extending the Tool"
+        },
+        {
+          "path": "docs/testing.md",
+          "title": "Testing"
+        }
+      ]
+    },
+    {
+      "id": "reference",
+      "title": "Reference",
+      "description": "Interfaces, definitions, FAQ, and terminology.",
+      "pages": [
+        {
+          "path": "docs/reference.md",
+          "title": "Reference — simple_thinking_tool"
+        },
+        {
+          "path": "docs/faq.md",
+          "title": "FAQ — simple_thinking_tool"
+        },
+        {
+          "path": "docs/glossary.md",
+          "title": "Glossary — simple_thinking_tool"
+        }
+      ]
+    },
+    {
+      "id": "quality-evidence",
+      "title": "Quality & Evidence",
+      "description": "Scorecard, provenance, and evidence behind this Atlas.",
+      "pages": [
+        {
+          "path": "docs/scorecard.md",
+          "title": "Scorecard"
+        },
+        {
+          "path": "docs/provenance.md",
+          "title": "Provenance"
+        }
+      ]
+    }
+  ]
+}

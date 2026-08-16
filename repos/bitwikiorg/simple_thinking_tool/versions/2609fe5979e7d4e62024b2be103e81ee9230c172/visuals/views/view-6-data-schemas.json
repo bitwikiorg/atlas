@@ -1,0 +1,250 @@
+{
+  "version": 2,
+  "id": "view-6-data-schemas",
+  "title": "Core Data Schemas",
+  "kind": "er",
+  "question": "What are the core data structures and their relationships?",
+  "purpose": "Show the key data structures in the system — Mode, Note record, Session record, GuardResult, Settings, and Hook payload — and their relationships.",
+  "origin": "semantic",
+  "diagram_type": "er",
+  "doc_paths": [
+    "docs/reference.md",
+    "docs/architecture.md"
+  ],
+  "renderer": {
+    "interactive": "mermaid",
+    "portable_fallback": "semantic-json",
+    "source_of_truth": "visual-data"
+  },
+  "presentation": {
+    "renderer": "mermaid",
+    "diagram_type": "er",
+    "source_of_truth": "visual-data"
+  },
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "grid",
+    "direction": "LR"
+  },
+  "nodes": [
+    {
+      "id": "semantic:view-6-data-schemas:er-mode",
+      "label": "Mode",
+      "full_label": "Mode",
+      "type": "entity",
+      "group": "",
+      "importance": 1,
+      "description": "Frozen dataclass: id, label, purpose, when, level (1-4), typical_stage, fields (tuple of str), template (str with {field} placeholders), version (int)",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.py"
+      ],
+      "evidence_refs": [
+        "E020"
+      ]
+    },
+    {
+      "id": "semantic:view-6-data-schemas:er-modesjson",
+      "label": "modes.json",
+      "full_label": "modes.json",
+      "type": "datasource",
+      "group": "",
+      "importance": 0.9,
+      "description": "JSON file with a 'modes' array. Each entry has id, label, purpose, when, level, typical_stage, fields, template, version. 15 modes defined.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-6-data-schemas:er-note",
+      "label": "Note Record",
+      "full_label": "Note Record",
+      "type": "entity",
+      "group": "",
+      "importance": 1,
+      "description": "JSONL record: type='note', id (ulid-like), session_id, actor_id, parent_thought_id, mode, template_version, note (max 800 chars), next_action, run_id, input_hash (sha256[:16]), ts, meta",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic:view-6-data-schemas:er-session",
+      "label": "Session Record",
+      "full_label": "Session Record",
+      "type": "entity",
+      "group": "",
+      "importance": 0.6,
+      "description": "JSONL record: type='session', id, actor_id, project_id, conversation_id, status (open/finalized), created_at, finalized_at. Not used by server in normal operation.",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic:view-6-data-schemas:er-guardresult",
+      "label": "GuardResult",
+      "full_label": "GuardResult",
+      "type": "entity",
+      "group": "",
+      "importance": 0.8,
+      "description": "Dataclass: allowed (bool), status (ok|warn|block), consecutive (int), last_mode (str|None), message (str). Returned by Guard.evaluate().",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic:view-6-data-schemas:er-settings",
+      "label": "Settings",
+      "full_label": "Settings",
+      "type": "entity",
+      "group": "",
+      "importance": 0.8,
+      "description": "16 env-driven fields: token, boss_token, state_dir, host, port, max_note_chars, burst_limit, transport, actor, allow_modes, rotate_bytes, hooks_dir, hooks_timeout, guard_enabled, guard_same_mode_block, guard_warn_at, guard_block_at",
+      "source_paths": [
+        "src/simple_thinking_tool/config.py"
+      ],
+      "evidence_refs": [
+        "E003"
+      ]
+    },
+    {
+      "id": "semantic:view-6-data-schemas:er-hookpayload",
+      "label": "Hook Payload",
+      "full_label": "Hook Payload",
+      "type": "entity",
+      "group": "",
+      "importance": 0.6,
+      "description": "JSON file written to temp dir: {mode, note, actor, ts (ms epoch)}. Passed as file path argument to hook script subprocess. No tokens or secrets.",
+      "source_paths": [
+        "src/simple_thinking_tool/hooks.py"
+      ],
+      "evidence_refs": [
+        "E005"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "semantic-edge:view-6-data-schemas:0",
+      "source": "semantic:view-6-data-schemas:er-modesjson",
+      "target": "semantic:view-6-data-schemas:er-mode",
+      "label": "deserialized into Mode dataclass",
+      "type": "maps_to",
+      "confidence": 1,
+      "evidence_refs": [
+        "E020",
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-6-data-schemas:1",
+      "source": "semantic:view-6-data-schemas:er-mode",
+      "target": "semantic:view-6-data-schemas:er-note",
+      "label": "mode id and template_version stored in note record",
+      "type": "references",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008",
+        "E020"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-6-data-schemas:2",
+      "source": "semantic:view-6-data-schemas:er-note",
+      "target": "semantic:view-6-data-schemas:er-session",
+      "label": "session_id links note to session (server uses actor_id as session_id)",
+      "type": "belongs_to",
+      "confidence": 0.85,
+      "evidence_refs": [
+        "E008",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-6-data-schemas:3",
+      "source": "semantic:view-6-data-schemas:er-settings",
+      "target": "semantic:view-6-data-schemas:er-guardresult",
+      "label": "guard_enabled, warn_at, block_at configure guard evaluation",
+      "type": "configures",
+      "confidence": 1,
+      "evidence_refs": [
+        "E003",
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-6-data-schemas:4",
+      "source": "semantic:view-6-data-schemas:er-settings",
+      "target": "semantic:view-6-data-schemas:er-note",
+      "label": "max_note_chars caps note length (default 800)",
+      "type": "constrains",
+      "confidence": 1,
+      "evidence_refs": [
+        "E003",
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-6-data-schemas:5",
+      "source": "semantic:view-6-data-schemas:er-note",
+      "target": "semantic:view-6-data-schemas:er-hookpayload",
+      "label": "note text and mode passed to hook payload",
+      "type": "feeds",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008",
+        "E005"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-6-data-schemas:6",
+      "source": "semantic:view-6-data-schemas:er-settings",
+      "target": "semantic:view-6-data-schemas:er-hookpayload",
+      "label": "hooks_dir and hooks_timeout configure hook dispatch",
+      "type": "configures",
+      "confidence": 1,
+      "evidence_refs": [
+        "E003",
+        "E005"
+      ]
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "datasource",
+      "entity"
+    ],
+    "edge_types": [
+      "belongs_to",
+      "configures",
+      "constrains",
+      "feeds",
+      "maps_to",
+      "references"
+    ]
+  },
+  "evidence_refs": [
+    "E020",
+    "E019",
+    "E008",
+    "E004",
+    "E003",
+    "E005",
+    "E006"
+  ],
+  "stats": {
+    "nodes": 7,
+    "edges": 7
+  }
+}

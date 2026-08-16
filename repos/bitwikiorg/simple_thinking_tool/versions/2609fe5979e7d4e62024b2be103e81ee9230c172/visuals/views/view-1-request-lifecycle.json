@@ -1,0 +1,328 @@
+{
+  "version": 2,
+  "id": "view-1-request-lifecycle",
+  "title": "think_* Call Lifecycle",
+  "kind": "sequence",
+  "question": "What happens when an LLM calls a think_<mode> tool?",
+  "purpose": "Show the complete sequence of events when an LLM invokes a think_<mode> tool, from authentication through persistence to hook dispatch and response.",
+  "origin": "semantic",
+  "diagram_type": "sequence",
+  "doc_paths": [
+    "docs/architecture.md",
+    "docs/overview.md"
+  ],
+  "renderer": {
+    "interactive": "mermaid",
+    "portable_fallback": "semantic-json",
+    "source_of_truth": "visual-data"
+  },
+  "presentation": {
+    "renderer": "mermaid",
+    "diagram_type": "sequence",
+    "source_of_truth": "visual-data"
+  },
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "layered",
+    "direction": "TB"
+  },
+  "nodes": [
+    {
+      "id": "semantic:view-1-request-lifecycle:seq-llm",
+      "label": "LLM Agent",
+      "full_label": "LLM Agent",
+      "type": "actor",
+      "group": "",
+      "importance": 1,
+      "description": "The calling AI agent that selects a thinking mode by reading tool descriptions and invokes think_<mode>(fields)",
+      "source_paths": [],
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic:view-1-request-lifecycle:seq-server",
+      "label": "FastMCP Server",
+      "full_label": "FastMCP Server",
+      "type": "component",
+      "group": "",
+      "importance": 1,
+      "description": "Receives the tool call via MCP protocol and orchestrates the full lifecycle: auth, guard, render, persist, hook, respond",
+      "source_paths": [
+        "src/simple_thinking_tool/server.py"
+      ],
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic:view-1-request-lifecycle:seq-auth",
+      "label": "Auth Resolver",
+      "full_label": "Auth Resolver",
+      "type": "component",
+      "group": "",
+      "importance": 0.9,
+      "description": "Extracts bearer token from HTTP Authorization header and resolves actor identity (agent or boss) using constant-time comparison",
+      "source_paths": [
+        "src/simple_thinking_tool/auth.py"
+      ],
+      "evidence_refs": [
+        "E002",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic:view-1-request-lifecycle:seq-guard",
+      "label": "Loop Guard",
+      "full_label": "Loop Guard",
+      "type": "component",
+      "group": "",
+      "importance": 0.8,
+      "description": "Evaluates anti-churn rules: same-mode block, consecutive-count warning, hard ceiling block. Off by default.",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic:view-1-request-lifecycle:seq-render",
+      "label": "Template Renderer",
+      "full_label": "Template Renderer",
+      "type": "component",
+      "group": "",
+      "importance": 0.9,
+      "description": "Fills the mode's template string with caller-provided field values using Python string formatting; missing fields fill with empty strings",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.py"
+      ],
+      "evidence_refs": [
+        "E020",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic:view-1-request-lifecycle:seq-store",
+      "label": "JSONL Store",
+      "full_label": "JSONL Store",
+      "type": "component",
+      "group": "",
+      "importance": 1,
+      "description": "Appends the rendered note as one JSON line to thoughts.jsonl with fsync for durability; enforces 800-char cap and run_id idempotency",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic:view-1-request-lifecycle:seq-hooks",
+      "label": "Hook Runner",
+      "full_label": "Hook Runner",
+      "type": "component",
+      "group": "",
+      "importance": 0.7,
+      "description": "Fires a background hook script (mode-specific or generic) as a daemon thread subprocess with a JSON payload. Fire-and-forget, best-effort.",
+      "source_paths": [
+        "src/simple_thinking_tool/hooks.py"
+      ],
+      "evidence_refs": [
+        "E005",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic:view-1-request-lifecycle:seq-response",
+      "label": "Response",
+      "full_label": "Response",
+      "type": "output",
+      "group": "",
+      "importance": 0.9,
+      "description": "Returns {ok: true, mode, note, id, hook?} to the LLM on success, or {ok: false, blocked: true, status, message} when guard blocks",
+      "source_paths": [
+        "src/simple_thinking_tool/server.py"
+      ],
+      "evidence_refs": [
+        "E006"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:0",
+      "source": "semantic:view-1-request-lifecycle:seq-llm",
+      "target": "semantic:view-1-request-lifecycle:seq-server",
+      "label": "calls think_<mode>(field1, field2, ...)",
+      "type": "invoke",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:1",
+      "source": "semantic:view-1-request-lifecycle:seq-server",
+      "target": "semantic:view-1-request-lifecycle:seq-auth",
+      "label": "resolve actor from bearer token",
+      "type": "authenticate",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E002"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:2",
+      "source": "semantic:view-1-request-lifecycle:seq-auth",
+      "target": "semantic:view-1-request-lifecycle:seq-server",
+      "label": "returns actor_id or raises PermissionError",
+      "type": "result",
+      "confidence": 1,
+      "evidence_refs": [
+        "E002",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:3",
+      "source": "semantic:view-1-request-lifecycle:seq-server",
+      "target": "semantic:view-1-request-lifecycle:seq-guard",
+      "label": "evaluate(store, actor, mode_id)",
+      "type": "validate",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:4",
+      "source": "semantic:view-1-request-lifecycle:seq-guard",
+      "target": "semantic:view-1-request-lifecycle:seq-server",
+      "label": "GuardResult: allowed / warn / block",
+      "type": "result",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:5",
+      "source": "semantic:view-1-request-lifecycle:seq-server",
+      "target": "semantic:view-1-request-lifecycle:seq-render",
+      "label": "render_template(mode, provided_fields) [only if guard.allowed]",
+      "type": "render",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E020"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:6",
+      "source": "semantic:view-1-request-lifecycle:seq-render",
+      "target": "semantic:view-1-request-lifecycle:seq-server",
+      "label": "rendered note string (capped at max_note_chars)",
+      "type": "result",
+      "confidence": 1,
+      "evidence_refs": [
+        "E020",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:7",
+      "source": "semantic:view-1-request-lifecycle:seq-server",
+      "target": "semantic:view-1-request-lifecycle:seq-store",
+      "label": "append_note(session_id=actor, actor_id=actor, mode, note, extra)",
+      "type": "persist",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:8",
+      "source": "semantic:view-1-request-lifecycle:seq-store",
+      "target": "semantic:view-1-request-lifecycle:seq-server",
+      "label": "record dict with id, ts, input_hash",
+      "type": "result",
+      "confidence": 1,
+      "evidence_refs": [
+        "E008",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:9",
+      "source": "semantic:view-1-request-lifecycle:seq-server",
+      "target": "semantic:view-1-request-lifecycle:seq-hooks",
+      "label": "fire(mode_id, note, actor)",
+      "type": "dispatch",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006",
+        "E005"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:10",
+      "source": "semantic:view-1-request-lifecycle:seq-hooks",
+      "target": "semantic:view-1-request-lifecycle:seq-server",
+      "label": "{fired: bool, hook?: script_path}",
+      "type": "result",
+      "confidence": 1,
+      "evidence_refs": [
+        "E005",
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-1-request-lifecycle:11",
+      "source": "semantic:view-1-request-lifecycle:seq-server",
+      "target": "semantic:view-1-request-lifecycle:seq-llm",
+      "label": "returns {ok, mode, note, id, hook?}",
+      "type": "respond",
+      "confidence": 1,
+      "evidence_refs": [
+        "E006"
+      ]
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "actor",
+      "component",
+      "output"
+    ],
+    "edge_types": [
+      "authenticate",
+      "dispatch",
+      "invoke",
+      "persist",
+      "render",
+      "respond",
+      "result",
+      "validate"
+    ]
+  },
+  "evidence_refs": [
+    "E006",
+    "E002",
+    "E004",
+    "E020",
+    "E008",
+    "E005"
+  ],
+  "stats": {
+    "nodes": 8,
+    "edges": 12
+  }
+}

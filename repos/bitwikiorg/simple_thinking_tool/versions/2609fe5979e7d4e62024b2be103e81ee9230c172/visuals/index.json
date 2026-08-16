@@ -1,0 +1,446 @@
+{
+  "version": 2,
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "canonical_graph": "graph.json",
+  "renderer_policy": {
+    "source_of_truth": "visual-data",
+    "interactive": "cytoscape",
+    "semantic_diagrams": "mermaid",
+    "layered_layout": "elk-layered",
+    "portable_fallback": "semantic-json",
+    "mermaid_security": "strict"
+  },
+  "views": [
+    {
+      "id": "repository-topology",
+      "title": "Repository topology",
+      "kind": "topology",
+      "question": "What does repository topology reveal about this repository?",
+      "purpose": "Directory and file hierarchy of the pinned repository. Filenames are concise; exact paths remain attached as source metadata.",
+      "origin": "deterministic",
+      "diagram_type": "treeview",
+      "doc_paths": [
+        "docs/architecture.md",
+        "docs/overview.md"
+      ],
+      "layout": {
+        "family": "tree",
+        "direction": "LR"
+      },
+      "presentation": {
+        "renderer": "cytoscape",
+        "diagram_type": "treeview",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 29,
+        "edges": 28
+      },
+      "evidence_refs": [],
+      "path": "visuals/views/repository-topology.json"
+    },
+    {
+      "id": "dependency-surface",
+      "title": "Dependency surface",
+      "kind": "dependency",
+      "question": "What does dependency surface reveal about this repository?",
+      "purpose": "Verified internal imports plus classified standard-library and third-party dependencies. External noise can be hidden in the interactive renderer.",
+      "origin": "deterministic",
+      "diagram_type": "network",
+      "doc_paths": [
+        "docs/architecture.md",
+        "docs/overview.md"
+      ],
+      "layout": {
+        "family": "force",
+        "direction": "LR"
+      },
+      "presentation": {
+        "renderer": "cytoscape",
+        "diagram_type": "network",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 33,
+        "edges": 50
+      },
+      "evidence_refs": [
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E020",
+        "E021"
+      ],
+      "path": "visuals/views/dependency-surface.json"
+    },
+    {
+      "id": "evidence-map",
+      "title": "Evidence map",
+      "kind": "evidence",
+      "question": "What does evidence map reveal about this repository?",
+      "purpose": "The pinned source evidence used by Atlas agents, organized as a readable source map.",
+      "origin": "deterministic",
+      "diagram_type": "mindmap",
+      "doc_paths": [
+        "docs/provenance.md"
+      ],
+      "layout": {
+        "family": "radial",
+        "direction": "LR"
+      },
+      "presentation": {
+        "renderer": "mermaid",
+        "diagram_type": "mindmap",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 23,
+        "edges": 22
+      },
+      "evidence_refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022"
+      ],
+      "path": "visuals/views/evidence-map.json"
+    },
+    {
+      "id": "architecture-clusters",
+      "title": "Architecture map",
+      "kind": "architecture",
+      "question": "What does architecture map reveal about this repository?",
+      "purpose": "Repository-specific subsystem boundaries with source files attached as supporting evidence.",
+      "origin": "curated",
+      "diagram_type": "architecture",
+      "doc_paths": [
+        "docs/architecture.md",
+        "docs/overview.md"
+      ],
+      "layout": {
+        "family": "layered",
+        "direction": "LR"
+      },
+      "presentation": {
+        "renderer": "cytoscape",
+        "diagram_type": "architecture",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 26,
+        "edges": 25
+      },
+      "evidence_refs": [],
+      "path": "visuals/views/architecture-clusters.json"
+    },
+    {
+      "id": "reading-path",
+      "title": "Recommended reading path",
+      "kind": "reading-path",
+      "question": "What does recommended reading path reveal about this repository?",
+      "purpose": "A curated sequence for understanding the repository without reading the codebase linearly.",
+      "origin": "curated",
+      "diagram_type": "flowchart",
+      "doc_paths": [
+        "docs/overview.md",
+        "docs/quickstart.md"
+      ],
+      "layout": {
+        "family": "layered",
+        "direction": "LR"
+      },
+      "presentation": {
+        "renderer": "mermaid",
+        "diagram_type": "flowchart",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 16,
+        "edges": 15
+      },
+      "evidence_refs": [],
+      "path": "visuals/views/reading-path.json"
+    },
+    {
+      "id": "view-1-request-lifecycle",
+      "title": "think_* Call Lifecycle",
+      "kind": "sequence",
+      "question": "What happens when an LLM calls a think_<mode> tool?",
+      "purpose": "Show the complete sequence of events when an LLM invokes a think_<mode> tool, from authentication through persistence to hook dispatch and response.",
+      "origin": "semantic",
+      "diagram_type": "sequence",
+      "doc_paths": [
+        "docs/architecture.md",
+        "docs/overview.md"
+      ],
+      "layout": {
+        "family": "layered",
+        "direction": "TB"
+      },
+      "presentation": {
+        "renderer": "mermaid",
+        "diagram_type": "sequence",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 8,
+        "edges": 12
+      },
+      "evidence_refs": [
+        "E006",
+        "E002",
+        "E004",
+        "E020",
+        "E008",
+        "E005"
+      ],
+      "path": "visuals/views/view-1-request-lifecycle.json"
+    },
+    {
+      "id": "view-2-guard-logic",
+      "title": "Loop Guard Decision Logic",
+      "kind": "flowchart",
+      "question": "How does the loop guard decide whether to allow, warn, or block a think_* call?",
+      "purpose": "Show the branching decision tree the loop guard uses to determine whether a think_* call is allowed, warned, or hard-blocked.",
+      "origin": "semantic",
+      "diagram_type": "flowchart",
+      "doc_paths": [
+        "docs/architecture.md",
+        "docs/overview.md"
+      ],
+      "layout": {
+        "family": "tree",
+        "direction": "TB"
+      },
+      "presentation": {
+        "renderer": "mermaid",
+        "diagram_type": "flowchart",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 9,
+        "edges": 10
+      },
+      "evidence_refs": [
+        "E004",
+        "E003"
+      ],
+      "path": "visuals/views/view-2-guard-logic.json"
+    },
+    {
+      "id": "view-3-store-lifecycle",
+      "title": "JSONL Store Lifecycle",
+      "kind": "state",
+      "question": "What states does the JSONL store go through during append and rotation?",
+      "purpose": "Show the states the JSONL store transitions through during startup, append operations, fsync, and rotation.",
+      "origin": "semantic",
+      "diagram_type": "state",
+      "doc_paths": [
+        "docs/architecture.md",
+        "docs/overview.md"
+      ],
+      "layout": {
+        "family": "layered",
+        "direction": "TB"
+      },
+      "presentation": {
+        "renderer": "mermaid",
+        "diagram_type": "state",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 6,
+        "edges": 7
+      },
+      "evidence_refs": [
+        "E008"
+      ],
+      "path": "visuals/views/view-3-store-lifecycle.json"
+    },
+    {
+      "id": "view-4-system-architecture",
+      "title": "System Component Map",
+      "kind": "architecture",
+      "question": "What are the major components and how do they connect?",
+      "purpose": "Show the major system components, their roles, and how they connect — from the external LLM agent through the FastMCP server to the JSONL file on disk and background hook scripts.",
+      "origin": "semantic",
+      "diagram_type": "architecture",
+      "doc_paths": [
+        "docs/architecture.md",
+        "docs/overview.md"
+      ],
+      "layout": {
+        "family": "layered",
+        "direction": "LR"
+      },
+      "presentation": {
+        "renderer": "mermaid",
+        "diagram_type": "architecture",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 11,
+        "edges": 11
+      },
+      "evidence_refs": [
+        "E001",
+        "E006",
+        "E011",
+        "E003",
+        "E002",
+        "E020",
+        "E019",
+        "E004",
+        "E005",
+        "E008"
+      ],
+      "path": "visuals/views/view-4-system-architecture.json"
+    },
+    {
+      "id": "view-5-modes-catalog",
+      "title": "Thinking Modes Catalog",
+      "kind": "mindmap",
+      "question": "What thinking modes are available and how are they organized by level?",
+      "purpose": "Show all 15 thinking modes organized by their difficulty level (1-4), with each mode's typical workflow stage, giving a quick visual overview of the available reasoning methods.",
+      "origin": "semantic",
+      "diagram_type": "mindmap",
+      "doc_paths": [
+        "docs/architecture.md",
+        "docs/overview.md"
+      ],
+      "layout": {
+        "family": "radial",
+        "direction": "TB"
+      },
+      "presentation": {
+        "renderer": "mermaid",
+        "diagram_type": "mindmap",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 20,
+        "edges": 19
+      },
+      "evidence_refs": [
+        "E019"
+      ],
+      "path": "visuals/views/view-5-modes-catalog.json"
+    },
+    {
+      "id": "view-6-data-schemas",
+      "title": "Core Data Schemas",
+      "kind": "er",
+      "question": "What are the core data structures and their relationships?",
+      "purpose": "Show the key data structures in the system — Mode, Note record, Session record, GuardResult, Settings, and Hook payload — and their relationships.",
+      "origin": "semantic",
+      "diagram_type": "er",
+      "doc_paths": [
+        "docs/reference.md",
+        "docs/architecture.md"
+      ],
+      "layout": {
+        "family": "grid",
+        "direction": "LR"
+      },
+      "presentation": {
+        "renderer": "mermaid",
+        "diagram_type": "er",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 7,
+        "edges": 7
+      },
+      "evidence_refs": [
+        "E020",
+        "E019",
+        "E008",
+        "E004",
+        "E003",
+        "E005",
+        "E006"
+      ],
+      "path": "visuals/views/view-6-data-schemas.json"
+    },
+    {
+      "id": "view-7-file-map",
+      "title": "Repository File Map",
+      "kind": "treeview",
+      "question": "How is the repository organized and what does each module do?",
+      "purpose": "Show the complete repository structure with module responsibilities, giving a quick orientation to the codebase layout.",
+      "origin": "semantic",
+      "diagram_type": "treeview",
+      "doc_paths": [
+        "docs/architecture.md",
+        "docs/overview.md"
+      ],
+      "layout": {
+        "family": "tree",
+        "direction": "TB"
+      },
+      "presentation": {
+        "renderer": "mermaid",
+        "diagram_type": "treeview",
+        "source_of_truth": "visual-data"
+      },
+      "stats": {
+        "nodes": 27,
+        "edges": 26
+      },
+      "evidence_refs": [
+        "E018",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E020",
+        "E019",
+        "E006",
+        "E007",
+        "E008",
+        "E001",
+        "E009",
+        "E010",
+        "E011",
+        "E022",
+        "E012",
+        "E013",
+        "E014",
+        "E021",
+        "E015",
+        "E016",
+        "E017"
+      ],
+      "path": "visuals/views/view-7-file-map.json"
+    }
+  ]
+}

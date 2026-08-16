@@ -1,0 +1,3366 @@
+{
+  "version": 2,
+  "source": {
+    "repo_id": "bitwikiorg/simple_thinking_tool",
+    "repo_url": "https://github.com/bitwikiorg/simple_thinking_tool",
+    "owner": "bitwikiorg",
+    "repo": "simple_thinking_tool",
+    "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+    "tree_sha": "efd6fd7ba94afaaf3aad575007b8c2d9e8353e73",
+    "default_branch": "main",
+    "commit_url": "https://github.com/bitwikiorg/simple_thinking_tool/commit/2609fe5979e7d4e62024b2be103e81ee9230c172",
+    "commit_date": "2026-08-05T19:52:30Z"
+  },
+  "deterministic": {
+    "version": 2,
+    "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+    "nodes": [
+      {
+        "id": "file:.gitignore",
+        "type": "file",
+        "path": ".gitignore",
+        "display_label": ".gitignore",
+        "size": 70,
+        "blob_sha": "e658b4687df62d82e62b4ffbe29808b29275ab65",
+        "content_sampled": false,
+        "evidence_id": ""
+      },
+      {
+        "id": "file:AUDIT.md",
+        "type": "file",
+        "path": "AUDIT.md",
+        "display_label": "AUDIT.md",
+        "size": 3104,
+        "blob_sha": "1b551a5a8258ea5e13976cd1017ac5f358cde028",
+        "content_sampled": true,
+        "evidence_id": "E009"
+      },
+      {
+        "id": "file:LICENSE",
+        "type": "file",
+        "path": "LICENSE",
+        "display_label": "LICENSE",
+        "size": 3191,
+        "blob_sha": "7ececc8ab6d7d9e102871f893223bf5c9208c9b9",
+        "content_sampled": true,
+        "evidence_id": "E010"
+      },
+      {
+        "id": "file:README.md",
+        "type": "file",
+        "path": "README.md",
+        "display_label": "README.md",
+        "size": 27168,
+        "blob_sha": "f4bd0c60e57a9c88037c2cbcbce0305c579551a6",
+        "content_sampled": true,
+        "evidence_id": "E001"
+      },
+      {
+        "id": "file:assets/hero-banner.svg",
+        "type": "file",
+        "path": "assets/hero-banner.svg",
+        "display_label": "hero-banner.svg",
+        "size": 963,
+        "blob_sha": "ce54f012b64e3da9d8f3136435f8ce9a7eeef61b",
+        "content_sampled": false,
+        "evidence_id": ""
+      },
+      {
+        "id": "file:pyproject.toml",
+        "type": "file",
+        "path": "pyproject.toml",
+        "display_label": "pyproject.toml",
+        "size": 535,
+        "blob_sha": "6eb7cceb74dfb1a990d6d456757a666bc428bbb3",
+        "content_sampled": true,
+        "evidence_id": "E011"
+      },
+      {
+        "id": "file:requirements.txt",
+        "type": "file",
+        "path": "requirements.txt",
+        "display_label": "requirements.txt",
+        "size": 16,
+        "blob_sha": "b5dfc7ea302e4fdf624d3915fbc328735c08a076",
+        "content_sampled": true,
+        "evidence_id": "E022"
+      },
+      {
+        "id": "file:src/simple_thinking_tool/__init__.py",
+        "type": "file",
+        "path": "src/simple_thinking_tool/__init__.py",
+        "display_label": "__init__.py",
+        "size": 281,
+        "blob_sha": "b71686382b630b0993e992328ea194e107ae3e12",
+        "content_sampled": true,
+        "evidence_id": "E018"
+      },
+      {
+        "id": "file:src/simple_thinking_tool/auth.py",
+        "type": "file",
+        "path": "src/simple_thinking_tool/auth.py",
+        "display_label": "auth.py",
+        "size": 780,
+        "blob_sha": "489348973f3af3da2890771ba2d53ccc530acbd1",
+        "content_sampled": true,
+        "evidence_id": "E002"
+      },
+      {
+        "id": "file:src/simple_thinking_tool/config.py",
+        "type": "file",
+        "path": "src/simple_thinking_tool/config.py",
+        "display_label": "config.py",
+        "size": 2010,
+        "blob_sha": "6dd7bdca17347c4aba7b2803e72e71428ffe43a9",
+        "content_sampled": true,
+        "evidence_id": "E003"
+      },
+      {
+        "id": "file:src/simple_thinking_tool/guard.py",
+        "type": "file",
+        "path": "src/simple_thinking_tool/guard.py",
+        "display_label": "guard.py",
+        "size": 3180,
+        "blob_sha": "c46c9e8a4b3defbf3fdfa09d900d47a67d33355c",
+        "content_sampled": true,
+        "evidence_id": "E004"
+      },
+      {
+        "id": "file:src/simple_thinking_tool/hooks.py",
+        "type": "file",
+        "path": "src/simple_thinking_tool/hooks.py",
+        "display_label": "hooks.py",
+        "size": 3046,
+        "blob_sha": "2324e202d3851d9c529d6a35cb8486192f1d31ae",
+        "content_sampled": true,
+        "evidence_id": "E005"
+      },
+      {
+        "id": "file:src/simple_thinking_tool/modes.json",
+        "type": "file",
+        "path": "src/simple_thinking_tool/modes.json",
+        "display_label": "modes.json",
+        "size": 7276,
+        "blob_sha": "6586264969c12b35960cd735dee5ad89ab92892c",
+        "content_sampled": true,
+        "evidence_id": "E019"
+      },
+      {
+        "id": "file:src/simple_thinking_tool/modes.py",
+        "type": "file",
+        "path": "src/simple_thinking_tool/modes.py",
+        "display_label": "modes.py",
+        "size": 2405,
+        "blob_sha": "89497dc3d05ba2368e2f54d939fe773fee8f1fd3",
+        "content_sampled": true,
+        "evidence_id": "E020"
+      },
+      {
+        "id": "file:src/simple_thinking_tool/server.py",
+        "type": "file",
+        "path": "src/simple_thinking_tool/server.py",
+        "display_label": "server.py",
+        "size": 5848,
+        "blob_sha": "7f1c85899bfac21cfc385404670f47aa125c23d4",
+        "content_sampled": true,
+        "evidence_id": "E006"
+      },
+      {
+        "id": "file:src/simple_thinking_tool/service.py",
+        "type": "file",
+        "path": "src/simple_thinking_tool/service.py",
+        "display_label": "service.py",
+        "size": 1919,
+        "blob_sha": "3e937c830cecb77926e16832c1ea8793f9a6b78e",
+        "content_sampled": true,
+        "evidence_id": "E007"
+      },
+      {
+        "id": "file:src/simple_thinking_tool/store.py",
+        "type": "file",
+        "path": "src/simple_thinking_tool/store.py",
+        "display_label": "store.py",
+        "size": 6261,
+        "blob_sha": "87e8001f39cd66184589e29d279d20b3417c3ab2",
+        "content_sampled": true,
+        "evidence_id": "E008"
+      },
+      {
+        "id": "file:tests/test_auth.py",
+        "type": "file",
+        "path": "tests/test_auth.py",
+        "display_label": "test_auth.py",
+        "size": 584,
+        "blob_sha": "0fe3999c63be69a1e08b562bbaaafe23d5d1b0c7",
+        "content_sampled": true,
+        "evidence_id": "E012"
+      },
+      {
+        "id": "file:tests/test_guard.py",
+        "type": "file",
+        "path": "tests/test_guard.py",
+        "display_label": "test_guard.py",
+        "size": 3394,
+        "blob_sha": "b3685b2f85ab88ad4e1c45f8c9d2e750f3f58ce1",
+        "content_sampled": true,
+        "evidence_id": "E013"
+      },
+      {
+        "id": "file:tests/test_hooks.py",
+        "type": "file",
+        "path": "tests/test_hooks.py",
+        "display_label": "test_hooks.py",
+        "size": 2373,
+        "blob_sha": "fd8a4f935843746b98e32849ddd29a83d312b773",
+        "content_sampled": true,
+        "evidence_id": "E014"
+      },
+      {
+        "id": "file:tests/test_modes.py",
+        "type": "file",
+        "path": "tests/test_modes.py",
+        "display_label": "test_modes.py",
+        "size": 1382,
+        "blob_sha": "8e337a28443163868cb3a1750d94061857c547e4",
+        "content_sampled": true,
+        "evidence_id": "E021"
+      },
+      {
+        "id": "file:tests/test_server.py",
+        "type": "file",
+        "path": "tests/test_server.py",
+        "display_label": "test_server.py",
+        "size": 1001,
+        "blob_sha": "8d11dfbed07b34c026a75afabdbef5be8088ee6f",
+        "content_sampled": true,
+        "evidence_id": "E015"
+      },
+      {
+        "id": "file:tests/test_service.py",
+        "type": "file",
+        "path": "tests/test_service.py",
+        "display_label": "test_service.py",
+        "size": 1681,
+        "blob_sha": "f3bcad68ddd83ee30dd5ff5d347dece18204b49b",
+        "content_sampled": true,
+        "evidence_id": "E016"
+      },
+      {
+        "id": "file:tests/test_store.py",
+        "type": "file",
+        "path": "tests/test_store.py",
+        "display_label": "test_store.py",
+        "size": 3183,
+        "blob_sha": "d3dbfc280bd4dd921280dd1c953cc1813944de94",
+        "content_sampled": true,
+        "evidence_id": "E017"
+      },
+      {
+        "id": "dir:assets",
+        "type": "directory",
+        "path": "assets",
+        "display_label": "assets"
+      },
+      {
+        "id": "dir:src",
+        "type": "directory",
+        "path": "src",
+        "display_label": "src"
+      },
+      {
+        "id": "dir:src/simple_thinking_tool",
+        "type": "directory",
+        "path": "src/simple_thinking_tool",
+        "display_label": "simple_thinking_tool"
+      },
+      {
+        "id": "dir:tests",
+        "type": "directory",
+        "path": "tests",
+        "display_label": "tests"
+      }
+    ],
+    "edges": [
+      {
+        "type": "contains",
+        "from": "dir:assets",
+        "to": "file:assets/hero-banner.svg",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:src/simple_thinking_tool",
+        "to": "file:src/simple_thinking_tool/__init__.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:src/simple_thinking_tool",
+        "to": "file:src/simple_thinking_tool/auth.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:src/simple_thinking_tool",
+        "to": "file:src/simple_thinking_tool/config.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:src/simple_thinking_tool",
+        "to": "file:src/simple_thinking_tool/guard.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:src/simple_thinking_tool",
+        "to": "file:src/simple_thinking_tool/hooks.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:src/simple_thinking_tool",
+        "to": "file:src/simple_thinking_tool/modes.json",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:src/simple_thinking_tool",
+        "to": "file:src/simple_thinking_tool/modes.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:src/simple_thinking_tool",
+        "to": "file:src/simple_thinking_tool/server.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:src/simple_thinking_tool",
+        "to": "file:src/simple_thinking_tool/service.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:src/simple_thinking_tool",
+        "to": "file:src/simple_thinking_tool/store.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:tests",
+        "to": "file:tests/test_auth.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:tests",
+        "to": "file:tests/test_guard.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:tests",
+        "to": "file:tests/test_hooks.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:tests",
+        "to": "file:tests/test_modes.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:tests",
+        "to": "file:tests/test_server.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:tests",
+        "to": "file:tests/test_service.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "contains",
+        "from": "dir:tests",
+        "to": "file:tests/test_store.py",
+        "provenance": "deterministic"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/auth.py",
+        "to": "external:hmac",
+        "dependency_class": "third-party",
+        "provenance": "deterministic_text",
+        "evidence_id": "E002"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/config.py",
+        "to": "external:pathlib",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E003"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/config.py",
+        "to": "external:os",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E003"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/guard.py",
+        "to": "external:dataclasses",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E004"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/hooks.py",
+        "to": "external:pathlib",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E005"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/hooks.py",
+        "to": "external:json",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E005"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/hooks.py",
+        "to": "external:logging",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E005"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/hooks.py",
+        "to": "external:subprocess",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E005"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/hooks.py",
+        "to": "external:sys",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E005"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/hooks.py",
+        "to": "external:tempfile",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E005"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/hooks.py",
+        "to": "external:threading",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E005"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/hooks.py",
+        "to": "external:time",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E005"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/server.py",
+        "to": "file:src/simple_thinking_tool/auth.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E006"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/server.py",
+        "to": "file:src/simple_thinking_tool/config.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E006"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/server.py",
+        "to": "file:src/simple_thinking_tool/guard.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E006"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/server.py",
+        "to": "file:src/simple_thinking_tool/hooks.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E006"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/server.py",
+        "to": "file:src/simple_thinking_tool/modes.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E006"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/server.py",
+        "to": "file:src/simple_thinking_tool/store.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E006"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/server.py",
+        "to": "external:fastmcp.server.dependencies",
+        "dependency_class": "third-party",
+        "provenance": "deterministic_text",
+        "evidence_id": "E006"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/server.py",
+        "to": "external:fastmcp",
+        "dependency_class": "third-party",
+        "provenance": "deterministic_text",
+        "evidence_id": "E006"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/service.py",
+        "to": "file:src/simple_thinking_tool/auth.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E007"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/service.py",
+        "to": "file:src/simple_thinking_tool/modes.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E007"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/service.py",
+        "to": "file:src/simple_thinking_tool/store.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E007"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/store.py",
+        "to": "external:pathlib",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E008"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/store.py",
+        "to": "external:datetime",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E008"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/store.py",
+        "to": "external:json",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E008"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/store.py",
+        "to": "external:hashlib",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E008"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_auth.py",
+        "to": "file:src/simple_thinking_tool/auth.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E012"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_guard.py",
+        "to": "external:pathlib",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E013"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_guard.py",
+        "to": "file:src/simple_thinking_tool/guard.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E013"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_guard.py",
+        "to": "external:sys",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E013"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_hooks.py",
+        "to": "external:pathlib",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E014"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_hooks.py",
+        "to": "file:src/simple_thinking_tool/hooks.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E014"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_hooks.py",
+        "to": "external:time",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E014"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_hooks.py",
+        "to": "external:json",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E014"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_hooks.py",
+        "to": "external:sys",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E014"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_server.py",
+        "to": "file:src/simple_thinking_tool/server.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E015"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_server.py",
+        "to": "file:src/simple_thinking_tool/modes.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E015"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_server.py",
+        "to": "external:asyncio",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E015"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_server.py",
+        "to": "external:pytest",
+        "dependency_class": "third-party",
+        "provenance": "deterministic_text",
+        "evidence_id": "E015"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_service.py",
+        "to": "file:src/simple_thinking_tool/service.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E016"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_service.py",
+        "to": "file:src/simple_thinking_tool/store.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E016"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_service.py",
+        "to": "external:pytest",
+        "dependency_class": "third-party",
+        "provenance": "deterministic_text",
+        "evidence_id": "E016"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_store.py",
+        "to": "file:src/simple_thinking_tool/store.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E017"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_store.py",
+        "to": "external:pytest",
+        "dependency_class": "third-party",
+        "provenance": "deterministic_text",
+        "evidence_id": "E017"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/modes.py",
+        "to": "external:dataclasses",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E020"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/modes.py",
+        "to": "external:pathlib",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E020"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/modes.py",
+        "to": "external:json",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E020"
+      },
+      {
+        "type": "imports",
+        "from": "file:src/simple_thinking_tool/modes.py",
+        "to": "external:string",
+        "dependency_class": "stdlib",
+        "provenance": "deterministic_text",
+        "evidence_id": "E020"
+      },
+      {
+        "type": "imports",
+        "from": "file:tests/test_modes.py",
+        "to": "file:src/simple_thinking_tool/modes.py",
+        "dependency_class": "internal",
+        "provenance": "deterministic_text",
+        "evidence_id": "E021"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "E001",
+        "path": "README.md",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/README.md",
+        "blob_sha": "f4bd0c60e57a9c88037c2cbcbce0305c579551a6",
+        "bytes": 26857
+      },
+      {
+        "id": "E002",
+        "path": "src/simple_thinking_tool/auth.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/src/simple_thinking_tool/auth.py",
+        "blob_sha": "489348973f3af3da2890771ba2d53ccc530acbd1",
+        "bytes": 780
+      },
+      {
+        "id": "E003",
+        "path": "src/simple_thinking_tool/config.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/src/simple_thinking_tool/config.py",
+        "blob_sha": "6dd7bdca17347c4aba7b2803e72e71428ffe43a9",
+        "bytes": 2008
+      },
+      {
+        "id": "E004",
+        "path": "src/simple_thinking_tool/guard.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/src/simple_thinking_tool/guard.py",
+        "blob_sha": "c46c9e8a4b3defbf3fdfa09d900d47a67d33355c",
+        "bytes": 3178
+      },
+      {
+        "id": "E005",
+        "path": "src/simple_thinking_tool/hooks.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/src/simple_thinking_tool/hooks.py",
+        "blob_sha": "2324e202d3851d9c529d6a35cb8486192f1d31ae",
+        "bytes": 3046
+      },
+      {
+        "id": "E006",
+        "path": "src/simple_thinking_tool/server.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/src/simple_thinking_tool/server.py",
+        "blob_sha": "7f1c85899bfac21cfc385404670f47aa125c23d4",
+        "bytes": 5848
+      },
+      {
+        "id": "E007",
+        "path": "src/simple_thinking_tool/service.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/src/simple_thinking_tool/service.py",
+        "blob_sha": "3e937c830cecb77926e16832c1ea8793f9a6b78e",
+        "bytes": 1919
+      },
+      {
+        "id": "E008",
+        "path": "src/simple_thinking_tool/store.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/src/simple_thinking_tool/store.py",
+        "blob_sha": "87e8001f39cd66184589e29d279d20b3417c3ab2",
+        "bytes": 6259
+      },
+      {
+        "id": "E009",
+        "path": "AUDIT.md",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/AUDIT.md",
+        "blob_sha": "1b551a5a8258ea5e13976cd1017ac5f358cde028",
+        "bytes": 3079
+      },
+      {
+        "id": "E010",
+        "path": "LICENSE",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/LICENSE",
+        "blob_sha": "7ececc8ab6d7d9e102871f893223bf5c9208c9b9",
+        "bytes": 3191
+      },
+      {
+        "id": "E011",
+        "path": "pyproject.toml",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/pyproject.toml",
+        "blob_sha": "6eb7cceb74dfb1a990d6d456757a666bc428bbb3",
+        "bytes": 535
+      },
+      {
+        "id": "E012",
+        "path": "tests/test_auth.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/tests/test_auth.py",
+        "blob_sha": "0fe3999c63be69a1e08b562bbaaafe23d5d1b0c7",
+        "bytes": 584
+      },
+      {
+        "id": "E013",
+        "path": "tests/test_guard.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/tests/test_guard.py",
+        "blob_sha": "b3685b2f85ab88ad4e1c45f8c9d2e750f3f58ce1",
+        "bytes": 3394
+      },
+      {
+        "id": "E014",
+        "path": "tests/test_hooks.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/tests/test_hooks.py",
+        "blob_sha": "fd8a4f935843746b98e32849ddd29a83d312b773",
+        "bytes": 2373
+      },
+      {
+        "id": "E015",
+        "path": "tests/test_server.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/tests/test_server.py",
+        "blob_sha": "8d11dfbed07b34c026a75afabdbef5be8088ee6f",
+        "bytes": 999
+      },
+      {
+        "id": "E016",
+        "path": "tests/test_service.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/tests/test_service.py",
+        "blob_sha": "f3bcad68ddd83ee30dd5ff5d347dece18204b49b",
+        "bytes": 1681
+      },
+      {
+        "id": "E017",
+        "path": "tests/test_store.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/tests/test_store.py",
+        "blob_sha": "d3dbfc280bd4dd921280dd1c953cc1813944de94",
+        "bytes": 3183
+      },
+      {
+        "id": "E018",
+        "path": "src/simple_thinking_tool/__init__.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/src/simple_thinking_tool/__init__.py",
+        "blob_sha": "b71686382b630b0993e992328ea194e107ae3e12",
+        "bytes": 279
+      },
+      {
+        "id": "E019",
+        "path": "src/simple_thinking_tool/modes.json",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/src/simple_thinking_tool/modes.json",
+        "blob_sha": "6586264969c12b35960cd735dee5ad89ab92892c",
+        "bytes": 6113
+      },
+      {
+        "id": "E020",
+        "path": "src/simple_thinking_tool/modes.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/src/simple_thinking_tool/modes.py",
+        "blob_sha": "89497dc3d05ba2368e2f54d939fe773fee8f1fd3",
+        "bytes": 2405
+      },
+      {
+        "id": "E021",
+        "path": "tests/test_modes.py",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/tests/test_modes.py",
+        "blob_sha": "8e337a28443163868cb3a1750d94061857c547e4",
+        "bytes": 1382
+      },
+      {
+        "id": "E022",
+        "path": "requirements.txt",
+        "source_url": "https://github.com/bitwikiorg/simple_thinking_tool/blob/2609fe5979e7d4e62024b2be103e81ee9230c172/requirements.txt",
+        "blob_sha": "b5dfc7ea302e4fdf624d3915fbc328735c08a076",
+        "bytes": 16
+      }
+    ],
+    "summary": {
+      "file_count": 24,
+      "selected_content_files": 22,
+      "readable_candidate_count": 22,
+      "source_visibility_ratio": 1,
+      "small_repo_full_read": true,
+      "tree_file_count": 24,
+      "docs_files": 1,
+      "test_files": 7,
+      "ci_files": 0,
+      "config_files": 1,
+      "manifests": [
+        "pyproject.toml",
+        "requirements.txt"
+      ],
+      "dependencies": {
+        "internal": 18,
+        "stdlib": 26,
+        "third_party": 6,
+        "unresolved": 0
+      },
+      "top_level": [
+        {
+          "path": "src",
+          "count": 10
+        },
+        {
+          "path": "tests",
+          "count": 7
+        },
+        {
+          "path": ".gitignore",
+          "count": 1
+        },
+        {
+          "path": "AUDIT.md",
+          "count": 1
+        },
+        {
+          "path": "LICENSE",
+          "count": 1
+        },
+        {
+          "path": "README.md",
+          "count": 1
+        },
+        {
+          "path": "assets",
+          "count": 1
+        },
+        {
+          "path": "pyproject.toml",
+          "count": 1
+        },
+        {
+          "path": "requirements.txt",
+          "count": 1
+        }
+      ],
+      "excluded_paths": [],
+      "tree_truncated": false
+    }
+  },
+  "curation": {
+    "architecture_summary": "simple_thinking_tool is a FastMCP server that exposes 15 named thinking methods as individual MCP tools. The core design principle is 'the LLM is the router': the calling agent reads each tool's description and selects the appropriate reasoning mode. The server itself never calls an LLM, makes no outbound network calls, and performs no reasoning — it fills a mode-specific template from caller-provided string fields and appends the rendered note to a durable, append-only JSONL log with fsync. Modes are defined as data in modes.json, so adding or editing a mode requires no code changes. An optional loop guard (off by default) prevents agent churn by blocking same-mode-in-a-row calls and escalating warnings for consecutive think_* calls. Background event hooks allow post-processing automation after notes are stored. The server supports stdio (default) and HTTP transports, with optional bearer-token authentication for HTTP. It is designed as a single-serve private instance — one copy per agent — with no multi-tenancy or shared state. The request lifecycle for a think_* call is: receive tool call → authenticate (resolve actor from bearer token) → validate (guard evaluates anti-churn rules) → render (fill mode template from fields) → persist (append note to JSONL with fsync) → dispatch (fire background hook if configured) → return response to LLM.",
+    "clusters": [
+      {
+        "name": "Server & Wiring",
+        "members": [
+          "src/simple_thinking_tool/server.py",
+          "src/simple_thinking_tool/config.py",
+          "src/simple_thinking_tool/__init__.py"
+        ],
+        "rationale": "The entry point and configuration layer. server.py wires together all components via build_server(), dynamically generates mode tool functions from modes.json, and registers health/definitions/journal tools. config.py provides environment-driven Settings. __init__.py defines package identity."
+      },
+      {
+        "name": "Mode System",
+        "members": [
+          "src/simple_thinking_tool/modes.py",
+          "src/simple_thinking_tool/modes.json"
+        ],
+        "rationale": "The data-driven thinking mode catalog. modes.json defines 15 modes as data entries; modes.py loads them into frozen Mode dataclasses, renders templates with missing-field tolerance, and exposes definitions for the LLM to read."
+      },
+      {
+        "name": "Storage Layer",
+        "members": [
+          "src/simple_thinking_tool/store.py"
+        ],
+        "rationale": "The append-only JSONL store with fsync durability, size-based rotation, run_id idempotency, input_hash integrity, and in-memory record caching. Supports both note and session record types."
+      },
+      {
+        "name": "Security & Identity",
+        "members": [
+          "src/simple_thinking_tool/auth.py"
+        ],
+        "rationale": "Token-derived actor identity using constant-time comparison (hmac.compare_digest). Prevents spoofing: actor identity comes from the authenticated bearer token, never from tool input arguments."
+      },
+      {
+        "name": "Loop Guard",
+        "members": [
+          "src/simple_thinking_tool/guard.py"
+        ],
+        "rationale": "Optional anti-churn control (off by default). Evaluates trailing think_* calls per actor: hard-blocks same-mode-in-a-row, escalates warnings at warn_at threshold, hard-blocks at block_at ceiling."
+      },
+      {
+        "name": "Event Hooks",
+        "members": [
+          "src/simple_thinking_tool/hooks.py"
+        ],
+        "rationale": "Background fire-and-forget hook dispatch. Resolves mode-specific or generic scripts, writes a minimal JSON payload, runs as a daemon thread subprocess with timeout. Hook failures never break the server."
+      },
+      {
+        "name": "Service Layer",
+        "members": [
+          "src/simple_thinking_tool/service.py"
+        ],
+        "rationale": "Alternative programmatic API (ThinkingService class) that wraps store, modes, and auth without FastMCP. Does not integrate guard or hooks — appears to be a simpler/earlier interface for direct use."
+      },
+      {
+        "name": "Test Suite",
+        "members": [
+          "tests/test_auth.py",
+          "tests/test_guard.py",
+          "tests/test_hooks.py",
+          "tests/test_modes.py",
+          "tests/test_server.py",
+          "tests/test_service.py",
+          "tests/test_store.py"
+        ],
+        "rationale": "Seven test files covering each module: auth token verification, guard decision logic, hook dispatch, mode loading/rendering, server tool registration, service layer operations, and store append/rotate/idempotency."
+      }
+    ],
+    "critical_paths": [
+      "think_* call lifecycle: server.py → auth.py (resolve actor) → guard.py (evaluate anti-churn) → modes.py (render template) → store.py (append note with fsync) → hooks.py (fire background hook) → return {ok, mode, modes, note, id, hook?}"
+    ],
+    "reading_order": [
+      "README.md",
+      "src/simple_thinking_tool/__init__.py",
+      "src/simple_thinking_tool/config.py",
+      "src/simple_thinking_tool/modes.json",
+      "src/simple_thinking_tool/modes.py",
+      "src/simple_thinking_tool/auth.py",
+      "src/simple_thinking_tool/store.py",
+      "src/simple_thinking_tool/guard.py",
+      "src/simple_thinking_tool/hooks.py",
+      "src/simple_thinking_tool/server.py",
+      "src/simple_thinking_tool/service.py",
+      "AUDIT.md",
+      "tests/test_modes.py",
+      "tests/test_store.py",
+      "tests/test_guard.py",
+      "tests/test_server.py"
+    ],
+    "inferences": [
+      {
+        "claim": "service.py is an alternative or earlier API that predates the guard and hooks integration — it wraps store, modes, and auth but does not invoke the loop guard or fire hooks, suggesting it was the original service layer before server.py added those features.",
+        "confidence": 0.8,
+        "evidence_refs": [
+          "E007",
+          "E006"
+        ]
+      },
+      {
+        "claim": "The store's session management methods (create_session, finalize_session, list_sessions) are not used by the server — the server passes actor_id directly as session_id, treating it as a flat grouping key rather than a session lifecycle, which means session records are never created in normal operation.",
+        "confidence": 0.85,
+        "evidence_refs": [
+          "E008",
+          "E006"
+        ]
+      },
+      {
+        "claim": "The guard's evaluate() method calls store.export() which returns all in-memory records and filters them in Python — for large logs this could become a performance bottleneck since it scans the entire record list on every think_* call.",
+        "confidence": 0.7,
+        "evidence_refs": [
+          "E004",
+          "E008"
+        ]
+      },
+      {
+        "claim": "The server dynamically generates mode functions using exec() with field names from modes.json injected into the generated code — while the field names are operator-controlled (not user input), this pattern requires careful auditing of modes.json to prevent code injection if the file is ever externally modifiable.",
+        "confidence": 0.75,
+        "evidence_refs": [
+          "E006"
+        ]
+      },
+      {
+        "claim": "The hook runner keeps alive thread references in a list that is filtered on each fire() call — long-running hooks that exceed the timeout will be killed by subprocess timeout, but the daemon thread itself may linger until the process exits.",
+        "confidence": 0.65,
+        "evidence_refs": [
+          "E005"
+        ]
+      }
+    ],
+    "visual_views": [
+      {
+        "id": "view-1-request-lifecycle",
+        "title": "think_* Call Lifecycle",
+        "kind": "sequence",
+        "purpose": "Show the complete sequence of events when an LLM invokes a think_<mode> tool, from authentication through persistence to hook dispatch and response.",
+        "diagram_type": "sequence",
+        "renderer": "mermaid",
+        "layout_family": "layered",
+        "direction": "TB",
+        "semantic_nodes": [
+          {
+            "id": "seq:llm",
+            "label": "LLM Agent",
+            "type": "actor",
+            "description": "The calling AI agent that selects a thinking mode by reading tool descriptions and invokes think_<mode>(fields)",
+            "importance": 1,
+            "source_paths": [],
+            "evidence_refs": [
+              "E006"
+            ]
+          },
+          {
+            "id": "seq:server",
+            "label": "FastMCP Server",
+            "type": "component",
+            "description": "Receives the tool call via MCP protocol and orchestrates the full lifecycle: auth, guard, render, persist, hook, respond",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/server.py"
+            ],
+            "evidence_refs": [
+              "E006"
+            ]
+          },
+          {
+            "id": "seq:auth",
+            "label": "Auth Resolver",
+            "type": "component",
+            "description": "Extracts bearer token from HTTP Authorization header and resolves actor identity (agent or boss) using constant-time comparison",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/auth.py"
+            ],
+            "evidence_refs": [
+              "E002",
+              "E006"
+            ]
+          },
+          {
+            "id": "seq:guard",
+            "label": "Loop Guard",
+            "type": "component",
+            "description": "Evaluates anti-churn rules: same-mode block, consecutive-count warning, hard ceiling block. Off by default.",
+            "importance": 0.8,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004",
+              "E006"
+            ]
+          },
+          {
+            "id": "seq:render",
+            "label": "Template Renderer",
+            "type": "component",
+            "description": "Fills the mode's template string with caller-provided field values using Python string formatting; missing fields fill with empty strings",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.py"
+            ],
+            "evidence_refs": [
+              "E020",
+              "E006"
+            ]
+          },
+          {
+            "id": "seq:store",
+            "label": "JSONL Store",
+            "type": "component",
+            "description": "Appends the rendered note as one JSON line to thoughts.jsonl with fsync for durability; enforces 800-char cap and run_id idempotency",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008",
+              "E006"
+            ]
+          },
+          {
+            "id": "seq:hooks",
+            "label": "Hook Runner",
+            "type": "component",
+            "description": "Fires a background hook script (mode-specific or generic) as a daemon thread subprocess with a JSON payload. Fire-and-forget, best-effort.",
+            "importance": 0.7,
+            "source_paths": [
+              "src/simple_thinking_tool/hooks.py"
+            ],
+            "evidence_refs": [
+              "E005",
+              "E006"
+            ]
+          },
+          {
+            "id": "seq:response",
+            "label": "Response",
+            "type": "output",
+            "description": "Returns {ok: true, mode, note, id, hook?} to the LLM on success, or {ok: false, blocked: true, status, message} when guard blocks",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/server.py"
+            ],
+            "evidence_refs": [
+              "E006"
+            ]
+          }
+        ],
+        "semantic_edges": [
+          {
+            "source": "seq:llm",
+            "target": "seq:server",
+            "label": "calls think_<mode>(field1, field2, ...)",
+            "type": "invoke",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006"
+            ]
+          },
+          {
+            "source": "seq:server",
+            "target": "seq:auth",
+            "label": "resolve actor from bearer token",
+            "type": "authenticate",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E002"
+            ]
+          },
+          {
+            "source": "seq:auth",
+            "target": "seq:server",
+            "label": "returns actor_id or raises PermissionError",
+            "type": "result",
+            "confidence": 1,
+            "evidence_refs": [
+              "E002",
+              "E006"
+            ]
+          },
+          {
+            "source": "seq:server",
+            "target": "seq:guard",
+            "label": "evaluate(store, actor, mode_id)",
+            "type": "validate",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E004"
+            ]
+          },
+          {
+            "source": "seq:guard",
+            "target": "seq:server",
+            "label": "GuardResult: allowed / warn / block",
+            "type": "result",
+            "confidence": 1,
+            "evidence_refs": [
+              "E004",
+              "E006"
+            ]
+          },
+          {
+            "source": "seq:server",
+            "target": "seq:render",
+            "label": "render_template(mode, provided_fields) [only if guard.allowed]",
+            "type": "render",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E020"
+            ]
+          },
+          {
+            "source": "seq:render",
+            "target": "seq:server",
+            "label": "rendered note string (capped at max_note_chars)",
+            "type": "result",
+            "confidence": 1,
+            "evidence_refs": [
+              "E020",
+              "E006"
+            ]
+          },
+          {
+            "source": "seq:server",
+            "target": "seq:store",
+            "label": "append_note(session_id=actor, actor_id=actor, mode, note, extra)",
+            "type": "persist",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E008"
+            ]
+          },
+          {
+            "source": "seq:store",
+            "target": "seq:server",
+            "label": "record dict with id, ts, input_hash",
+            "type": "result",
+            "confidence": 1,
+            "evidence_refs": [
+              "E008",
+              "E006"
+            ]
+          },
+          {
+            "source": "seq:server",
+            "target": "seq:hooks",
+            "label": "fire(mode_id, note, actor)",
+            "type": "dispatch",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E005"
+            ]
+          },
+          {
+            "source": "seq:hooks",
+            "target": "seq:server",
+            "label": "{fired: bool, hook?: script_path}",
+            "type": "result",
+            "confidence": 1,
+            "evidence_refs": [
+              "E005",
+              "E006"
+            ]
+          },
+          {
+            "source": "seq:server",
+            "target": "seq:llm",
+            "label": "returns {ok, mode, note, id, hook?}",
+            "type": "respond",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006"
+            ]
+          }
+        ],
+        "evidence_refs": [
+          "E006",
+          "E002",
+          "E004",
+          "E020",
+          "E008",
+          "E005"
+        ],
+        "question": "What happens when an LLM calls a think_<mode> tool?",
+        "doc_paths": [
+          "docs/architecture/request-flow.md",
+          "docs/architecture/system-overview.md"
+        ]
+      },
+      {
+        "id": "view-2-guard-logic",
+        "title": "Loop Guard Decision Logic",
+        "kind": "flowchart",
+        "purpose": "Show the branching decision tree the loop guard uses to determine whether a think_* call is allowed, warned, or hard-blocked.",
+        "diagram_type": "flowchart",
+        "renderer": "mermaid",
+        "layout_family": "tree",
+        "direction": "TB",
+        "semantic_nodes": [
+          {
+            "id": "guard:start",
+            "label": "think_* called",
+            "type": "entry",
+            "description": "A think_<mode> tool is invoked; guard.evaluate() is called with store, actor_id, and mode",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "id": "guard:enabled",
+            "label": "Guard enabled?",
+            "type": "decision",
+            "description": "Checks self.enabled flag (set by NUT_THINKING_GUARD_ENABLED=1). If disabled, returns ok immediately.",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004",
+              "E003"
+            ]
+          },
+          {
+            "id": "guard:count",
+            "label": "Count trailing think_* notes",
+            "type": "action",
+            "description": "Filters store.export() for notes by this actor, counts consecutive trailing notes that have a mode set, includes current call in streak count",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "id": "guard:same_mode",
+            "label": "Same mode as last note?",
+            "type": "decision",
+            "description": "Checks if the last note's mode matches the current call's mode. If yes and same_mode_block is true, this is pure churn.",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "id": "guard:block_ceiling",
+            "label": "Consecutive >= block_at?",
+            "type": "decision",
+            "description": "Checks if consecutive think_* count has reached the hard ceiling (default 5). If yes, hard block until agent produces real work.",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "id": "guard:warn_threshold",
+            "label": "Consecutive >= warn_at?",
+            "type": "decision",
+            "description": "Checks if consecutive think_* count has reached the warning threshold (default 3). If yes, allow but inject escalating warning.",
+            "importance": 0.8,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "id": "guard:allow",
+            "label": "Allow (status: ok)",
+            "type": "outcome",
+            "description": "GuardResult with allowed=true, status='ok'. The think_* call proceeds normally.",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "id": "guard:warn",
+            "label": "Allow with warning (status: warn)",
+            "type": "outcome",
+            "description": "GuardResult with allowed=true, status='warn'. Call proceeds but warning message is returned to the LLM.",
+            "importance": 0.8,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "id": "guard:block",
+            "label": "Hard block (status: block)",
+            "type": "outcome",
+            "description": "GuardResult with allowed=false, status='block'. The think_* call is rejected; block message returned to the LLM.",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004"
+            ]
+          }
+        ],
+        "semantic_edges": [
+          {
+            "source": "guard:start",
+            "target": "guard:enabled",
+            "label": "evaluate(store, actor, mode)",
+            "type": "flow",
+            "confidence": 1,
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "source": "guard:enabled",
+            "target": "guard:allow",
+            "label": "No (disabled)",
+            "type": "flow",
+            "confidence": 1,
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "source": "guard:enabled",
+            "target": "guard:count",
+            "label": "Yes (enabled)",
+            "type": "flow",
+            "confidence": 1,
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "source": "guard:count",
+            "target": "guard:same_mode",
+            "label": "get trailing notes for actor",
+            "type": "flow",
+            "confidence": 1,
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "source": "guard:same_mode",
+            "target": "guard:block",
+            "label": "Yes (pure churn)",
+            "type": "flow",
+            "confidence": 1,
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "source": "guard:same_mode",
+            "target": "guard:block_ceiling",
+            "label": "No",
+            "type": "flow",
+            "confidence": 1,
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "source": "guard:block_ceiling",
+            "target": "guard:block",
+            "label": "Yes (ceiling reached)",
+            "type": "flow",
+            "confidence": 1,
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "source": "guard:block_ceiling",
+            "target": "guard:warn_threshold",
+            "label": "No",
+            "type": "flow",
+            "confidence": 1,
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "source": "guard:warn_threshold",
+            "target": "guard:warn",
+            "label": "Yes (approaching limit)",
+            "type": "flow",
+            "confidence": 1,
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "source": "guard:warn_threshold",
+            "target": "guard:allow",
+            "label": "No (within safe range)",
+            "type": "flow",
+            "confidence": 1,
+            "evidence_refs": [
+              "E004"
+            ]
+          }
+        ],
+        "evidence_refs": [
+          "E004",
+          "E003"
+        ],
+        "question": "How does the loop guard decide whether to allow, warn, or block a think_* call?",
+        "doc_paths": [
+          "docs/architecture/loop-guard.md"
+        ]
+      },
+      {
+        "id": "view-3-store-lifecycle",
+        "title": "JSONL Store Lifecycle",
+        "kind": "state",
+        "purpose": "Show the states the JSONL store transitions through during startup, append operations, fsync, and rotation.",
+        "diagram_type": "state",
+        "renderer": "mermaid",
+        "layout_family": "layered",
+        "direction": "TB",
+        "semantic_nodes": [
+          {
+            "id": "store:loading",
+            "label": "Loading",
+            "type": "state",
+            "description": "On startup, reads existing JSONL file line by line into in-memory _records list. Tolerates partial tail lines (JSONDecodeError skipped).",
+            "importance": 0.8,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "id": "store:idle",
+            "label": "Idle",
+            "type": "state",
+            "description": "Store loaded and ready. In-memory records cached. Waiting for append_note or export calls.",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "id": "store:appending",
+            "label": "Appending",
+            "type": "state",
+            "description": "Writing a new JSON record as one line to the file. Checks file size for rotation threshold before writing. Acquires threading.Lock.",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "id": "store:rotating",
+            "label": "Rotating",
+            "type": "state",
+            "description": "File exceeds rotate_bytes (default 5MB). Current file renamed to <stem>.<timestamp>.bak.jsonl. New empty file created for subsequent appends.",
+            "importance": 0.7,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "id": "store:fsynced",
+            "label": "Fsynced",
+            "type": "state",
+            "description": "Line written and os.fsync() called for durability. Record appended to in-memory _records list.",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "id": "store:closed",
+            "label": "Closed",
+            "type": "state",
+            "description": "Server shutdown. Store no longer active. No explicit close method — relies on process exit.",
+            "importance": 0.5,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008"
+            ]
+          }
+        ],
+        "semantic_edges": [
+          {
+            "source": "store:loading",
+            "target": "store:idle",
+            "label": "file loaded or created",
+            "type": "transition",
+            "confidence": 1,
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "source": "store:idle",
+            "target": "store:appending",
+            "label": "append_note() called",
+            "type": "transition",
+            "confidence": 1,
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "source": "store:appending",
+            "target": "store:rotating",
+            "label": "file size > rotate_bytes",
+            "type": "transition",
+            "confidence": 1,
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "source": "store:rotating",
+            "target": "store:appending",
+            "label": "rotation complete, write to new file",
+            "type": "transition",
+            "confidence": 1,
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "source": "store:appending",
+            "target": "store:fsynced",
+            "label": "line written + fsync + flush",
+            "type": "transition",
+            "confidence": 1,
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "source": "store:fsynced",
+            "target": "store:idle",
+            "label": "record added to memory list",
+            "type": "transition",
+            "confidence": 1,
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "source": "store:idle",
+            "target": "store:closed",
+            "label": "server shutdown (process exit)",
+            "type": "transition",
+            "confidence": 0.7,
+            "evidence_refs": [
+              "E008"
+            ]
+          }
+        ],
+        "evidence_refs": [
+          "E008"
+        ],
+        "question": "What states does the JSONL store go through during append and rotation?",
+        "doc_paths": [
+          "docs/architecture/storage-design.md"
+        ]
+      },
+      {
+        "id": "view-4-system-architecture",
+        "title": "System Component Map",
+        "kind": "architecture",
+        "purpose": "Show the major system components, their roles, and how they connect — from the external LLM agent through the FastMCP server to the JSONL file on disk and background hook scripts.",
+        "diagram_type": "architecture",
+        "renderer": "mermaid",
+        "layout_family": "layered",
+        "direction": "LR",
+        "semantic_nodes": [
+          {
+            "id": "arch:llm",
+            "label": "LLM Agent",
+            "type": "external",
+            "description": "The calling AI agent (Claude Desktop, Cursor, Agent Zero, etc.) that connects via MCP protocol and selects thinking mode tools",
+            "importance": 1,
+            "source_paths": [],
+            "evidence_refs": [
+              "E001",
+              "E006"
+            ]
+          },
+          {
+            "id": "arch:fastmcp",
+            "label": "FastMCP Runtime",
+            "type": "framework",
+            "description": "FastMCP v3.2+ framework providing MCP protocol handling, tool registration, and transport (stdio or HTTP)",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/server.py"
+            ],
+            "evidence_refs": [
+              "E006",
+              "E011"
+            ]
+          },
+          {
+            "id": "arch:server",
+            "label": "Server Wiring",
+            "type": "component",
+            "description": "build_server() orchestrates all components: loads modes, creates store, initializes guard and hooks, auto-registers 15 think_* tools plus health/definitions/journal",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/server.py"
+            ],
+            "evidence_refs": [
+              "E006"
+            ]
+          },
+          {
+            "id": "arch:config",
+            "label": "Config",
+            "type": "component",
+            "description": "Environment-driven Settings: tokens, state dir, transport, guard thresholds, hooks dir, max note chars, rotation size",
+            "importance": 0.8,
+            "source_paths": [
+              "src/simple_thinking_tool/config.py"
+            ],
+            "evidence_refs": [
+              "E003"
+            ]
+          },
+          {
+            "id": "arch:auth",
+            "label": "Auth",
+            "type": "component",
+            "description": "Token-based actor identity: verify_token (constant-time), extract_bearer. Returns 'agent' or 'boss'. Prevents spoofing.",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/auth.py"
+            ],
+            "evidence_refs": [
+              "E002"
+            ]
+          },
+          {
+            "id": "arch:modes",
+            "label": "Modes Loader",
+            "type": "component",
+            "description": "Loads modes.json into frozen Mode dataclasses. Renders templates with missing-field tolerance. Exposes definitions catalog for LLM routing.",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.py",
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E020",
+              "E019"
+            ]
+          },
+          {
+            "id": "arch:guard",
+            "label": "Loop Guard",
+            "type": "component",
+            "description": "Optional anti-churn control. Evaluates trailing think_* calls per actor. Same-mode block, warn_at escalation, block_at ceiling.",
+            "importance": 0.7,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "id": "arch:hooks",
+            "label": "Hook Runner",
+            "type": "component",
+            "description": "Background fire-and-forget hook dispatch. Resolves mode-specific or generic scripts, writes JSON payload, runs as daemon thread subprocess.",
+            "importance": 0.6,
+            "source_paths": [
+              "src/simple_thinking_tool/hooks.py"
+            ],
+            "evidence_refs": [
+              "E005"
+            ]
+          },
+          {
+            "id": "arch:store",
+            "label": "JSONL Store",
+            "type": "component",
+            "description": "Append-only JSONL log with fsync, rotation, idempotency (run_id), input_hash. In-memory record cache with threading.Lock.",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "id": "arch:jsonl",
+            "label": "thoughts.jsonl",
+            "type": "datastore",
+            "description": "The durable JSONL log file on disk. One JSON object per line. Rotated to .bak.jsonl when exceeding rotate_bytes.",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "id": "arch:hookscripts",
+            "label": "Hook Scripts",
+            "type": "external",
+            "description": "User-provided Python scripts in hooks directory. Mode-specific (<mode>.py) or generic (on_think.py). Receive JSON payload file path as argument.",
+            "importance": 0.5,
+            "source_paths": [
+              "src/simple_thinking_tool/hooks.py"
+            ],
+            "evidence_refs": [
+              "E005"
+            ]
+          }
+        ],
+        "semantic_edges": [
+          {
+            "source": "arch:llm",
+            "target": "arch:fastmcp",
+            "label": "MCP tool calls (stdio or HTTP)",
+            "type": "protocol",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E001"
+            ]
+          },
+          {
+            "source": "arch:fastmcp",
+            "target": "arch:server",
+            "label": "dispatch tool call",
+            "type": "dispatch",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006"
+            ]
+          },
+          {
+            "source": "arch:server",
+            "target": "arch:config",
+            "label": "load settings from env",
+            "type": "configure",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E003"
+            ]
+          },
+          {
+            "source": "arch:server",
+            "target": "arch:auth",
+            "label": "resolve actor from token",
+            "type": "authenticate",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E002"
+            ]
+          },
+          {
+            "source": "arch:server",
+            "target": "arch:guard",
+            "label": "evaluate anti-churn rules",
+            "type": "validate",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E004"
+            ]
+          },
+          {
+            "source": "arch:server",
+            "target": "arch:modes",
+            "label": "load modes, render template",
+            "type": "use",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E020"
+            ]
+          },
+          {
+            "source": "arch:server",
+            "target": "arch:store",
+            "label": "append note with fsync",
+            "type": "persist",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E008"
+            ]
+          },
+          {
+            "source": "arch:server",
+            "target": "arch:hooks",
+            "label": "fire background hook",
+            "type": "dispatch",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006",
+              "E005"
+            ]
+          },
+          {
+            "source": "arch:store",
+            "target": "arch:jsonl",
+            "label": "fsync write to disk",
+            "type": "write",
+            "confidence": 1,
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "source": "arch:hooks",
+            "target": "arch:hookscripts",
+            "label": "subprocess.run with timeout",
+            "type": "execute",
+            "confidence": 1,
+            "evidence_refs": [
+              "E005"
+            ]
+          },
+          {
+            "source": "arch:fastmcp",
+            "target": "arch:llm",
+            "label": "tool response {ok, mode, note, id}",
+            "type": "protocol",
+            "confidence": 1,
+            "evidence_refs": [
+              "E006"
+            ]
+          }
+        ],
+        "evidence_refs": [
+          "E006",
+          "E003",
+          "E002",
+          "E004",
+          "E020",
+          "E008",
+          "E005",
+          "E001",
+          "E011"
+        ],
+        "question": "What are the major components and how do they connect?",
+        "doc_paths": [
+          "docs/architecture/system-overview.md"
+        ]
+      },
+      {
+        "id": "view-5-modes-catalog",
+        "title": "Thinking Modes Catalog",
+        "kind": "mindmap",
+        "purpose": "Show all 15 thinking modes organized by their difficulty level (1-4), with each mode's typical workflow stage, giving a quick visual overview of the available reasoning methods.",
+        "diagram_type": "mindmap",
+        "renderer": "mermaid",
+        "layout_family": "radial",
+        "direction": "TB",
+        "semantic_nodes": [
+          {
+            "id": "mind:root",
+            "label": "Thinking Methods",
+            "type": "root",
+            "description": "15 named reasoning modes auto-registered as MCP tools from modes.json",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:l1",
+            "label": "Level 1: Core",
+            "type": "category",
+            "description": "Cheapest, most-used modes for everyday reasoning",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:l2",
+            "label": "Level 2: Structured",
+            "type": "category",
+            "description": "Structured depth modes for moderate-complexity problems",
+            "importance": 0.8,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:l3",
+            "label": "Level 3: Advanced",
+            "type": "category",
+            "description": "Advanced multi-path and audit modes for complex problems",
+            "importance": 0.7,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:l4",
+            "label": "Level 4: High-Stakes",
+            "type": "category",
+            "description": "Adversarial and red-team modes for irreversible decisions",
+            "importance": 0.7,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:goal_distill",
+            "label": "Goal Distillation (plan)",
+            "type": "mode",
+            "description": "Reduce turn to one objective, core priority, and first action. Use by default at start of any task.",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:understand",
+            "label": "Understand / Digest (understand)",
+            "type": "mode",
+            "description": "Digest context and content: code, tools, documents, user intents. Use before acting on new material.",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:plan",
+            "label": "Plan (plan)",
+            "type": "mode",
+            "description": "Structure ordered steps before execution with success criteria and blockers.",
+            "importance": 0.8,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:chain_of_thought",
+            "label": "Chain of Thought (execute)",
+            "type": "mode",
+            "description": "Walk a linear chain of intermediate conclusions from premise to answer.",
+            "importance": 0.8,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:creative",
+            "label": "Creative / Divergent (any)",
+            "type": "mode",
+            "description": "Generate open directions and wildcard ideas without premature selection.",
+            "importance": 0.7,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:deep",
+            "label": "Deep Think (execute)",
+            "type": "mode",
+            "description": "Rephrase, decompose, hypothesize, verify, then synthesize for hard problems.",
+            "importance": 0.7,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:distill",
+            "label": "Distill / Compress (handoff)",
+            "type": "mode",
+            "description": "Compress what survives rephrasing into its essence. Use at handoff or wrap-up.",
+            "importance": 0.7,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:reflect",
+            "label": "Reflect / Socratic (review)",
+            "type": "mode",
+            "description": "Socratic self-interrogation: what is actually true here?",
+            "importance": 0.7,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:first_principles",
+            "label": "First Principles (any)",
+            "type": "mode",
+            "description": "Reduce to fundamental facts and rebuild without inherited assumptions.",
+            "importance": 0.7,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:tree",
+            "label": "Tree of Thoughts (any)",
+            "type": "mode",
+            "description": "Branch multiple paths, score them, prune weak ones, pick a branch.",
+            "importance": 0.6,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:graph",
+            "label": "Graph of Thoughts (any)",
+            "type": "mode",
+            "description": "Build partial solutions as a graph with feedback loops, then aggregate.",
+            "importance": 0.6,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:bias_check",
+            "label": "Bias Check (review)",
+            "type": "mode",
+            "description": "Scan for confirmation, survivorship, and authority bias before high-stakes calls.",
+            "importance": 0.6,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:metacognitive",
+            "label": "Metacognitive / Self-Audit (review)",
+            "type": "mode",
+            "description": "Audit the reasoning itself for bias, uncertainty, and contradictions.",
+            "importance": 0.6,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:reinforced",
+            "label": "Reinforced / Red Team (review)",
+            "type": "mode",
+            "description": "Multiple complete takes plus an adversarial red-team attack for high-stakes conclusions.",
+            "importance": 0.5,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "mind:adversarial_review",
+            "label": "Adversarial Review (review)",
+            "type": "mode",
+            "description": "Attempt to disprove the provisional conclusion before committing.",
+            "importance": 0.5,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          }
+        ],
+        "semantic_edges": [
+          {
+            "source": "mind:root",
+            "target": "mind:l1",
+            "label": "contains",
+            "type": "category",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:root",
+            "target": "mind:l2",
+            "label": "contains",
+            "type": "category",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:root",
+            "target": "mind:l3",
+            "label": "contains",
+            "type": "category",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:root",
+            "target": "mind:l4",
+            "label": "contains",
+            "type": "category",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l1",
+            "target": "mind:goal_distill",
+            "label": "level 1 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l1",
+            "target": "mind:understand",
+            "label": "level 1 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l1",
+            "target": "mind:plan",
+            "label": "level 1 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l1",
+            "target": "mind:chain_of_thought",
+            "label": "level 1 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l2",
+            "target": "mind:creative",
+            "label": "level 2 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l2",
+            "target": "mind:deep",
+            "label": "level 2 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l2",
+            "target": "mind:distill",
+            "label": "level 2 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l2",
+            "target": "mind:reflect",
+            "label": "level 2 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l2",
+            "target": "mind:first_principles",
+            "label": "level 2 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l3",
+            "target": "mind:tree",
+            "label": "level 3 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l3",
+            "target": "mind:graph",
+            "label": "level 3 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l3",
+            "target": "mind:bias_check",
+            "label": "level 3 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l3",
+            "target": "mind:metacognitive",
+            "label": "level 3 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l4",
+            "target": "mind:reinforced",
+            "label": "level 4 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "source": "mind:l4",
+            "target": "mind:adversarial_review",
+            "label": "level 4 mode",
+            "type": "member",
+            "confidence": 1,
+            "evidence_refs": [
+              "E019"
+            ]
+          }
+        ],
+        "evidence_refs": [
+          "E019"
+        ],
+        "question": "What thinking modes are available and how are they organized by level?",
+        "doc_paths": [
+          "docs/core-concepts/thinking-methods-catalog.md",
+          "docs/reference/tool-catalog.md"
+        ]
+      },
+      {
+        "id": "view-6-data-schemas",
+        "title": "Core Data Schemas",
+        "kind": "er",
+        "purpose": "Show the key data structures in the system — Mode, Note record, Session record, GuardResult, Settings, and Hook payload — and their relationships.",
+        "diagram_type": "er",
+        "renderer": "mermaid",
+        "layout_family": "grid",
+        "direction": "LR",
+        "semantic_nodes": [
+          {
+            "id": "er:mode",
+            "label": "Mode",
+            "type": "entity",
+            "description": "Frozen dataclass: id, label, purpose, when, level (1-4), typical_stage, fields (tuple of str), template (str with {field} placeholders), version (int)",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.py"
+            ],
+            "evidence_refs": [
+              "E020"
+            ]
+          },
+          {
+            "id": "er:modesjson",
+            "label": "modes.json",
+            "type": "datasource",
+            "description": "JSON file with a 'modes' array. Each entry has id, label, purpose, when, level, typical_stage, fields, template, version. 15 modes defined.",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "er:note",
+            "label": "Note Record",
+            "type": "entity",
+            "description": "JSONL record: type='note', id (ulid-like), session_id, actor_id, parent_thought_id, mode, template_version, note (max 800 chars), next_action, run_id, input_hash (sha256[:16]), ts, meta",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "id": "er:session",
+            "label": "Session Record",
+            "type": "entity",
+            "description": "JSONL record: type='session', id, actor_id, project_id, conversation_id, status (open/finalized), created_at, finalized_at. Not used by server in normal operation.",
+            "importance": 0.6,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "id": "er:guardresult",
+            "label": "GuardResult",
+            "type": "entity",
+            "description": "Dataclass: allowed (bool), status (ok|warn|block), consecutive (int), last_mode (str|None), message (str). Returned by Guard.evaluate().",
+            "importance": 0.8,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "id": "er:settings",
+            "label": "Settings",
+            "type": "entity",
+            "description": "16 env-driven fields: token, boss_token, state_dir, host, port, max_note_chars, burst_limit, transport, actor, allow_modes, rotate_bytes, hooks_dir, hooks_timeout, guard_enabled, guard_same_mode_block, guard_warn_at, guard_block_at",
+            "importance": 0.8,
+            "source_paths": [
+              "src/simple_thinking_tool/config.py"
+            ],
+            "evidence_refs": [
+              "E003"
+            ]
+          },
+          {
+            "id": "er:hookpayload",
+            "label": "Hook Payload",
+            "type": "entity",
+            "description": "JSON file written to temp dir: {mode, note, actor, ts (ms epoch)}. Passed as file path argument to hook script subprocess. No tokens or secrets.",
+            "importance": 0.6,
+            "source_paths": [
+              "src/simple_thinking_tool/hooks.py"
+            ],
+            "evidence_refs": [
+              "E005"
+            ]
+          }
+        ],
+        "semantic_edges": [
+          {
+            "source": "er:modesjson",
+            "target": "er:mode",
+            "label": "deserialized into Mode dataclass",
+            "type": "maps_to",
+            "confidence": 1,
+            "evidence_refs": [
+              "E020",
+              "E019"
+            ]
+          },
+          {
+            "source": "er:mode",
+            "target": "er:note",
+            "label": "mode id and template_version stored in note record",
+            "type": "references",
+            "confidence": 1,
+            "evidence_refs": [
+              "E008",
+              "E020"
+            ]
+          },
+          {
+            "source": "er:note",
+            "target": "er:session",
+            "label": "session_id links note to session (server uses actor_id as session_id)",
+            "type": "belongs_to",
+            "confidence": 0.85,
+            "evidence_refs": [
+              "E008",
+              "E006"
+            ]
+          },
+          {
+            "source": "er:settings",
+            "target": "er:guardresult",
+            "label": "guard_enabled, warn_at, block_at configure guard evaluation",
+            "type": "configures",
+            "confidence": 1,
+            "evidence_refs": [
+              "E003",
+              "E004"
+            ]
+          },
+          {
+            "source": "er:settings",
+            "target": "er:note",
+            "label": "max_note_chars caps note length (default 800)",
+            "type": "constrains",
+            "confidence": 1,
+            "evidence_refs": [
+              "E003",
+              "E008"
+            ]
+          },
+          {
+            "source": "er:note",
+            "target": "er:hookpayload",
+            "label": "note text and mode passed to hook payload",
+            "type": "feeds",
+            "confidence": 1,
+            "evidence_refs": [
+              "E008",
+              "E005"
+            ]
+          },
+          {
+            "source": "er:settings",
+            "target": "er:hookpayload",
+            "label": "hooks_dir and hooks_timeout configure hook dispatch",
+            "type": "configures",
+            "confidence": 1,
+            "evidence_refs": [
+              "E003",
+              "E005"
+            ]
+          }
+        ],
+        "evidence_refs": [
+          "E020",
+          "E019",
+          "E008",
+          "E004",
+          "E003",
+          "E005",
+          "E006"
+        ],
+        "question": "What are the core data structures and their relationships?",
+        "doc_paths": [
+          "docs/reference/schemas.md",
+          "docs/architecture/storage-design.md"
+        ]
+      },
+      {
+        "id": "view-7-file-map",
+        "title": "Repository File Map",
+        "kind": "treeview",
+        "purpose": "Show the complete repository structure with module responsibilities, giving a quick orientation to the codebase layout.",
+        "diagram_type": "treeview",
+        "renderer": "mermaid",
+        "layout_family": "tree",
+        "direction": "TB",
+        "semantic_nodes": [
+          {
+            "id": "tree:root",
+            "label": "simple_thinking_tool",
+            "type": "root",
+            "description": "Repository root",
+            "importance": 1,
+            "source_paths": [],
+            "evidence_refs": []
+          },
+          {
+            "id": "tree:src",
+            "label": "src/",
+            "type": "directory",
+            "description": "Source code directory",
+            "importance": 1,
+            "source_paths": [
+              "src"
+            ],
+            "evidence_refs": []
+          },
+          {
+            "id": "tree:pkg",
+            "label": "simple_thinking_tool/",
+            "type": "directory",
+            "description": "Main Python package",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool"
+            ],
+            "evidence_refs": []
+          },
+          {
+            "id": "tree:tests",
+            "label": "tests/",
+            "type": "directory",
+            "description": "Test suite (7 files)",
+            "importance": 0.8,
+            "source_paths": [
+              "tests"
+            ],
+            "evidence_refs": []
+          },
+          {
+            "id": "tree:assets",
+            "label": "assets/",
+            "type": "directory",
+            "description": "Static assets",
+            "importance": 0.3,
+            "source_paths": [
+              "assets"
+            ],
+            "evidence_refs": []
+          },
+          {
+            "id": "tree:init",
+            "label": "__init__.py",
+            "type": "file",
+            "description": "Package identity and version (0.1.0)",
+            "importance": 0.5,
+            "source_paths": [
+              "src/simple_thinking_tool/__init__.py"
+            ],
+            "evidence_refs": [
+              "E018"
+            ]
+          },
+          {
+            "id": "tree:auth",
+            "label": "auth.py",
+            "type": "file",
+            "description": "Token-based actor identity (verify_token, extract_bearer). Anti-spoofing: identity from token, not args.",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/auth.py"
+            ],
+            "evidence_refs": [
+              "E002"
+            ]
+          },
+          {
+            "id": "tree:config",
+            "label": "config.py",
+            "type": "file",
+            "description": "Environment-driven Settings class with 16 configurable fields. No hardcoded secrets.",
+            "importance": 0.8,
+            "source_paths": [
+              "src/simple_thinking_tool/config.py"
+            ],
+            "evidence_refs": [
+              "E003"
+            ]
+          },
+          {
+            "id": "tree:guard",
+            "label": "guard.py",
+            "type": "file",
+            "description": "Optional loop guard (Guard class, GuardResult dataclass). Anti-churn: same-mode block, consecutive escalation.",
+            "importance": 0.7,
+            "source_paths": [
+              "src/simple_thinking_tool/guard.py"
+            ],
+            "evidence_refs": [
+              "E004"
+            ]
+          },
+          {
+            "id": "tree:hooks",
+            "label": "hooks.py",
+            "type": "file",
+            "description": "Background event hooks (HookRunner class). Fire-and-forget subprocess dispatch with timeout.",
+            "importance": 0.6,
+            "source_paths": [
+              "src/simple_thinking_tool/hooks.py"
+            ],
+            "evidence_refs": [
+              "E005"
+            ]
+          },
+          {
+            "id": "tree:modespy",
+            "label": "modes.py",
+            "type": "file",
+            "description": "Mode loader and template renderer (Mode dataclass, load_modes, render_template, definitions).",
+            "importance": 0.9,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.py"
+            ],
+            "evidence_refs": [
+              "E020"
+            ]
+          },
+          {
+            "id": "tree:modesjson",
+            "label": "modes.json",
+            "type": "file",
+            "description": "15 thinking mode definitions as data. Edit this file to add/change modes — no code changes needed.",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/modes.json"
+            ],
+            "evidence_refs": [
+              "E019"
+            ]
+          },
+          {
+            "id": "tree:server",
+            "label": "server.py",
+            "type": "file",
+            "description": "FastMCP server wiring. build_server() orchestrates all components, auto-registers 15 think_* tools + health/definitions/journal.",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/server.py"
+            ],
+            "evidence_refs": [
+              "E006"
+            ]
+          },
+          {
+            "id": "tree:service",
+            "label": "service.py",
+            "type": "file",
+            "description": "Service layer (ThinkingService class). Alternative API without guard/hooks integration.",
+            "importance": 0.6,
+            "source_paths": [
+              "src/simple_thinking_tool/service.py"
+            ],
+            "evidence_refs": [
+              "E007"
+            ]
+          },
+          {
+            "id": "tree:store",
+            "label": "store.py",
+            "type": "file",
+            "description": "JSONL append-only store (JSONLStore class). Fsync durability, rotation, idempotency, input_hash.",
+            "importance": 1,
+            "source_paths": [
+              "src/simple_thinking_tool/store.py"
+            ],
+            "evidence_refs": [
+              "E008"
+            ]
+          },
+          {
+            "id": "tree:readme",
+            "label": "README.md",
+            "type": "file",
+            "description": "Project documentation: philosophy, usage, configuration, mode catalog, academic references.",
+            "importance": 0.8,
+            "source_paths": [
+              "README.md"
+            ],
+            "evidence_refs": [
+              "E001"
+            ]
+          },
+          {
+            "id": "tree:audit",
+            "label": "AUDIT.md",
+            "type": "file",
+            "description": "Audit report: scope, change log, verified evidence, security review, open items.",
+            "importance": 0.6,
+            "source_paths": [
+              "AUDIT.md"
+            ],
+            "evidence_refs": [
+              "E009"
+            ]
+          },
+          {
+            "id": "tree:license",
+            "label": "LICENSE",
+            "type": "file",
+            "description": "PolyForm Noncommercial 1.0.0 license",
+            "importance": 0.3,
+            "source_paths": [
+              "LICENSE"
+            ],
+            "evidence_refs": [
+              "E010"
+            ]
+          },
+          {
+            "id": "tree:pyproject",
+            "label": "pyproject.toml",
+            "type": "file",
+            "description": "Build config (setuptools), project metadata, fastmcp dependency, pytest config.",
+            "importance": 0.5,
+            "source_paths": [
+              "pyproject.toml"
+            ],
+            "evidence_refs": [
+              "E011"
+            ]
+          },
+          {
+            "id": "tree:requirements",
+            "label": "requirements.txt",
+            "type": "file",
+            "description": "Pinned dependencies (fastmcp)",
+            "importance": 0.3,
+            "source_paths": [
+              "requirements.txt"
+            ],
+            "evidence_refs": [
+              "E022"
+            ]
+          },
+          {
+            "id": "tree:test_auth",
+            "label": "test_auth.py",
+            "type": "file",
+            "description": "Tests for token verification and bearer extraction",
+            "importance": 0.5,
+            "source_paths": [
+              "tests/test_auth.py"
+            ],
+            "evidence_refs": [
+              "E012"
+            ]
+          },
+          {
+            "id": "tree:test_guard",
+            "label": "test_guard.py",
+            "type": "file",
+            "description": "Tests for guard decision logic: disabled, same-mode block, warn, block ceiling",
+            "importance": 0.5,
+            "source_paths": [
+              "tests/test_guard.py"
+            ],
+            "evidence_refs": [
+              "E013"
+            ]
+          },
+          {
+            "id": "tree:test_hooks",
+            "label": "test_hooks.py",
+            "type": "file",
+            "description": "Tests for hook resolution, payload writing, fire-and-forget dispatch",
+            "importance": 0.5,
+            "source_paths": [
+              "tests/test_hooks.py"
+            ],
+            "evidence_refs": [
+              "E014"
+            ]
+          },
+          {
+            "id": "tree:test_modes",
+            "label": "test_modes.py",
+            "type": "file",
+            "description": "Tests for mode loading, template rendering, definitions surface, sorting by level",
+            "importance": 0.5,
+            "source_paths": [
+              "tests/test_modes.py"
+            ],
+            "evidence_refs": [
+              "E021"
+            ]
+          },
+          {
+            "id": "tree:test_server",
+            "label": "test_server.py",
+            "type": "file",
+            "description": "Tests for server build, tool registration, health/definitions/journal tools",
+            "importance": 0.5,
+            "source_paths": [
+              "tests/test_server.py"
+            ],
+            "evidence_refs": [
+              "E015"
+            ]
+          },
+          {
+            "id": "tree:test_service",
+            "label": "test_service.py",
+            "type": "file",
+            "description": "Tests for ThinkingService append, journal, definitions, health",
+            "importance": 0.4,
+            "source_paths": [
+              "tests/test_service.py"
+            ],
+            "evidence_refs": [
+              "E016"
+            ]
+          },
+          {
+            "id": "tree:test_store",
+            "label": "test_store.py",
+            "type": "file",
+            "description": "Tests for JSONL store: append, load, rotate, idempotency, export, stats",
+            "importance": 0.5,
+            "source_paths": [
+              "tests/test_store.py"
+            ],
+            "evidence_refs": [
+              "E017"
+            ]
+          }
+        ],
+        "semantic_edges": [
+          {
+            "source": "tree:root",
+            "target": "tree:src",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:root",
+            "target": "tree:tests",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:root",
+            "target": "tree:assets",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:root",
+            "target": "tree:readme",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:root",
+            "target": "tree:audit",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:root",
+            "target": "tree:license",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:root",
+            "target": "tree:pyproject",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:root",
+            "target": "tree:requirements",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:src",
+            "target": "tree:pkg",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:pkg",
+            "target": "tree:init",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:pkg",
+            "target": "tree:auth",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:pkg",
+            "target": "tree:config",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:pkg",
+            "target": "tree:guard",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:pkg",
+            "target": "tree:hooks",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:pkg",
+            "target": "tree:modespy",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:pkg",
+            "target": "tree:modesjson",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:pkg",
+            "target": "tree:server",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:pkg",
+            "target": "tree:service",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:pkg",
+            "target": "tree:store",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:tests",
+            "target": "tree:test_auth",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:tests",
+            "target": "tree:test_guard",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:tests",
+            "target": "tree:test_hooks",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:tests",
+            "target": "tree:test_modes",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:tests",
+            "target": "tree:test_server",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:tests",
+            "target": "tree:test_service",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          },
+          {
+            "source": "tree:tests",
+            "target": "tree:test_store",
+            "label": "contains",
+            "type": "contains",
+            "confidence": 1,
+            "evidence_refs": []
+          }
+        ],
+        "evidence_refs": [
+          "E018",
+          "E002",
+          "E003",
+          "E004",
+          "E005",
+          "E020",
+          "E019",
+          "E006",
+          "E007",
+          "E008",
+          "E001",
+          "E009",
+          "E010",
+          "E011",
+          "E022",
+          "E012",
+          "E013",
+          "E014",
+          "E021",
+          "E015",
+          "E016",
+          "E017"
+        ],
+        "question": "How is the repository organized and what does each module do?",
+        "doc_paths": [
+          "docs/reference/file-map.md"
+        ]
+      }
+    ]
+  }
+}

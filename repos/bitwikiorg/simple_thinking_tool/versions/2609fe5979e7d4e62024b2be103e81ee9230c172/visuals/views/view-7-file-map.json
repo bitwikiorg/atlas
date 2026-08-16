@@ -1,0 +1,699 @@
+{
+  "version": 2,
+  "id": "view-7-file-map",
+  "title": "Repository File Map",
+  "kind": "treeview",
+  "question": "How is the repository organized and what does each module do?",
+  "purpose": "Show the complete repository structure with module responsibilities, giving a quick orientation to the codebase layout.",
+  "origin": "semantic",
+  "diagram_type": "treeview",
+  "doc_paths": [
+    "docs/architecture.md",
+    "docs/overview.md"
+  ],
+  "renderer": {
+    "interactive": "mermaid",
+    "portable_fallback": "semantic-json",
+    "source_of_truth": "visual-data"
+  },
+  "presentation": {
+    "renderer": "mermaid",
+    "diagram_type": "treeview",
+    "source_of_truth": "visual-data"
+  },
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "tree",
+    "direction": "TB"
+  },
+  "nodes": [
+    {
+      "id": "semantic:view-7-file-map:tree-root",
+      "label": "simple_thinking_tool",
+      "full_label": "simple_thinking_tool",
+      "type": "root",
+      "group": "",
+      "importance": 1,
+      "description": "Repository root",
+      "source_paths": [],
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-src",
+      "label": "src",
+      "full_label": "src/",
+      "type": "directory",
+      "group": "",
+      "importance": 1,
+      "description": "Source code directory",
+      "source_paths": [
+        "src"
+      ],
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-pkg",
+      "label": "simple_thinking_tool",
+      "full_label": "simple_thinking_tool/",
+      "type": "directory",
+      "group": "",
+      "importance": 1,
+      "description": "Main Python package",
+      "source_paths": [
+        "src/simple_thinking_tool"
+      ],
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-tests",
+      "label": "tests",
+      "full_label": "tests/",
+      "type": "directory",
+      "group": "",
+      "importance": 0.8,
+      "description": "Test suite (7 files)",
+      "source_paths": [
+        "tests"
+      ],
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-assets",
+      "label": "assets",
+      "full_label": "assets/",
+      "type": "directory",
+      "group": "",
+      "importance": 0.3,
+      "description": "Static assets",
+      "source_paths": [
+        "assets"
+      ],
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-init",
+      "label": "__init__.py",
+      "full_label": "__init__.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "description": "Package identity and version (0.1.0)",
+      "source_paths": [
+        "src/simple_thinking_tool/__init__.py"
+      ],
+      "evidence_refs": [
+        "E018"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-auth",
+      "label": "auth.py",
+      "full_label": "auth.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.9,
+      "description": "Token-based actor identity (verify_token, extract_bearer). Anti-spoofing: identity from token, not args.",
+      "source_paths": [
+        "src/simple_thinking_tool/auth.py"
+      ],
+      "evidence_refs": [
+        "E002"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-config",
+      "label": "config.py",
+      "full_label": "config.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.8,
+      "description": "Environment-driven Settings class with 16 configurable fields. No hardcoded secrets.",
+      "source_paths": [
+        "src/simple_thinking_tool/config.py"
+      ],
+      "evidence_refs": [
+        "E003"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-guard",
+      "label": "guard.py",
+      "full_label": "guard.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.7,
+      "description": "Optional loop guard (Guard class, GuardResult dataclass). Anti-churn: same-mode block, consecutive escalation.",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-hooks",
+      "label": "hooks.py",
+      "full_label": "hooks.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.6,
+      "description": "Background event hooks (HookRunner class). Fire-and-forget subprocess dispatch with timeout.",
+      "source_paths": [
+        "src/simple_thinking_tool/hooks.py"
+      ],
+      "evidence_refs": [
+        "E005"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-modespy",
+      "label": "modes.py",
+      "full_label": "modes.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.9,
+      "description": "Mode loader and template renderer (Mode dataclass, load_modes, render_template, definitions).",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.py"
+      ],
+      "evidence_refs": [
+        "E020"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-modesjson",
+      "label": "modes.json",
+      "full_label": "modes.json",
+      "type": "file",
+      "group": "",
+      "importance": 1,
+      "description": "15 thinking mode definitions as data. Edit this file to add/change modes — no code changes needed.",
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ],
+      "evidence_refs": [
+        "E019"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-server",
+      "label": "server.py",
+      "full_label": "server.py",
+      "type": "file",
+      "group": "",
+      "importance": 1,
+      "description": "FastMCP server wiring. build_server() orchestrates all components, auto-registers 15 think_* tools + health/definitions/journal.",
+      "source_paths": [
+        "src/simple_thinking_tool/server.py"
+      ],
+      "evidence_refs": [
+        "E006"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-service",
+      "label": "service.py",
+      "full_label": "service.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.6,
+      "description": "Service layer (ThinkingService class). Alternative API without guard/hooks integration.",
+      "source_paths": [
+        "src/simple_thinking_tool/service.py"
+      ],
+      "evidence_refs": [
+        "E007"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-store",
+      "label": "store.py",
+      "full_label": "store.py",
+      "type": "file",
+      "group": "",
+      "importance": 1,
+      "description": "JSONL append-only store (JSONLStore class). Fsync durability, rotation, idempotency, input_hash.",
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ],
+      "evidence_refs": [
+        "E008"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-readme",
+      "label": "README.md",
+      "full_label": "README.md",
+      "type": "file",
+      "group": "",
+      "importance": 0.8,
+      "description": "Project documentation: philosophy, usage, configuration, mode catalog, academic references.",
+      "source_paths": [
+        "README.md"
+      ],
+      "evidence_refs": [
+        "E001"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-audit",
+      "label": "AUDIT.md",
+      "full_label": "AUDIT.md",
+      "type": "file",
+      "group": "",
+      "importance": 0.6,
+      "description": "Audit report: scope, change log, verified evidence, security review, open items.",
+      "source_paths": [
+        "AUDIT.md"
+      ],
+      "evidence_refs": [
+        "E009"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-license",
+      "label": "LICENSE",
+      "full_label": "LICENSE",
+      "type": "file",
+      "group": "",
+      "importance": 0.3,
+      "description": "PolyForm Noncommercial 1.0.0 license",
+      "source_paths": [
+        "LICENSE"
+      ],
+      "evidence_refs": [
+        "E010"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-pyproject",
+      "label": "pyproject.toml",
+      "full_label": "pyproject.toml",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "description": "Build config (setuptools), project metadata, fastmcp dependency, pytest config.",
+      "source_paths": [
+        "pyproject.toml"
+      ],
+      "evidence_refs": [
+        "E011"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-requirements",
+      "label": "requirements.txt",
+      "full_label": "requirements.txt",
+      "type": "file",
+      "group": "",
+      "importance": 0.3,
+      "description": "Pinned dependencies (fastmcp)",
+      "source_paths": [
+        "requirements.txt"
+      ],
+      "evidence_refs": [
+        "E022"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-test-auth",
+      "label": "test_auth.py",
+      "full_label": "test_auth.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "description": "Tests for token verification and bearer extraction",
+      "source_paths": [
+        "tests/test_auth.py"
+      ],
+      "evidence_refs": [
+        "E012"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-test-guard",
+      "label": "test_guard.py",
+      "full_label": "test_guard.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "description": "Tests for guard decision logic: disabled, same-mode block, warn, block ceiling",
+      "source_paths": [
+        "tests/test_guard.py"
+      ],
+      "evidence_refs": [
+        "E013"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-test-hooks",
+      "label": "test_hooks.py",
+      "full_label": "test_hooks.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "description": "Tests for hook resolution, payload writing, fire-and-forget dispatch",
+      "source_paths": [
+        "tests/test_hooks.py"
+      ],
+      "evidence_refs": [
+        "E014"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-test-modes",
+      "label": "test_modes.py",
+      "full_label": "test_modes.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "description": "Tests for mode loading, template rendering, definitions surface, sorting by level",
+      "source_paths": [
+        "tests/test_modes.py"
+      ],
+      "evidence_refs": [
+        "E021"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-test-server",
+      "label": "test_server.py",
+      "full_label": "test_server.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "description": "Tests for server build, tool registration, health/definitions/journal tools",
+      "source_paths": [
+        "tests/test_server.py"
+      ],
+      "evidence_refs": [
+        "E015"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-test-service",
+      "label": "test_service.py",
+      "full_label": "test_service.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.4,
+      "description": "Tests for ThinkingService append, journal, definitions, health",
+      "source_paths": [
+        "tests/test_service.py"
+      ],
+      "evidence_refs": [
+        "E016"
+      ]
+    },
+    {
+      "id": "semantic:view-7-file-map:tree-test-store",
+      "label": "test_store.py",
+      "full_label": "test_store.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5,
+      "description": "Tests for JSONL store: append, load, rotate, idempotency, export, stats",
+      "source_paths": [
+        "tests/test_store.py"
+      ],
+      "evidence_refs": [
+        "E017"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "semantic-edge:view-7-file-map:0",
+      "source": "semantic:view-7-file-map:tree-root",
+      "target": "semantic:view-7-file-map:tree-src",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:1",
+      "source": "semantic:view-7-file-map:tree-root",
+      "target": "semantic:view-7-file-map:tree-tests",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:2",
+      "source": "semantic:view-7-file-map:tree-root",
+      "target": "semantic:view-7-file-map:tree-assets",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:3",
+      "source": "semantic:view-7-file-map:tree-root",
+      "target": "semantic:view-7-file-map:tree-readme",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:4",
+      "source": "semantic:view-7-file-map:tree-root",
+      "target": "semantic:view-7-file-map:tree-audit",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:5",
+      "source": "semantic:view-7-file-map:tree-root",
+      "target": "semantic:view-7-file-map:tree-license",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:6",
+      "source": "semantic:view-7-file-map:tree-root",
+      "target": "semantic:view-7-file-map:tree-pyproject",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:7",
+      "source": "semantic:view-7-file-map:tree-root",
+      "target": "semantic:view-7-file-map:tree-requirements",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:8",
+      "source": "semantic:view-7-file-map:tree-src",
+      "target": "semantic:view-7-file-map:tree-pkg",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:9",
+      "source": "semantic:view-7-file-map:tree-pkg",
+      "target": "semantic:view-7-file-map:tree-init",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:10",
+      "source": "semantic:view-7-file-map:tree-pkg",
+      "target": "semantic:view-7-file-map:tree-auth",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:11",
+      "source": "semantic:view-7-file-map:tree-pkg",
+      "target": "semantic:view-7-file-map:tree-config",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:12",
+      "source": "semantic:view-7-file-map:tree-pkg",
+      "target": "semantic:view-7-file-map:tree-guard",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:13",
+      "source": "semantic:view-7-file-map:tree-pkg",
+      "target": "semantic:view-7-file-map:tree-hooks",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:14",
+      "source": "semantic:view-7-file-map:tree-pkg",
+      "target": "semantic:view-7-file-map:tree-modespy",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:15",
+      "source": "semantic:view-7-file-map:tree-pkg",
+      "target": "semantic:view-7-file-map:tree-modesjson",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:16",
+      "source": "semantic:view-7-file-map:tree-pkg",
+      "target": "semantic:view-7-file-map:tree-server",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:17",
+      "source": "semantic:view-7-file-map:tree-pkg",
+      "target": "semantic:view-7-file-map:tree-service",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:18",
+      "source": "semantic:view-7-file-map:tree-pkg",
+      "target": "semantic:view-7-file-map:tree-store",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:19",
+      "source": "semantic:view-7-file-map:tree-tests",
+      "target": "semantic:view-7-file-map:tree-test-auth",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:20",
+      "source": "semantic:view-7-file-map:tree-tests",
+      "target": "semantic:view-7-file-map:tree-test-guard",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:21",
+      "source": "semantic:view-7-file-map:tree-tests",
+      "target": "semantic:view-7-file-map:tree-test-hooks",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:22",
+      "source": "semantic:view-7-file-map:tree-tests",
+      "target": "semantic:view-7-file-map:tree-test-modes",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:23",
+      "source": "semantic:view-7-file-map:tree-tests",
+      "target": "semantic:view-7-file-map:tree-test-server",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:24",
+      "source": "semantic:view-7-file-map:tree-tests",
+      "target": "semantic:view-7-file-map:tree-test-service",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    },
+    {
+      "id": "semantic-edge:view-7-file-map:25",
+      "source": "semantic:view-7-file-map:tree-tests",
+      "target": "semantic:view-7-file-map:tree-test-store",
+      "label": "contains",
+      "type": "contains",
+      "confidence": 1,
+      "evidence_refs": []
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "directory",
+      "file",
+      "root"
+    ],
+    "edge_types": [
+      "contains"
+    ]
+  },
+  "evidence_refs": [
+    "E018",
+    "E002",
+    "E003",
+    "E004",
+    "E005",
+    "E020",
+    "E019",
+    "E006",
+    "E007",
+    "E008",
+    "E001",
+    "E009",
+    "E010",
+    "E011",
+    "E022",
+    "E012",
+    "E013",
+    "E014",
+    "E021",
+    "E015",
+    "E016",
+    "E017"
+  ],
+  "stats": {
+    "nodes": 27,
+    "edges": 26
+  }
+}

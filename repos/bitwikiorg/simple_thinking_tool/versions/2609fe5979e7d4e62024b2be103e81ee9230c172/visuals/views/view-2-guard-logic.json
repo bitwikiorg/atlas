@@ -1,0 +1,299 @@
+{
+  "version": 2,
+  "id": "view-2-guard-logic",
+  "title": "Loop Guard Decision Logic",
+  "kind": "flowchart",
+  "question": "How does the loop guard decide whether to allow, warn, or block a think_* call?",
+  "purpose": "Show the branching decision tree the loop guard uses to determine whether a think_* call is allowed, warned, or hard-blocked.",
+  "origin": "semantic",
+  "diagram_type": "flowchart",
+  "doc_paths": [
+    "docs/architecture.md",
+    "docs/overview.md"
+  ],
+  "renderer": {
+    "interactive": "mermaid",
+    "portable_fallback": "semantic-json",
+    "source_of_truth": "visual-data"
+  },
+  "presentation": {
+    "renderer": "mermaid",
+    "diagram_type": "flowchart",
+    "source_of_truth": "visual-data"
+  },
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "tree",
+    "direction": "TB"
+  },
+  "nodes": [
+    {
+      "id": "semantic:view-2-guard-logic:guard-start",
+      "label": "think_* called",
+      "full_label": "think_* called",
+      "type": "entry",
+      "group": "",
+      "importance": 1,
+      "description": "A think_<mode> tool is invoked; guard.evaluate() is called with store, actor_id, and mode",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic:view-2-guard-logic:guard-enabled",
+      "label": "Guard enabled?",
+      "full_label": "Guard enabled?",
+      "type": "decision",
+      "group": "",
+      "importance": 1,
+      "description": "Checks self.enabled flag (set by NUT_THINKING_GUARD_ENABLED=1). If disabled, returns ok immediately.",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004",
+        "E003"
+      ]
+    },
+    {
+      "id": "semantic:view-2-guard-logic:guard-count",
+      "label": "Count trailing think_* notes",
+      "full_label": "Count trailing think_* notes",
+      "type": "action",
+      "group": "",
+      "importance": 0.9,
+      "description": "Filters store.export() for notes by this actor, counts consecutive trailing notes that have a mode set, includes current call in streak count",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic:view-2-guard-logic:guard-same-mode",
+      "label": "Same mode as last note?",
+      "full_label": "Same mode as last note?",
+      "type": "decision",
+      "group": "",
+      "importance": 1,
+      "description": "Checks if the last note's mode matches the current call's mode. If yes and same_mode_block is true, this is pure churn.",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic:view-2-guard-logic:guard-block-ceiling",
+      "label": "Consecutive >= block_at?",
+      "full_label": "Consecutive >= block_at?",
+      "type": "decision",
+      "group": "",
+      "importance": 0.9,
+      "description": "Checks if consecutive think_* count has reached the hard ceiling (default 5). If yes, hard block until agent produces real work.",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic:view-2-guard-logic:guard-warn-threshold",
+      "label": "Consecutive >= warn_at?",
+      "full_label": "Consecutive >= warn_at?",
+      "type": "decision",
+      "group": "",
+      "importance": 0.8,
+      "description": "Checks if consecutive think_* count has reached the warning threshold (default 3). If yes, allow but inject escalating warning.",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic:view-2-guard-logic:guard-allow",
+      "label": "Allow (status: ok)",
+      "full_label": "Allow (status: ok)",
+      "type": "outcome",
+      "group": "",
+      "importance": 0.9,
+      "description": "GuardResult with allowed=true, status='ok'. The think_* call proceeds normally.",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic:view-2-guard-logic:guard-warn",
+      "label": "Allow with warning (status: warn)",
+      "full_label": "Allow with warning (status: warn)",
+      "type": "outcome",
+      "group": "",
+      "importance": 0.8,
+      "description": "GuardResult with allowed=true, status='warn'. Call proceeds but warning message is returned to the LLM.",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic:view-2-guard-logic:guard-block",
+      "label": "Hard block (status: block)",
+      "full_label": "Hard block (status: block)",
+      "type": "outcome",
+      "group": "",
+      "importance": 1,
+      "description": "GuardResult with allowed=false, status='block'. The think_* call is rejected; block message returned to the LLM.",
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ],
+      "evidence_refs": [
+        "E004"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "semantic-edge:view-2-guard-logic:0",
+      "source": "semantic:view-2-guard-logic:guard-start",
+      "target": "semantic:view-2-guard-logic:guard-enabled",
+      "label": "evaluate(store, actor, mode)",
+      "type": "flow",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-2-guard-logic:1",
+      "source": "semantic:view-2-guard-logic:guard-enabled",
+      "target": "semantic:view-2-guard-logic:guard-allow",
+      "label": "No (disabled)",
+      "type": "flow",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-2-guard-logic:2",
+      "source": "semantic:view-2-guard-logic:guard-enabled",
+      "target": "semantic:view-2-guard-logic:guard-count",
+      "label": "Yes (enabled)",
+      "type": "flow",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-2-guard-logic:3",
+      "source": "semantic:view-2-guard-logic:guard-count",
+      "target": "semantic:view-2-guard-logic:guard-same-mode",
+      "label": "get trailing notes for actor",
+      "type": "flow",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-2-guard-logic:4",
+      "source": "semantic:view-2-guard-logic:guard-same-mode",
+      "target": "semantic:view-2-guard-logic:guard-block",
+      "label": "Yes (pure churn)",
+      "type": "flow",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-2-guard-logic:5",
+      "source": "semantic:view-2-guard-logic:guard-same-mode",
+      "target": "semantic:view-2-guard-logic:guard-block-ceiling",
+      "label": "No",
+      "type": "flow",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-2-guard-logic:6",
+      "source": "semantic:view-2-guard-logic:guard-block-ceiling",
+      "target": "semantic:view-2-guard-logic:guard-block",
+      "label": "Yes (ceiling reached)",
+      "type": "flow",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-2-guard-logic:7",
+      "source": "semantic:view-2-guard-logic:guard-block-ceiling",
+      "target": "semantic:view-2-guard-logic:guard-warn-threshold",
+      "label": "No",
+      "type": "flow",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-2-guard-logic:8",
+      "source": "semantic:view-2-guard-logic:guard-warn-threshold",
+      "target": "semantic:view-2-guard-logic:guard-warn",
+      "label": "Yes (approaching limit)",
+      "type": "flow",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    },
+    {
+      "id": "semantic-edge:view-2-guard-logic:9",
+      "source": "semantic:view-2-guard-logic:guard-warn-threshold",
+      "target": "semantic:view-2-guard-logic:guard-allow",
+      "label": "No (within safe range)",
+      "type": "flow",
+      "confidence": 1,
+      "evidence_refs": [
+        "E004"
+      ]
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "action",
+      "decision",
+      "entry",
+      "outcome"
+    ],
+    "edge_types": [
+      "flow"
+    ]
+  },
+  "evidence_refs": [
+    "E004",
+    "E003"
+  ],
+  "stats": {
+    "nodes": 9,
+    "edges": 10
+  }
+}

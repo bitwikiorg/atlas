@@ -1,0 +1,857 @@
+{
+  "foundry_score": 80,
+  "confidence": 0.84,
+  "groups": {
+    "Code Quality & Architecture": {
+      "metrics": [
+        "Code Quality",
+        "Architecture Coherence",
+        "Modularity",
+        "Complexity Debt",
+        "Coupling Risk",
+        "Schema Discipline"
+      ],
+      "average_score": 80.3,
+      "score": 80.3
+    },
+    "Maintainability & Extensibility": {
+      "metrics": [
+        "Maintainability",
+        "Malleability / Extensibility",
+        "Change Locality"
+      ],
+      "average_score": 84,
+      "score": 84
+    },
+    "Security & Reliability": {
+      "metrics": [
+        "Security Posture",
+        "Reliability / Resilience",
+        "Data & State Discipline"
+      ],
+      "average_score": 81.7,
+      "score": 81.7
+    },
+    "Testing & Verification": {
+      "metrics": [
+        "Testability / Verification"
+      ],
+      "average_score": 78,
+      "score": 78
+    },
+    "Performance & Dependencies": {
+      "metrics": [
+        "Performance Discipline",
+        "Dependency Health",
+        "Build Reproducibility"
+      ],
+      "average_score": 79,
+      "score": 79
+    },
+    "Operations": {
+      "metrics": [
+        "Observability / Operability"
+      ],
+      "average_score": 72,
+      "score": 72
+    },
+    "Portability & Interoperability": {
+      "metrics": [
+        "Portability",
+        "Interoperability",
+        "Composability"
+      ],
+      "average_score": 87,
+      "score": 87
+    },
+    "Interface & Agent Readiness": {
+      "metrics": [
+        "Interface Quality",
+        "Usability",
+        "Agent Readiness"
+      ],
+      "average_score": 88.3,
+      "score": 88.3
+    },
+    "Configuration": {
+      "metrics": [
+        "Configuration Quality"
+      ],
+      "average_score": 88,
+      "score": 88
+    },
+    "Documentation & Knowledge": {
+      "metrics": [
+        "Documentation Readiness",
+        "Onboarding Friction",
+        "Troubleshootability",
+        "Knowledge Legibility",
+        "Self-Description",
+        "Provenance / Traceability"
+      ],
+      "average_score": 83.7,
+      "score": 83.7
+    },
+    "Release & Repository Health": {
+      "metrics": [
+        "Release Discipline",
+        "Repository Hygiene",
+        "Contributor Concentration",
+        "Automation Leverage"
+      ],
+      "average_score": 57.5,
+      "score": 57.5
+    },
+    "Innovation": {
+      "metrics": [
+        "Creativity / Originality",
+        "Architectural Novelty"
+      ],
+      "average_score": 80,
+      "score": 80
+    },
+    "Developer Experience": {
+      "metrics": [
+        "Developer Experience"
+      ],
+      "average_score": 82,
+      "score": 82
+    },
+    "Scalability": {
+      "metrics": [
+        "Scalability"
+      ],
+      "average_score": 65,
+      "score": 65
+    },
+    "License": {
+      "metrics": [
+        "License Clarity"
+      ],
+      "average_score": 85,
+      "score": 85
+    }
+  },
+  "metrics": [
+    {
+      "name": "Code Quality",
+      "score": 78,
+      "applicability": "applicable",
+      "confidence": 0.85,
+      "rationale": "Clean, type-hinted Python with module-level docstrings throughout. The exec()-based dynamic tool generation in server.py is a justified code smell (noqa S102, generated from fixed modes.json field names). Dead session CRUD methods remain in store.py despite AUDIT.md claiming they were removed from the tool surface. Test pass-count discrepancy between README (32 passed) and AUDIT.md (43 passed) suggests stale documentation.",
+      "evidence_refs": [
+        "E006",
+        "E008",
+        "E009",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Remove dead session lifecycle methods (create_session, get_session, list_sessions, finalize_session) from store.py if they are no longer part of the intended surface, or document why they are retained",
+        "Reconcile the test pass-count discrepancy between README (32 passed, 1 skipped) and AUDIT.md (43 passed, 1 skipped)"
+      ]
+    },
+    {
+      "name": "Architecture Coherence",
+      "score": 88,
+      "applicability": "applicable",
+      "confidence": 0.9,
+      "rationale": "Excellent separation of concerns across 8 modules with clear single responsibilities. The 'LLM is the router' principle is consistently applied — no server-side routing logic, tool descriptions carry routing. Modes-as-data decouples mode definitions from code. The no-LLM invariant is architecturally enforced (server only fills templates and appends notes).",
+      "evidence_refs": [
+        "E006",
+        "E007",
+        "E008",
+        "E020",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Consider whether service.py and server.py both directly instantiating and using JSONLStore represents an intentional layering choice or an opportunity to consolidate the service layer as the single store consumer"
+      ]
+    },
+    {
+      "name": "Maintainability",
+      "score": 82,
+      "applicability": "applicable",
+      "confidence": 0.85,
+      "rationale": "Small codebase (8 modules, ~24KB source) with clear file map and module responsibilities. modes.json makes mode changes trivial. AUDIT.md demonstrates self-audit discipline. Dead code in store.py (session methods) and the service.py/server.py duplication of store usage add minor maintenance burden. No CI pipeline means regressions are caught only by manual pytest runs.",
+      "evidence_refs": [
+        "E008",
+        "E009",
+        "E001",
+        "E006",
+        "E007"
+      ],
+      "improvement_opportunities": [
+        "Add a CI workflow (GitHub Actions) to run pytest on push/PR so regressions are caught automatically",
+        "Remove or clearly fence off the dead session methods in store.py to reduce confusion for future maintainers"
+      ]
+    },
+    {
+      "name": "Modularity",
+      "score": 85,
+      "applicability": "applicable",
+      "confidence": 0.9,
+      "rationale": "Each module has a clear single responsibility: auth (identity), config (settings), guard (anti-churn), hooks (events), modes (data loader/renderer), server (FastMCP wiring), service (service layer), store (persistence). Boundaries are clean and dependencies flow in one direction.",
+      "evidence_refs": [
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E020"
+      ],
+      "improvement_opportunities": [
+        "The server.py _make_mode_function injects globals (store, s, hooks, guard_runner) into exec'd functions — consider passing these as closure variables or a context object for cleaner module boundaries"
+      ]
+    },
+    {
+      "name": "Malleability / Extensibility",
+      "score": 90,
+      "applicability": "applicable",
+      "confidence": 0.92,
+      "rationale": "Outstanding for its domain. Adding a thinking mode requires only a JSON edit in modes.json with auto-registration — no code changes. Adding hooks requires dropping a script in a directory. The loop guard is fully configurable via env vars with sensible defaults. The modes-as-data pattern is a strong extensibility model.",
+      "evidence_refs": [
+        "E019",
+        "E020",
+        "E005",
+        "E003",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Add JSON schema validation for modes.json entries so invalid mode definitions are caught at load time rather than producing confusing runtime errors"
+      ]
+    },
+    {
+      "name": "Scalability",
+      "score": 65,
+      "applicability": "applicable",
+      "confidence": 0.75,
+      "rationale": "Designed as a single-serve private instance, so large-scale concurrency is not the target. However, the in-memory _records list in store.py loads all records on startup and the guard's evaluate() calls store.export() then filters in Python — both are O(n) per operation. With heavy use and large JSONL files, this degrades. Rotation mitigates file growth but not in-memory list growth.",
+      "evidence_refs": [
+        "E008",
+        "E004"
+      ],
+      "improvement_opportunities": [
+        "Consider lazy/streaming reads for the guard's consecutive-call counting instead of loading the full export() list",
+        "Add a configurable cap on in-memory record retention so long-running instances do not accumulate unbounded _records"
+      ]
+    },
+    {
+      "name": "Security Posture",
+      "score": 82,
+      "applicability": "applicable",
+      "confidence": 0.85,
+      "rationale": "Strong security design for its scope: no outbound calls, no LLM calls, localhost binding by default, constant-time token comparison (hmac.compare_digest), actor derived from token not tool args, note size cap, .gitignore excludes state and secrets. The exec() in server.py operates on fixed modes.json field names but could be a vector if modes.json is compromised. No input sanitization on template field values but risk is low for local string fills.",
+      "evidence_refs": [
+        "E002",
+        "E003",
+        "E006",
+        "E008",
+        "E009",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Add validation that modes.json field names are safe Python identifiers before using them in exec() to prevent injection if the JSON file is tampered with",
+        "Document or enforce that the HTTP transport should always use tokens when exposed beyond localhost"
+      ]
+    },
+    {
+      "name": "Reliability / Resilience",
+      "score": 80,
+      "applicability": "applicable",
+      "confidence": 0.85,
+      "rationale": "fsync after every write ensures durability. Append-only JSONL avoids corruption risk. Rotation archives old logs. Idempotency via run_id prevents duplicate writes. Hooks are best-effort and isolated — failures never break the call path. Partial tail lines are tolerated on load. Thread lock protects concurrent writes. The in-memory _records list is rebuilt from file on restart, so no data loss across restarts.",
+      "evidence_refs": [
+        "E008",
+        "E005",
+        "E004",
+        "E009"
+      ],
+      "improvement_opportunities": [
+        "The _rotate() method replaces the file but does not reset _records — after rotation the in-memory list still contains old records, which is correct but could be documented",
+        "Consider adding a write-ahead integrity check or checksum for detecting JSONL corruption beyond partial-line tolerance"
+      ]
+    },
+    {
+      "name": "Testability / Verification",
+      "score": 78,
+      "applicability": "applicable",
+      "confidence": 0.85,
+      "rationale": "7 test files covering all 8 source modules. Guard tests use a FakeStore for isolation. Store and hooks tests use tmp_path fixtures. Server tests verify tool surface and one-tool-per-mode invariant. Mode tests cover rendering, missing fields, and sorting. Good coverage for a small repo. No CI to run tests automatically. No HTTP transport integration tests. Test pass-count discrepancy between README and AUDIT.md.",
+      "evidence_refs": [
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E021",
+        "E009"
+      ],
+      "improvement_opportunities": [
+        "Add integration tests for the HTTP transport path including token authentication",
+        "Add a test that verifies modes.json field names are valid Python identifiers to guard the exec() path",
+        "Add a CI workflow to run the full pytest suite on every push"
+      ]
+    },
+    {
+      "name": "Performance Discipline",
+      "score": 70,
+      "applicability": "applicable",
+      "confidence": 0.7,
+      "rationale": "Not a performance-critical application — it fills templates and appends to a file. The O(n) in-memory list scans in store.export() and guard.evaluate() are acceptable for a private notepad but would not scale. No benchmarks exist, but none are needed for this archetype. The fsync-per-write is correct for durability but is the main I/O cost.",
+      "evidence_refs": [
+        "E008",
+        "E004",
+        "E006"
+      ],
+      "improvement_opportunities": [
+        "Cache the last-mode and consecutive-count per actor in the guard to avoid full export() scans on every think_* call",
+        "Consider batched or buffered writes if high-frequency calling becomes a use case"
+      ]
+    },
+    {
+      "name": "Dependency Health",
+      "score": 92,
+      "applicability": "applicable",
+      "confidence": 0.9,
+      "rationale": "Single third-party dependency: fastmcp>=3.2,<4. requirements.txt matches pyproject.toml. No unresolved dependencies (0 unresolved per analysis). 26 stdlib imports, 18 internal, 6 third-party — extremely lean dependency footprint. Version range is pinned appropriately.",
+      "evidence_refs": [
+        "E011",
+        "E022"
+      ],
+      "improvement_opportunities": [
+        "Consider adding a dependabot configuration or renovate to get notified of fastmcp updates within the pinned range"
+      ]
+    },
+    {
+      "name": "Build Reproducibility",
+      "score": 75,
+      "applicability": "applicable",
+      "confidence": 0.8,
+      "rationale": "Standard setuptools build via pyproject.toml. Python 3.11+ requirement stated. pip install -e . works for development. No lock file but with a single dependency this is acceptable. No CI to verify builds. No Dockerfile or containerization for reproducible environments.",
+      "evidence_refs": [
+        "E011",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Add a CI workflow that verifies pip install -e . and pytest pass on a clean environment",
+        "Consider adding a pip-tools or uv lock file for fully reproducible installs"
+      ]
+    },
+    {
+      "name": "Observability / Operability",
+      "score": 72,
+      "applicability": "applicable",
+      "confidence": 0.8,
+      "rationale": "health tool returns server name, transport, state dir, and tool count. journal tool reads back stored notes with filters. store.stats() provides record/note/session counts and by-mode breakdown. hooks.py uses Python logging. No structured logging, no metrics export, no tracing. Adequate for a private notepad but limited for production observability.",
+      "evidence_refs": [
+        "E006",
+        "E008",
+        "E005",
+        "E007"
+      ],
+      "improvement_opportunities": [
+        "Add structured logging (JSON format) for key events: note appended, guard triggered, hook fired/failed, rotation occurred",
+        "Expose guard state (consecutive counts per actor) in the health or a dedicated diagnostics tool"
+      ]
+    },
+    {
+      "name": "Portability",
+      "score": 88,
+      "applicability": "applicable",
+      "confidence": 0.9,
+      "rationale": "Pure Python using pathlib for cross-platform path handling. Only depends on fastmcp which is pure Python. Python 3.11+ requirement is reasonable. No OS-specific code. Should run on any platform with Python 3.11+.",
+      "evidence_refs": [
+        "E003",
+        "E008",
+        "E011",
+        "E005"
+      ],
+      "improvement_opportunities": [
+        "Test on Windows to verify path handling and subprocess execution in hooks.py works correctly outside Unix-like systems"
+      ]
+    },
+    {
+      "name": "Interface Quality",
+      "score": 87,
+      "applicability": "applicable",
+      "confidence": 0.9,
+      "rationale": "MCP tool descriptions are well-crafted for LLM routing — each mode tool's description includes purpose, when-to-use, and required fields. The definitions tool returns a complete catalog. Response contracts are clear and consistent ({ok, mode, note, id, hook?}). Parameter types are explicit (all str). The journal tool's filtering parameters are intuitive.",
+      "evidence_refs": [
+        "E006",
+        "E020",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Consider adding a return type annotation or schema for each tool's response to improve client-side handling",
+        "The blocked-call response could include a suggested alternative mode to help the LLM self-correct"
+      ]
+    },
+    {
+      "name": "Data & State Discipline",
+      "score": 83,
+      "applicability": "applicable",
+      "confidence": 0.85,
+      "rationale": "Append-only JSONL with fsync, rotation, idempotency via run_id, input_hash for integrity, thread lock for concurrency. Clear record types (note/session) with consistent fields. ULID-like IDs for ordering. Template versioning for mode evolution. Dead session methods in store.py are residual state-management code that no longer fits the flat-stream design.",
+      "evidence_refs": [
+        "E008",
+        "E004",
+        "E009"
+      ],
+      "improvement_opportunities": [
+        "Remove or clearly deprecate the session lifecycle methods in store.py that contradict the flat-stream design documented in AUDIT.md",
+        "Add a record schema version field to JSONL records to support future format migrations"
+      ]
+    },
+    {
+      "name": "Configuration Quality",
+      "score": 88,
+      "applicability": "applicable",
+      "confidence": 0.92,
+      "rationale": "All configuration via environment variables with sensible defaults. 16 NUT_THINKING_* env vars, all documented in README with defaults and descriptions. No hardcoded secrets. Clean Settings class with type conversion. The _csv helper for allow_modes is a nice touch. Configuration is testable and overridable.",
+      "evidence_refs": [
+        "E003",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Add validation for env var values (e.g., port range, positive integers for thresholds) with clear error messages on invalid input",
+        "Consider supporting a config file as an alternative to env vars for complex deployments"
+      ]
+    },
+    {
+      "name": "Change Locality",
+      "score": 80,
+      "applicability": "applicable",
+      "confidence": 0.7,
+      "rationale": "Modes-as-data localizes mode additions/edits to modes.json. Module boundaries are clean so code changes are typically localized to one module. Small codebase means most changes touch few files. Single release limits evidence for long-term change locality patterns.",
+      "evidence_refs": [
+        "E019",
+        "E020",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "No specific action needed — the modes-as-data pattern already provides excellent change locality for the primary extension point"
+      ]
+    },
+    {
+      "name": "Complexity Debt",
+      "score": 78,
+      "applicability": "applicable",
+      "confidence": 0.8,
+      "rationale": "Low overall complexity — the server fills templates and appends notes. The exec()-based tool generation adds cognitive complexity but is well-documented. Dead session code in store.py is unused complexity. The guard's consecutive-count logic is straightforward. The global injection pattern in server.py adds implicit complexity.",
+      "evidence_refs": [
+        "E006",
+        "E008",
+        "E004"
+      ],
+      "improvement_opportunities": [
+        "Replace the exec()-based _make_mode_function with a closure-based or functools.partial approach to reduce cognitive complexity",
+        "Remove dead session methods from store.py to eliminate unused complexity"
+      ]
+    },
+    {
+      "name": "Coupling Risk",
+      "score": 75,
+      "applicability": "applicable",
+      "confidence": 0.8,
+      "rationale": "Module-to-module coupling is low and directional. However, server.py injects globals (store, s, hooks, guard_runner) into exec'd functions, creating implicit coupling. Both server.py and service.py directly use JSONLStore, with service.py duplicating some logic (note truncation, extra dict construction) that server.py also does inline. The guard depends on store.export() interface.",
+      "evidence_refs": [
+        "E006",
+        "E007",
+        "E004",
+        "E008"
+      ],
+      "improvement_opportunities": [
+        "Consolidate note-creation logic so either server.py uses service.py or service.py is removed, eliminating the duplicated store-coupling",
+        "Pass dependencies to _make_mode_function via closure or context object instead of __globals__ injection"
+      ]
+    },
+    {
+      "name": "Developer Experience",
+      "score": 82,
+      "applicability": "applicable",
+      "confidence": 0.85,
+      "rationale": "Comprehensive README with quick start, how-to-use, how-to-serve, file map, and FAQ. pip install -e . is simple. pytest runs cleanly. modes.json is self-documenting with a _comment field. The definitions tool helps developers learn the catalog. Missing CI means no automated feedback loop. No CONTRIBUTING.md or development setup guide beyond the README.",
+      "evidence_refs": [
+        "E001",
+        "E019",
+        "E011",
+        "E009"
+      ],
+      "improvement_opportunities": [
+        "Add a CONTRIBUTING.md with development setup, testing instructions, and code style expectations",
+        "Add pre-commit hooks for formatting and linting to provide immediate developer feedback"
+      ]
+    },
+    {
+      "name": "Onboarding Friction",
+      "score": 85,
+      "applicability": "applicable",
+      "confidence": 0.88,
+      "rationale": "Low friction. README provides a 6-step usage workflow, quick start with copy-paste commands, client config JSON examples, and a clear file map. The concept (thinking methods as MCP tools) is easy to grasp. The definitions tool serves as an onboarding endpoint for the LLM. The modes-as-data approach means new contributors can add modes without learning the codebase.",
+      "evidence_refs": [
+        "E001",
+        "E019",
+        "E020"
+      ],
+      "improvement_opportunities": [
+        "Add a minimal example of calling a mode tool and reading back via journal in the quick start section to complete the end-to-end loop"
+      ]
+    },
+    {
+      "name": "Usability",
+      "score": 86,
+      "applicability": "applicable",
+      "confidence": 0.88,
+      "rationale": "For an MCP server, usability is about tool descriptions and response clarity. Tool descriptions are excellent — they tell the LLM when to use each mode and what fields are required. The definitions tool is a strong usability feature. Response contracts are clean and consistent. The loop-break rule is simple and memorable. The journal tool's filtering is intuitive.",
+      "evidence_refs": [
+        "E006",
+        "E020",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Add a 'suggested_next_mode' field in the response to help the LLM chain thinking modes productively"
+      ]
+    },
+    {
+      "name": "Documentation Readiness",
+      "score": 85,
+      "applicability": "applicable",
+      "confidence": 0.9,
+      "rationale": "README is comprehensive at 26KB covering core idea, usage, serving, quick start, architecture, tools, mode addition, storage, hooks, references, security, FAQ, guard design, and file map. AUDIT.md provides quality evidence. Module docstrings are present on all source files. No separate docs/ directory but README covers the space well. Academic references provide provenance for each mode.",
+      "evidence_refs": [
+        "E001",
+        "E009",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008"
+      ],
+      "improvement_opportunities": [
+        "Add an architecture diagram as a standalone image file in addition to the mermaid diagrams in README for environments that do not render mermaid",
+        "Document the JSONL record schema explicitly in a reference section or separate file"
+      ]
+    },
+    {
+      "name": "Troubleshootability",
+      "score": 78,
+      "applicability": "applicable",
+      "confidence": 0.82,
+      "rationale": "JSONL is human-readable and openable in any editor. journal tool reads back notes with filters. health tool reports server status. Error messages are descriptive (guard messages, ValueError for unknown modes, duplicate run_id). AUDIT.md documents known issues (FastMCP client bugs). No structured troubleshooting guide or common-issues section.",
+      "evidence_refs": [
+        "E008",
+        "E006",
+        "E004",
+        "E009",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Add a troubleshooting section to README covering common issues: state directory permissions, port conflicts, token misconfiguration, modes.json parse errors",
+        "Add debug-level logging that can be enabled via an env var for diagnosing guard and hook behavior"
+      ]
+    },
+    {
+      "name": "Accessibility",
+      "score": null,
+      "applicability": "not_applicable",
+      "confidence": 0.9,
+      "rationale": "MCP server with no user-facing UI. Accessibility metrics for visual/motor/cognitive interfaces do not apply to a programmatic tool server.",
+      "evidence_refs": [],
+      "improvement_opportunities": []
+    },
+    {
+      "name": "Composability",
+      "score": 85,
+      "applicability": "applicable",
+      "confidence": 0.85,
+      "rationale": "Standard MCP server composes with any MCP client. Hooks provide composition points for post-processing automation. Modes-as-data is composable — modes can be added without affecting existing ones. The fire-and-forget hook design allows chaining external processing without coupling. The JSONL output format is composable with any JSONL-consuming tool.",
+      "evidence_refs": [
+        "E005",
+        "E019",
+        "E008",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Consider adding a webhook or callback option for hooks in addition to local subprocess scripts for remote composition scenarios"
+      ]
+    },
+    {
+      "name": "Interoperability",
+      "score": 88,
+      "applicability": "applicable",
+      "confidence": 0.9,
+      "rationale": "Standard MCP server consumable by any MCP client (Claude Desktop, Cursor, Agent Zero, etc.). Supports both stdio (default) and HTTP transports. JSONL output is a universal format. Uses standard Python packaging (pyproject.toml, setuptools). No proprietary protocols or formats.",
+      "evidence_refs": [
+        "E006",
+        "E011",
+        "E008",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Add SSE or WebSocket transport support for harnesses that prefer streaming connections"
+      ]
+    },
+    {
+      "name": "Release Discipline",
+      "score": 65,
+      "applicability": "applicable",
+      "confidence": 0.7,
+      "rationale": "Single release (0.1.0) with version in both pyproject.toml and __init__.py. AUDIT.md documents the release with change log and verified evidence. No git tags, no CI release pipeline, no changelog file beyond AUDIT.md, no semantic versioning policy documented. Minimal but present release evidence.",
+      "evidence_refs": [
+        "E011",
+        "E018",
+        "E009"
+      ],
+      "improvement_opportunities": [
+        "Add a CHANGELOG.md following Keep a Changelog format for tracking future releases",
+        "Tag releases with git tags (e.g., v0.1.0) for traceability",
+        "Document a versioning policy (semver) in README or CONTRIBUTING.md"
+      ]
+    },
+    {
+      "name": "Activity Health",
+      "score": null,
+      "applicability": "insufficient_evidence",
+      "confidence": 0.3,
+      "rationale": "Repository created 2026-08-04, last pushed 2026-08-05 — only 12 days old with a single push. Too new to assess long-term activity health, commit cadence, or release frequency.",
+      "evidence_refs": [
+        "E001"
+      ],
+      "improvement_opportunities": []
+    },
+    {
+      "name": "Contributor Concentration",
+      "score": 40,
+      "applicability": "applicable",
+      "confidence": 0.75,
+      "rationale": "Single contributor (self-audit by 'Peanutoshi'). High bus-factor risk — one person holds all knowledge. Expected for a new solo project but still a structural risk. No CONTRIBUTING.md to attract or guide new contributors.",
+      "evidence_refs": [
+        "E009",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Add a CONTRIBUTING.md to lower the barrier for new contributors",
+        "Document architectural decisions in an ADR format so knowledge is not solely in one person's head"
+      ]
+    },
+    {
+      "name": "Issue & Maintenance Hygiene",
+      "score": null,
+      "applicability": "insufficient_evidence",
+      "confidence": 0.3,
+      "rationale": "No issues or PRs visible in the repository. The self-audit (AUDIT.md) caught and fixed 3 logic bugs, showing maintenance diligence. But with no public issue tracker activity, there is insufficient evidence to assess issue triage, response times, or maintenance hygiene patterns.",
+      "evidence_refs": [
+        "E009"
+      ],
+      "improvement_opportunities": []
+    },
+    {
+      "name": "License Clarity",
+      "score": 85,
+      "applicability": "applicable",
+      "confidence": 0.9,
+      "rationale": "PolyForm Noncommercial 1.0.0 license with full LICENSE file present. SPDX identifier shown in README badge and pyproject.toml. GitHub reports NOASSERTION likely because PolyForm NC is not in GitHub's recognized license list. License terms are clear to human readers. The noncommercial restriction is explicit.",
+      "evidence_refs": [
+        "E010",
+        "E011",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Consider adding a NOTICE file or copyright header in source files for additional license clarity"
+      ]
+    },
+    {
+      "name": "Change Churn",
+      "score": null,
+      "applicability": "insufficient_evidence",
+      "confidence": 0.3,
+      "rationale": "Single release with one push. Cannot assess commit frequency, churn rate, or stability over time. The AUDIT.md describes significant simplification (removing sessions, guards, checkpoints) but this is a single event, not a pattern.",
+      "evidence_refs": [
+        "E009"
+      ],
+      "improvement_opportunities": []
+    },
+    {
+      "name": "Change Coupling",
+      "score": null,
+      "applicability": "insufficient_evidence",
+      "confidence": 0.3,
+      "rationale": "Single release with no commit history available for analysis. Cannot assess whether changes tend to span multiple modules or are well-localized over time.",
+      "evidence_refs": [
+        "E009"
+      ],
+      "improvement_opportunities": []
+    },
+    {
+      "name": "Repository Hygiene",
+      "score": 80,
+      "applicability": "applicable",
+      "confidence": 0.85,
+      "rationale": "Clean file structure with .gitignore excluding state/, *.bak.jsonl, and env files. README, LICENSE, AUDIT.md all present. No CI files, no .editorconfig, no pre-commit config. Source organized under src/ layout with tests/ directory. Assets directory for SVGs. Good hygiene for a small repo but missing standard tooling configs.",
+      "evidence_refs": [
+        "E001",
+        "E010",
+        "E009",
+        "E011"
+      ],
+      "improvement_opportunities": [
+        "Add a .editorconfig for consistent editor settings across contributors",
+        "Add a pre-commit configuration for linting and formatting",
+        "Add a GitHub Actions CI workflow file"
+      ]
+    },
+    {
+      "name": "Creativity / Originality",
+      "score": 82,
+      "applicability": "applicable",
+      "confidence": 0.85,
+      "rationale": "The 'LLM is the router' concept with modes-as-data is a clean, original approach to thinking tools — most existing thinking MCP servers embed routing logic server-side. The curated catalog of 15 modes with honest academic provenance (citing papers where they exist, admitting operational patterns where they don't) is intellectually honest. The loop guard design (context injection + escalating warnings + hard ceiling) is a thoughtful middle path.",
+      "evidence_refs": [
+        "E001",
+        "E004",
+        "E019",
+        "E020"
+      ],
+      "improvement_opportunities": [
+        "Consider adding a 'compose' or 'chain' mode that explicitly guides multi-mode sequencing to extend the creative catalog"
+      ]
+    },
+    {
+      "name": "Architectural Novelty",
+      "score": 78,
+      "applicability": "applicable",
+      "confidence": 0.8,
+      "rationale": "Modes-as-data auto-registration via exec() is a novel pattern for MCP servers — most define tools statically. The 'server never thinks' invariant is a strong architectural constraint that differentiates from LLM-calling thinking tools. The hook system with mode-specific script resolution is well-designed. The approach is novel within the MCP thinking-tool space but builds on established patterns (JSONL logs, template rendering).",
+      "evidence_refs": [
+        "E006",
+        "E019",
+        "E020",
+        "E005",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Document the architectural decision for modes-as-data vs static tool definitions in an ADR to preserve the reasoning for future contributors"
+      ]
+    },
+    {
+      "name": "Automation Leverage",
+      "score": 45,
+      "applicability": "applicable",
+      "confidence": 0.8,
+      "rationale": "No CI pipeline, no automated testing, no pre-commit hooks, no automated releases. The hooks system provides user-side automation leverage but the repository itself has minimal automation. All quality checks (pytest, py_compile, smoke tests) are manual per the AUDIT.md.",
+      "evidence_refs": [
+        "E009",
+        "E011"
+      ],
+      "improvement_opportunities": [
+        "Add a GitHub Actions CI workflow that runs pytest, py_compile, and linting on every push and PR",
+        "Add automated release tagging via CI when version is bumped in pyproject.toml",
+        "Add pre-commit hooks for ruff/black/mypy to automate code quality enforcement"
+      ]
+    },
+    {
+      "name": "Agent Readiness",
+      "score": 92,
+      "applicability": "applicable",
+      "confidence": 0.92,
+      "rationale": "This is purpose-built as an agent tool. MCP server designed for LLM consumption with tool descriptions optimized for routing. The definitions tool serves as an agent onboarding endpoint. The loop-break rule and optional guard are agent-behavior-aware design features. Response contracts are machine-readable. The 'LLM is the router' principle is fundamentally agent-centric.",
+      "evidence_refs": [
+        "E006",
+        "E020",
+        "E004",
+        "E001"
+      ],
+      "improvement_opportunities": [
+        "Add a 'recommended_modes' hint in the definitions response based on typical_stage to further guide agent routing",
+        "Consider adding a 'recent_modes' field in the journal response so the agent can see its own recent thinking history"
+      ]
+    },
+    {
+      "name": "Knowledge Legibility",
+      "score": 85,
+      "applicability": "applicable",
+      "confidence": 0.88,
+      "rationale": "README is clear and comprehensive. AUDIT.md provides an audit trail with verified evidence. Academic references for each mode provide provenance. Module docstrings explain purpose and design rules. File map is explicit. The modes.json _comment field guides editors. Code is self-documenting through clear naming and structure.",
+      "evidence_refs": [
+        "E001",
+        "E009",
+        "E019",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008"
+      ],
+      "improvement_opportunities": [
+        "Add inline comments in store.py explaining the ULID-like ID generation and input_hash purpose for readers unfamiliar with the patterns"
+      ]
+    },
+    {
+      "name": "Provenance / Traceability",
+      "score": 82,
+      "applicability": "applicable",
+      "confidence": 0.85,
+      "rationale": "Academic citations for each mode (arXiv papers where applicable, honest 'no canonical citation' where not). AUDIT.md documents the release with change log and verified evidence table. input_hash provides data integrity tracing. Template versioning supports mode evolution tracking. Each JSONL record includes mode, template_version, actor_id, and ts for full traceability.",
+      "evidence_refs": [
+        "E001",
+        "E009",
+        "E008",
+        "E019"
+      ],
+      "improvement_opportunities": [
+        "Add a 'references' field to the JSONL note records so stored thoughts carry their academic provenance forward",
+        "Consider adding a git commit SHA to the health tool output for deployment traceability"
+      ]
+    },
+    {
+      "name": "Schema Discipline",
+      "score": 78,
+      "applicability": "applicable",
+      "confidence": 0.82,
+      "rationale": "modes.json has a clear implicit schema (id, label, purpose, when, level, typical_stage, fields, template, version, references). JSONL records have consistent structure with type discrimination. Mode dataclass is frozen for immutability. However, no formal schema validation exists — invalid modes.json entries would produce runtime errors rather than clear validation messages. No JSON Schema file for modes.json.",
+      "evidence_refs": [
+        "E019",
+        "E020",
+        "E008"
+      ],
+      "improvement_opportunities": [
+        "Add a JSON Schema file for modes.json and validate entries at load time with clear error messages",
+        "Add validation that template field placeholders match the declared fields array to catch mismatches early",
+        "Add a pydantic model or dataclass validation for JSONL record structure on load"
+      ]
+    },
+    {
+      "name": "Self-Description",
+      "score": 87,
+      "applicability": "applicable",
+      "confidence": 0.9,
+      "rationale": "The codebase describes itself well through multiple channels: README (comprehensive), AUDIT.md (quality evidence), module docstrings (all 8 modules), tool descriptions (routing guidance), definitions tool (catalog), modes.json _comment (editing guidance), and __init__.py docstring (project summary). A new reader can understand the project's purpose, architecture, and extension points from the code alone.",
+      "evidence_refs": [
+        "E001",
+        "E009",
+        "E018",
+        "E019",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E020"
+      ],
+      "improvement_opportunities": [
+        "Add type annotations to the HookRunner constructor (hooks_dir: str | Path | None) for better self-documentation",
+        "Add a module-level docstring to modes.py explaining the modes-as-data pattern"
+      ]
+    }
+  ],
+  "score_version": "foundry-weighted-v2"
+}

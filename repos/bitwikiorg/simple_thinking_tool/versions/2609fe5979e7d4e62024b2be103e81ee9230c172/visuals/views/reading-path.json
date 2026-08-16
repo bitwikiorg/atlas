@@ -1,0 +1,406 @@
+{
+  "version": 2,
+  "id": "reading-path",
+  "title": "Recommended reading path",
+  "kind": "reading-path",
+  "question": "What does recommended reading path reveal about this repository?",
+  "purpose": "A curated sequence for understanding the repository without reading the codebase linearly.",
+  "origin": "curated",
+  "diagram_type": "flowchart",
+  "doc_paths": [
+    "docs/overview.md",
+    "docs/quickstart.md"
+  ],
+  "renderer": {
+    "interactive": "mermaid",
+    "portable_fallback": "semantic-json",
+    "source_of_truth": "visual-data"
+  },
+  "presentation": {
+    "renderer": "mermaid",
+    "diagram_type": "flowchart",
+    "source_of_truth": "visual-data"
+  },
+  "repo_id": "bitwikiorg/simple_thinking_tool",
+  "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
+  "layout": {
+    "family": "layered",
+    "direction": "LR"
+  },
+  "nodes": [
+    {
+      "id": "file:README.md",
+      "label": "README.md",
+      "full_label": "README.md",
+      "type": "file",
+      "group": "",
+      "importance": 0.88,
+      "evidence_refs": [
+        "E001"
+      ],
+      "source_paths": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/__init__.py",
+      "label": "__init__.py",
+      "full_label": "src/simple_thinking_tool/__init__.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.86,
+      "evidence_refs": [
+        "E018"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/__init__.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/config.py",
+      "label": "config.py",
+      "full_label": "src/simple_thinking_tool/config.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.84,
+      "evidence_refs": [
+        "E003"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/config.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/modes.json",
+      "label": "modes.json",
+      "full_label": "src/simple_thinking_tool/modes.json",
+      "type": "file",
+      "group": "",
+      "importance": 0.8200000000000001,
+      "evidence_refs": [
+        "E019"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/modes.json"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/modes.py",
+      "label": "modes.py",
+      "full_label": "src/simple_thinking_tool/modes.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.8,
+      "evidence_refs": [
+        "E020"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/modes.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/auth.py",
+      "label": "auth.py",
+      "full_label": "src/simple_thinking_tool/auth.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.78,
+      "evidence_refs": [
+        "E002"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/auth.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/store.py",
+      "label": "store.py",
+      "full_label": "src/simple_thinking_tool/store.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.76,
+      "evidence_refs": [
+        "E008"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/store.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/guard.py",
+      "label": "guard.py",
+      "full_label": "src/simple_thinking_tool/guard.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.74,
+      "evidence_refs": [
+        "E004"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/guard.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/hooks.py",
+      "label": "hooks.py",
+      "full_label": "src/simple_thinking_tool/hooks.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.72,
+      "evidence_refs": [
+        "E005"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/hooks.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/server.py",
+      "label": "server.py",
+      "full_label": "src/simple_thinking_tool/server.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.7,
+      "evidence_refs": [
+        "E006"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/server.py"
+      ]
+    },
+    {
+      "id": "file:src/simple_thinking_tool/service.py",
+      "label": "service.py",
+      "full_label": "src/simple_thinking_tool/service.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.6799999999999999,
+      "evidence_refs": [
+        "E007"
+      ],
+      "source_paths": [
+        "src/simple_thinking_tool/service.py"
+      ]
+    },
+    {
+      "id": "file:AUDIT.md",
+      "label": "AUDIT.md",
+      "full_label": "AUDIT.md",
+      "type": "file",
+      "group": "",
+      "importance": 0.66,
+      "evidence_refs": [
+        "E009"
+      ],
+      "source_paths": [
+        "AUDIT.md"
+      ]
+    },
+    {
+      "id": "file:tests/test_modes.py",
+      "label": "test_modes.py",
+      "full_label": "tests/test_modes.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.64,
+      "evidence_refs": [
+        "E021"
+      ],
+      "source_paths": [
+        "tests/test_modes.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_store.py",
+      "label": "test_store.py",
+      "full_label": "tests/test_store.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.62,
+      "evidence_refs": [
+        "E017"
+      ],
+      "source_paths": [
+        "tests/test_store.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_guard.py",
+      "label": "test_guard.py",
+      "full_label": "tests/test_guard.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.6,
+      "evidence_refs": [
+        "E013"
+      ],
+      "source_paths": [
+        "tests/test_guard.py"
+      ]
+    },
+    {
+      "id": "file:tests/test_server.py",
+      "label": "test_server.py",
+      "full_label": "tests/test_server.py",
+      "type": "file",
+      "group": "",
+      "importance": 0.5800000000000001,
+      "evidence_refs": [
+        "E015"
+      ],
+      "source_paths": [
+        "tests/test_server.py"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "reading-edge:0",
+      "source": "file:README.md",
+      "target": "file:src/simple_thinking_tool/__init__.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:1",
+      "source": "file:src/simple_thinking_tool/__init__.py",
+      "target": "file:src/simple_thinking_tool/config.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:2",
+      "source": "file:src/simple_thinking_tool/config.py",
+      "target": "file:src/simple_thinking_tool/modes.json",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:3",
+      "source": "file:src/simple_thinking_tool/modes.json",
+      "target": "file:src/simple_thinking_tool/modes.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:4",
+      "source": "file:src/simple_thinking_tool/modes.py",
+      "target": "file:src/simple_thinking_tool/auth.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:5",
+      "source": "file:src/simple_thinking_tool/auth.py",
+      "target": "file:src/simple_thinking_tool/store.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:6",
+      "source": "file:src/simple_thinking_tool/store.py",
+      "target": "file:src/simple_thinking_tool/guard.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:7",
+      "source": "file:src/simple_thinking_tool/guard.py",
+      "target": "file:src/simple_thinking_tool/hooks.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:8",
+      "source": "file:src/simple_thinking_tool/hooks.py",
+      "target": "file:src/simple_thinking_tool/server.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:9",
+      "source": "file:src/simple_thinking_tool/server.py",
+      "target": "file:src/simple_thinking_tool/service.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:10",
+      "source": "file:src/simple_thinking_tool/service.py",
+      "target": "file:AUDIT.md",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:11",
+      "source": "file:AUDIT.md",
+      "target": "file:tests/test_modes.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:12",
+      "source": "file:tests/test_modes.py",
+      "target": "file:tests/test_store.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:13",
+      "source": "file:tests/test_store.py",
+      "target": "file:tests/test_guard.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    },
+    {
+      "id": "reading-edge:14",
+      "source": "file:tests/test_guard.py",
+      "target": "file:tests/test_server.py",
+      "label": "next",
+      "type": "next",
+      "confidence": 0.95,
+      "evidence_refs": []
+    }
+  ],
+  "legend": {
+    "node_types": [
+      "file"
+    ],
+    "edge_types": [
+      "next"
+    ]
+  },
+  "evidence_refs": [],
+  "stats": {
+    "nodes": 16,
+    "edges": 15
+  }
+}
