@@ -1,12 +1,16 @@
 {
   "id": "base",
-  "version": 3,
+  "version": 4,
   "required_outputs": [
     "README.md",
     "docs/overview.md",
     "docs/architecture.md",
     "docs/quickstart.md",
+    "docs/configuration.md",
+    "docs/extension.md",
     "docs/reference.md",
+    "docs/operations.md",
+    "docs/security.md",
     "docs/testing.md",
     "docs/faq.md",
     "docs/glossary.md",
@@ -43,22 +47,30 @@
     "provenance",
     "machine-interfaces"
   ],
-  "optional_sections": ["operations", "security", "data-state", "extension", "history-change"],
+  "optional_sections": ["data-state", "history-change"],
   "visual_defaults": ["repository-topology", "dependency-surface", "evidence-map"],
   "visual_policy": {
     "minimum_views": 4,
     "minimum_semantic_views": 1,
-    "maximum_views": 10,
+    "minimum_type_diversity": 2,
+    "maximum_views": 12,
     "maximum_semantic_nodes": 48,
-    "maximum_network_nodes": 140,
+    "maximum_nodes_per_view": 140,
+    "maximum_edges_per_view": 240,
     "canonical_graph": "graph.json",
     "source_of_truth": "visual-data",
     "interactive_renderer": "cytoscape",
-    "semantic_renderer": "mermaid-when-compiled",
+    "semantic_renderer": "mermaid",
     "layered_layout": "elk-layered",
     "portable_fallback": "semantic-json",
     "mermaid_security": "strict",
-    "diagram_types": ["flowchart", "swimlane", "sequence", "class", "state", "er", "user_journey", "gantt", "pie", "quadrant", "requirement", "gitgraph", "c4", "mindmap", "timeline", "zenuml", "sankey", "xy", "block", "packet", "kanban", "architecture", "radar", "event_modeling", "treemap", "venn", "ishikawa", "wardley", "cynefin", "treeview", "network"]
+    "diagram_types": [
+      "network", "flowchart", "swimlanes", "sequence", "class", "state", "er",
+      "user-journey", "gantt", "pie", "quadrant", "requirement", "gitgraph", "c4",
+      "mindmap", "timeline", "zenuml", "sankey", "xy", "block", "packet", "kanban",
+      "architecture", "radar", "event-modeling", "treemap", "venn", "ishikawa", "wardley",
+      "cynefin", "treeview"
+    ]
   },
   "navigation_policy": {
     "docs_are_primary": true,
@@ -67,17 +79,24 @@
     "generic_single_group_max_pages": 3,
     "minimum_quality": 0.75
   },
+  "evidence_policy": {
+    "small_repository_visibility_target": 0.9,
+    "semantic_nodes_require_source_or_evidence": true,
+    "generation_failures_are_not_repository_findings": true
+  },
   "rules": {
     "source_links_required": true,
-    "unsupported_sections_omitted": true,
-    "external_research_isolated": true,
     "portable_outputs_first": true,
     "generated_version_immutable": true,
     "documentation_is_primary_human_surface": true,
+    "required_writer_docs_must_exist": true,
     "visuals_are_first_class_explanations": true,
     "visuals_are_data": true,
+    "source_paths_are_metadata_not_display_labels": true,
     "source_graph_semantic_graph_visual_views_are_distinct": true,
+    "visual_type_selected_by_semantics": true,
     "model_generated_renderer_syntax": false,
-    "quantity_padding_visuals": false
+    "quantity_padding_visuals": false,
+    "generation_diagnostics_separate_from_repository_recommendations": true
   }
 }
