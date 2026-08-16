@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bitwikiorg/atlas/schemas/visual-index.schema.json",
+  "title": "BITwiki Atlas Visual Index",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["version", "repo_id", "source_sha", "canonical_graph", "renderer_policy", "views"],
+  "properties": {
+    "version": {"type": "integer", "minimum": 1},
+    "repo_id": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+    "source_sha": {"type": "string", "minLength": 7},
+    "canonical_graph": {"const": "graph.json"},
+    "renderer_policy": {
+      "type": "object",
+      "properties": {
+        "interactive": {"type": "string"},
+        "layered_layout": {"type": "string"},
+        "portable_fallback": {"type": "string"},
+        "mermaid_security": {"type": "string"}
+      }
+    },
+    "views": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "kind", "purpose", "origin", "layout", "stats", "path"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "kind": {"type": "string"},
+          "purpose": {"type": "string"},
+          "origin": {"type": "string"},
+          "layout": {"type": "object"},
+          "stats": {"type": "object"},
+          "path": {"type": "string", "pattern": "^visuals/views/[a-z0-9][a-z0-9-]*\\.json$"}
+        }
+      }
+    }
+  }
+}
