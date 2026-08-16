@@ -22,7 +22,11 @@
         "fallback_count": {"type": "integer", "minimum": 0},
         "fallback_ratio": {"type": "number", "minimum": 0, "maximum": 1},
         "generic_only": {"type": "boolean"},
-        "score": {"type": "number", "minimum": 0, "maximum": 1},
+        "score": {"type": "number", "minimum": 0, "maximum": 1, "description": "Legacy alias for structural_score."},
+        "structural_score": {"type": "number", "minimum": 0, "maximum": 1},
+        "semantic_customization_score": {"type": "number", "minimum": 0, "maximum": 1},
+        "model_group_count": {"type": "integer", "minimum": 0},
+        "model_coverage_ratio": {"type": "number", "minimum": 0, "maximum": 1},
         "duplicate_paths": {"type": "integer", "minimum": 0}
       }
     },
