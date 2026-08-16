@@ -1,38 +1,5 @@
 {
   "version": 1,
-  "generated_at": "2026-08-16T15:07:47.494Z",
-  "repositories": [
-    {
-      "repo_id": "bitwikiorg/simple_thinking_tool",
-      "owner": "bitwikiorg",
-      "repo": "simple_thinking_tool",
-      "repo_url": "https://github.com/bitwikiorg/simple_thinking_tool",
-      "description": "",
-      "source_sha": "2609fe5979e7d4e62024b2be103e81ee9230c172",
-      "last_indexed_at": "2026-08-16T15:07:47.494Z",
-      "template_id": "base",
-      "language": "Python",
-      "foundry_score": 73,
-      "score_confidence": 0.62,
-      "evidence_grade": "A",
-      "doc_coverage": 1,
-      "github_stars": 0,
-      "github_forks": 0,
-      "version_count": 1,
-      "words_generated": 13394,
-      "source_files_mapped": 24,
-      "agent_runs": 15,
-      "graph_nodes": 28,
-      "graph_edges": 69,
-      "graph_entities": 97,
-      "visual_count": 10,
-      "visual_nodes": 275,
-      "visual_edges": 299,
-      "navigation_groups": 1,
-      "github_docs_url": "https://github.com/bitwikiorg/atlas/tree/main/repos/bitwikiorg/simple_thinking_tool/versions/2609fe5979e7d4e62024b2be103e81ee9230c172",
-      "download_url": "https://raw.githubusercontent.com/bitwikiorg/atlas/main/repos/bitwikiorg/simple_thinking_tool/versions/2609fe5979e7d4e62024b2be103e81ee9230c172/bundle.json",
-      "atlas_url": "/atlas/bitwikiorg/simple_thinking_tool",
-      "manifest_uri": "https://raw.githubusercontent.com/bitwikiorg/atlas/main/repos/bitwikiorg/simple_thinking_tool/versions/2609fe5979e7d4e62024b2be103e81ee9230c172/manifest.json"
-    }
-  ]
+  "generated_at": null,
+  "repositories": []
 }
