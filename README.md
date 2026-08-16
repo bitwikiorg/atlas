@@ -2,7 +2,7 @@
 
 **Atlas is the durable repository knowledge layer produced by [BITwiki Foundry](https://github.com/bitwikiorg/foundry).**
 
-Foundry analyzes a submitted public repository at a pinned Git commit. Atlas stores the generated, source-linked result: documentation, graphs, ratings, provenance, machine-readable surfaces, and version history.
+Foundry analyzes a submitted public repository at a pinned Git commit. Atlas stores the generated, source-linked result: documentation, navigation, multiple visual datasets, graphs, ratings, provenance, machine-readable surfaces, and version history.
 
 ```text
 Foundry                           Atlas
@@ -16,7 +16,7 @@ This repository is intentionally lightweight. It contains:
 - the shared Atlas output contract
 - reusable documentation templates
 - thin project-archetype overlays
-- schemas for publication/index records
+- schemas for publication/index/visual/navigation records
 - the public repository index
 - generated repository outputs under `repos/`
 - minimal continuity state
@@ -33,7 +33,12 @@ repos/<github-owner>/<github-repository>/
   versions/<source-sha>/
     README.md
     docs/
+    navigation.json
     graph.json
+    visuals/
+      index.json
+      views/
+        <visual-id>.json
     scorecard.json
     provenance.jsonl
     llms.txt
@@ -52,7 +57,33 @@ Do not place generated repository documents at repository root, inside `template
 
 Each `versions/<source-sha>/` directory is immutable. `latest.json` points to the currently published version.
 
-See **[PUBLISHING.md](./PUBLISHING.md)** for the exact write order, telemetry definitions, and index contract.
+See **[PUBLISHING.md](./PUBLISHING.md)** for the exact write order, visual-data contract, telemetry definitions, and index contract.
+
+## Documentation topology
+
+Generated pages are not presented as a fixed generic list. `navigation.json` organizes the generated corpus into a repository-specific reading hierarchy derived from the project's actual concepts and architecture.
+
+Templates provide documentation grammar; repository analysis determines documentation topology.
+
+## Visual system
+
+`graph.json` is the canonical broad repository graph.
+
+Atlas also publishes **multiple bounded visual datasets** under `visuals/views/`. Each view answers a distinct question using typed nodes, typed edges, evidence references, semantic groups, and layout intent.
+
+Typical views include:
+
+- repository topology
+- dependency surface
+- evidence map
+- architecture
+- execution/data flow
+- state/lifecycle flow
+- ontology/concept map
+- testing/deployment map
+- recommended reading path
+
+These JSON datasets are the source of truth. Foundry renders them interactively. Mermaid may be generated deterministically as a portable fallback, but model-generated renderer syntax is not canonical Atlas data.
 
 ## Template inheritance
 
@@ -83,6 +114,6 @@ Those pages read this repository as their durable source. Human page impressions
 
 ## Rule
 
-Repository source evidence is authoritative. Generated prose, diagrams, ratings, and inferred relationships must preserve provenance and uncertainty.
+Repository source evidence is authoritative. Generated prose, navigation, visual projections, diagrams, ratings, and inferred relationships must preserve provenance and uncertainty.
 
 **Control plane:** [github.com/bitwikiorg/foundry](https://github.com/bitwikiorg/foundry)
