@@ -12,9 +12,16 @@
     "kind": {"type": "string", "minLength": 1},
     "question": {"type": "string", "minLength": 1},
     "purpose": {"type": "string", "minLength": 1},
-    "origin": {"type": "string", "enum": ["deterministic", "semantic"]},
-    "diagram_type": {"type": "string", "enum": ["flowchart", "swimlane", "sequence", "class", "state", "er", "user_journey", "gantt", "pie", "quadrant", "requirement", "gitgraph", "c4", "mindmap", "timeline", "zenuml", "sankey", "xy", "block", "packet", "kanban", "architecture", "radar", "event_modeling", "treemap", "venn", "ishikawa", "wardley", "cynefin", "treeview", "network"]},
-    "doc_paths": {"type": "array", "items": {"type": "string"}},
+    "origin": {"type": "string", "enum": ["deterministic", "curated", "semantic"]},
+    "diagram_type": {
+      "type": "string",
+      "enum": ["network", "flowchart", "swimlanes", "sequence", "class", "state", "er", "user-journey", "gantt", "pie", "quadrant", "requirement", "gitgraph", "c4", "mindmap", "timeline", "zenuml", "sankey", "xy", "block", "packet", "kanban", "architecture", "radar", "event-modeling", "treemap", "venn", "ishikawa", "wardley", "cynefin", "treeview"]
+    },
+    "doc_paths": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {"type": "string", "pattern": "^(README\\.md|docs/[A-Za-z0-9_.\\/-]+\\.md)$"}
+    },
     "layout": {
       "type": "object",
       "required": ["family", "direction"],
@@ -26,9 +33,9 @@
     },
     "renderer": {
       "type": "object",
-      "required": ["source_of_truth"],
+      "required": ["interactive", "portable_fallback", "source_of_truth"],
       "properties": {
-        "interactive": {"type": "string"},
+        "interactive": {"type": "string", "enum": ["mermaid", "cytoscape"]},
         "portable_fallback": {"type": "string"},
         "source_of_truth": {"const": "visual-data"}
       }
@@ -45,12 +52,14 @@
     },
     "nodes": {
       "type": "array",
+      "minItems": 1,
       "items": {
         "type": "object",
         "required": ["id", "label", "type", "evidence_refs", "source_paths"],
         "properties": {
           "id": {"type": "string", "minLength": 1},
-          "label": {"type": "string", "minLength": 1},
+          "label": {"type": "string", "minLength": 1, "maxLength": 80},
+          "full_label": {"type": "string"},
           "group": {"type": "string"},
           "type": {"type": "string", "minLength": 1},
           "description": {"type": "string"},
@@ -64,12 +73,12 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "source", "target", "type", "confidence", "evidence_refs"],
+        "required": ["id", "source", "target", "type", "evidence_refs"],
         "properties": {
           "id": {"type": "string", "minLength": 1},
           "source": {"type": "string", "minLength": 1},
           "target": {"type": "string", "minLength": 1},
-          "label": {"type": "string"},
+          "label": {"type": "string", "maxLength": 100},
           "type": {"type": "string", "minLength": 1},
           "confidence": {"type": "number", "minimum": 0, "maximum": 1},
           "value": {"type": "number"},
@@ -79,6 +88,7 @@
       }
     },
     "data_points": {"type": "array", "items": {"type": "object"}},
+    "legend": {"type": "object"},
     "evidence_refs": {"type": "array", "items": {"type": "string"}},
     "stats": {"type": "object"}
   }
