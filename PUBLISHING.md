@@ -22,7 +22,12 @@ repos/OWNER/REPO/
   versions/SOURCE_SHA/
     README.md
     docs/
+    navigation.json
     graph.json
+    visuals/
+      index.json
+      views/
+        <visual-id>.json
     scorecard.json
     provenance.jsonl
     llms.txt
@@ -49,6 +54,53 @@ Every build inherits `templates/base.json` plus at most one archetype overlay:
 
 Templates shape output; source evidence remains authoritative.
 
+## Navigation contract
+
+`navigation.json` is the repository-specific documentation topology consumed by the Foundry reader.
+
+It must:
+
+- identify the same `repo_id` and `source_sha` as the version manifest;
+- select one generated document as `primary_page`;
+- group generated pages into a concise reading hierarchy derived from the repository's actual concepts;
+- reference only files that exist in the immutable version directory;
+- validate against `schemas/navigation.schema.json`.
+
+Templates provide documentation grammar. Repository analysis determines documentation topology.
+
+## Visual data contract
+
+`graph.json` is the canonical repository graph. It contains the broad deterministic graph and curated semantic graph information for the pinned source version.
+
+**A graph is data before it is a drawing.** Atlas therefore stores multiple bounded visual projections of that canonical graph rather than one monolithic rendered diagram.
+
+`visuals/index.json` catalogs all published visual views. Each view is stored at:
+
+```text
+visuals/views/<visual-id>.json
+```
+
+Each view must contain typed nodes, typed edges, evidence references, semantic grouping, and layout intent. The canonical visual files must **not** contain model-generated Mermaid, SVG, HTML, CSS, JavaScript, or fixed coordinates.
+
+The Foundry presentation layer renders these visual datasets interactively. Portable Mermaid may be generated deterministically as a fallback/export, but Mermaid is never the source of truth.
+
+Default renderer policy:
+
+- interactive graph renderer: Cytoscape.js;
+- directed/hierarchical layout: ELK layered;
+- portable diagram fallback: Mermaid;
+- Mermaid security level: strict.
+
+The base template requires at least four useful visual views and allows up to ten. Three deterministic views are expected when data exists:
+
+- repository topology;
+- dependency surface;
+- evidence map.
+
+Additional views should answer distinct repository-specific questions such as architecture, execution flow, state flow, lifecycle, ontology, testing, deployment, or reading path. Cosmetic variants of the same topology do not count as distinct views.
+
+`visuals/index.json` must validate against `schemas/visual-index.schema.json`; each visual view must validate against `schemas/visual.schema.json`.
+
 ## Publication transaction
 
 The deterministic publisher—not an AI agent—must:
@@ -66,6 +118,21 @@ The deterministic publisher—not an AI agent—must:
 
 Prefer one Git commit for the version, latest pointer, and root index so `index.json` cannot point at incomplete output.
 
+## Deterministic validation before release
+
+Before Release Adjudicator may approve publication, deterministic code should verify at minimum:
+
+- all required files exist;
+- all navigation paths resolve;
+- every visual ID is unique;
+- every visual edge references declared nodes;
+- visual count satisfies the template policy;
+- visual/index source SHA matches the version source SHA;
+- evidence references use the published evidence namespace;
+- manifest file inventory includes navigation and visual artifacts.
+
+Renderer-specific syntax validation belongs to deterministic rendering/export code, not to language-model agents.
+
 ## Activity telemetry
 
 Publication should record deterministic activity metrics in `manifest.json` and copy the current totals needed by the public index into `index.json`.
@@ -73,9 +140,10 @@ Publication should record deterministic activity metrics in `manifest.json` and 
 - `version_count` — number of immutable published source-SHA versions for this repository after this publication.
 - `words_generated` — word count of the canonical human Atlas corpus: `README.md` plus `docs/**/*.md`. Do not count `llms-full.txt` or other duplicate machine representations.
 - `source_files_mapped` — number of source-repository file nodes represented in `graph.json`.
-- `graph_nodes` — graph node count.
-- `graph_edges` — graph edge count.
+- `graph_nodes` — canonical graph node count.
+- `graph_edges` — canonical graph edge count.
 - `graph_entities` — `graph_nodes + graph_edges`.
+- `visual_count` — number of published bounded visual datasets for this version.
 - `agent_runs` — number of AI-agent invocations actually executed for this publication job.
 - `generation_seconds` — elapsed worker time from claim through verified publication.
 - `model_tokens` — optional sum of provider-reported model tokens. Record only when actual usage metadata exists; never estimate it.
