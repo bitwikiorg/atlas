@@ -1,6 +1,6 @@
 {
   "id": "base",
-  "version": 1,
+  "version": 2,
   "required_outputs": [
     "README.md",
     "docs/overview.md",
@@ -12,7 +12,9 @@
     "docs/glossary.md",
     "docs/scorecard.md",
     "docs/provenance.md",
+    "navigation.json",
     "graph.json",
+    "visuals/index.json",
     "scorecard.json",
     "provenance.jsonl",
     "llms.txt",
@@ -50,15 +52,28 @@
     "history-change"
   ],
   "visual_defaults": [
-    "architecture",
-    "dependencies",
-    "reading-path"
+    "repository-topology",
+    "dependency-surface",
+    "evidence-map",
+    "architecture"
   ],
+  "visual_policy": {
+    "minimum_views": 4,
+    "maximum_views": 10,
+    "canonical_graph": "graph.json",
+    "source_of_truth": "visual-data",
+    "interactive_renderer": "cytoscape",
+    "layered_layout": "elk-layered",
+    "portable_fallback": "mermaid",
+    "mermaid_security": "strict"
+  },
   "rules": {
     "source_links_required": true,
     "unsupported_sections_omitted": true,
     "external_research_isolated": true,
     "portable_outputs_first": true,
-    "generated_version_immutable": true
+    "generated_version_immutable": true,
+    "visuals_are_data": true,
+    "model_generated_renderer_syntax": false
   }
 }
